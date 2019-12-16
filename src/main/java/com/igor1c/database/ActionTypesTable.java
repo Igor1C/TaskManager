@@ -1,7 +1,7 @@
 package com.igor1c.database;
 
-        import com.igor1c.entities.ActionTypeEntity;
-        import com.igor1c.entities.BaseEntity;
+import com.igor1c.entities.ActionTypeEntity;
+import com.igor1c.entities.BaseEntity;
 
 public class ActionTypesTable extends BaseEntity implements TableOperations {
 
