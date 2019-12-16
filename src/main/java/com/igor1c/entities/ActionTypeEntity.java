@@ -18,6 +18,7 @@ public class ActionTypeEntity extends BaseEntity {
     }
 
 
+
     public String getName() {
         return name;
     }
