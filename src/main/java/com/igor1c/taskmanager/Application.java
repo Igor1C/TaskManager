@@ -1,10 +1,13 @@
 package com.igor1c.taskmanager;
 
+import com.igor1c.database.ActionTypesTable;
+
 public class Application {
 
     public static void main(String ... args) {
 
-        DBHelper.connect();
+        ActionTypesTable actionTypesTable = new ActionTypesTable();
+        actionTypesTable.createTable();
 
     }
 

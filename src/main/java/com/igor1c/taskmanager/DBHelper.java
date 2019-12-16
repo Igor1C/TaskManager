@@ -46,7 +46,7 @@ public class DBHelper {
 
         try {
             Statement statement = connection.createStatement();
-            statement.executeQuery(query);
+            statement.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
