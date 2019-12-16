@@ -3,32 +3,43 @@ package com.igor1c.taskmanager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DBHelper {
 
     public static final String DB_URL = "jdbc:h2:/C:/Java/TaskManager/db/taskManager";
     public static final String DB_DRIVER = "org.h2.Driver";
 
-    public static void connect() {
+    public Connection connection;
+
+    public void openConnection() {
 
         try {
-            Class.forName(DB_DRIVER);
-            Connection connection = DriverManager.getConnection(DB_URL);
-            connection.close();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            connection = DriverManager.getConnection(DB_URL);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
 
-    public static void createTableActionsTypes() {
+    public void closeConnection() {
 
-        String query =  "CREATE TABLE actionTypes(\n" +
-                        "   id BIGINT AUTO_INCREMENT PRIMARY KEY,\n" +
-                        "   name VARCHAR(255) NOT NULL\n" +
-                        ");";
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void executeQuery(String query) {
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

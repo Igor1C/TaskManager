@@ -12,6 +12,11 @@ public class ActionTypesTable extends BaseEntity implements TableOperations {
 
     public void createTable() {
 
+        String query =  "CREATE TABLE actionTypes(\n" +
+                        "   id BIGINT AUTO_INCREMENT PRIMARY KEY,\n" +
+                        "   name VARCHAR(255) NOT NULL\n" +
+                        ");";
+
     }
 
     public void createForeignKeys() {
