@@ -12,6 +12,16 @@ public class DBHelper {
 
     public Connection connection;
 
+    static {
+        try {
+            Class.forName(DB_DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public void openConnection() {
 
         try {
