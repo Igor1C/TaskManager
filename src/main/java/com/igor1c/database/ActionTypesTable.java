@@ -21,4 +21,5 @@ public class ActionTypesTable extends BaseEntity implements TableOperations {
     public void createExtraConstraints() {
 
     }
+
 }
