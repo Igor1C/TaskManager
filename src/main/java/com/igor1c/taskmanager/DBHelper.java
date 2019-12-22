@@ -1,9 +1,15 @@
 package com.igor1c.taskmanager;
 
+import com.igor1c.database.ActionTypeParamsTable;
+import com.igor1c.database.ActionTypesTable;
+import com.igor1c.database.TableOperations;
+import com.igor1c.database.UserTasksTable;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DBHelper {
 
@@ -49,6 +55,21 @@ public class DBHelper {
             statement.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+
+    }
+
+    public static void createDatabase() {
+
+        ArrayList<TableOperations> tableOperationsArray = new ArrayList<TableOperations>();
+        tableOperationsArray.add(new ActionTypesTable());
+        tableOperationsArray.add(new ActionTypeParamsTable());
+        tableOperationsArray.add(new UserTasksTable());
+
+        for (TableOperations tableOperations : tableOperationsArray) {
+            tableOperations.createTable();
+            tableOperations.createForeignKeys();
+            tableOperations.createExtraConstraints();
         }
 
     }
