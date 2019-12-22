@@ -34,4 +34,6 @@ public class TaskActionParamsTable extends TableController {
 
     public void createExtraConstraints() {}
 
+    public void fillTable() {}
+
 }

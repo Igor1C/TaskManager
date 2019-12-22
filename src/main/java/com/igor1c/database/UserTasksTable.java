@@ -21,4 +21,6 @@ public class UserTasksTable extends TableController {
 
     public void createExtraConstraints() {}
 
+    public void fillTable() {}
+
 }

@@ -4,13 +4,13 @@ import com.igor1c.entities.BaseEntity;
 
 public class ActionTypeEntity extends BaseEntity {
 
-    private String name;
+    private String description;
 
 
 
     public ActionTypeEntity() {}
 
-    public ActionTypeEntity(long id, String name) {
+    public ActionTypeEntity(long id, String name, String description) {
 
         setId(id);
         setName(name);
@@ -19,11 +19,12 @@ public class ActionTypeEntity extends BaseEntity {
 
 
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
+
 }

@@ -61,6 +61,7 @@ public class DBHelper {
             tableOperations.createTable();
             tableOperations.createForeignKeys();
             tableOperations.createExtraConstraints();
+            tableOperations.fillTable();
         }
 
     }

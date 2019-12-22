@@ -5,5 +5,6 @@ public interface TableOperations {
     void createTable();
     void createForeignKeys();
     void createExtraConstraints();
+    void fillTable();
 
 }

@@ -30,4 +30,6 @@ public class ActionTypeParamsTable extends TableController {
 
     public void createExtraConstraints() {}
 
+    public void fillTable() {}
+
 }
