@@ -1,6 +1,10 @@
 package com.igor1c.database;
 
-public class ParamRelationsTable extends TableController {
+import com.igor1c.entities.ActionTypeEntity;
+import com.igor1c.entities.ActionTypeParamEntity;
+import com.igor1c.entities.ParamRelationEntity;
+
+public class ParamRelationsTable extends TableController<ParamRelationEntity> {
 
     public ParamRelationsTable() {
         super("paramRelations");
@@ -33,6 +37,24 @@ public class ParamRelationsTable extends TableController {
 
     public void createExtraConstraints() {}
 
-    public void fillTable() {}
+    public void fillTable() {
+
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_FILE_PATH));
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_USER));
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_PASSWORD));
+
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_SERVER_SRV));
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_SERVER_REF));
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_USER));
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_PASSWORD));
+
+    }
+
+    public void insert(ParamRelationEntity entity) {
+
+        String query =  "INSERT INTO " + getTableName() + " (actionType, actionTypeParam) VALUES (" + entity.getActionType() + ", " + entity.getActionTypeParam() + ");";
+        executeQuery(query);
+
+    }
 
 }

@@ -1,6 +1,8 @@
 package com.igor1c.database;
 
-public class UserTasksTable extends TableController {
+import com.igor1c.entities.UserTaskEntity;
+
+public class UserTasksTable extends TableController<UserTaskEntity> {
 
     public UserTasksTable() {
         super("userTasks");
@@ -22,5 +24,7 @@ public class UserTasksTable extends TableController {
     public void createExtraConstraints() {}
 
     public void fillTable() {}
+
+    public void insert(UserTaskEntity entity) {}
 
 }

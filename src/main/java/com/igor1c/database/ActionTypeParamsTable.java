@@ -1,6 +1,10 @@
 package com.igor1c.database;
 
-public class ActionTypeParamsTable extends TableController {
+import com.igor1c.entities.ActionTypeParamEntity;
+
+import java.util.HashMap;
+
+public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity> {
 
     public ActionTypeParamsTable() {
         super("actionTypeParams");
@@ -11,25 +15,30 @@ public class ActionTypeParamsTable extends TableController {
         String query =  "CREATE TABLE actionTypeParams(\n" +
                         "   id BIGINT AUTO_INCREMENT PRIMARY KEY,\n" +
                         "   name VARCHAR(255) NOT NULL,\n" +
-                        "   actionType BIGINT NOT NULL\n" +
+                        "   description VARCHAR(255) NOT NULL" +
                         ");";
 
         executeQuery(query);
 
     }
 
-    public void createForeignKeys() {
-
-        String query =  "ALTER TABLE actionTypeParams\n" +
-                        "   ADD FOREIGN KEY (actionType)\n" +
-                        "   REFERENCES actionTypes(id)";
-
-        executeQuery(query);
-
-    }
+    public void createForeignKeys() {}
 
     public void createExtraConstraints() {}
 
-    public void fillTable() {}
+    public void fillTable() {
+
+        HashMap<Integer, ActionTypeParamEntity> predefinedMap = ActionTypeParamEntity.getPredefinedMap();
+        for (ActionTypeParamEntity actionTypeParamEntity : predefinedMap.values())
+            insert(actionTypeParamEntity);
+
+    }
+
+    public void insert(ActionTypeParamEntity entity) {
+
+        String query =  "INSERT INTO " + getTableName() + " VALUES (" + entity.getId() + ", '" + entity.getName() + "', '" + entity.getDescription() + "');";
+        executeQuery(query);
+
+    }
 
 }

@@ -18,6 +18,7 @@ public class ActionTypeEntity extends BaseEntity {
         initPredefinedMap();
     }
 
+    private String name;
     private String description;
 
 
@@ -53,6 +54,14 @@ public class ActionTypeEntity extends BaseEntity {
 
     public static HashMap<Integer, ActionTypeEntity> getPredefinedMap() {
         return PREDEFINED_MAP;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

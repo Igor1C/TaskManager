@@ -1,6 +1,8 @@
 package com.igor1c.database;
 
-public class TaskActionParamsTable extends TableController {
+import com.igor1c.entities.TaskActionParamEntity;
+
+public class TaskActionParamsTable extends TableController<TaskActionParamEntity> {
 
     public TaskActionParamsTable() {
         super("taskActionParams");
@@ -35,5 +37,7 @@ public class TaskActionParamsTable extends TableController {
     public void createExtraConstraints() {}
 
     public void fillTable() {}
+
+    public void insert(TaskActionParamEntity entity) {}
 
 }

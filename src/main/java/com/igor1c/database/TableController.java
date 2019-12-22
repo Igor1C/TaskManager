@@ -5,7 +5,7 @@ import com.igor1c.taskmanager.DBHelper;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public abstract class TableController extends DBHelper implements TableOperations {
+public abstract class TableController<E> extends DBHelper implements TableOperations<E> {
 
     private String tableName;
 
