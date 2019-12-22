@@ -23,9 +23,9 @@ public class ParamRelationsTable extends TableController {
         String query =  "ALTER TABLE paramRelations\n" +
                         "   ADD FOREIGN KEY (actionType)\n" +
                         "   REFERENCES actionTypes(id);\n" +
-                        "ALTER TABLE taskActions\n" +
+                        "ALTER TABLE paramRelations\n" +
                         "   ADD FOREIGN KEY (actionTypeParam)\n" +
-                        "   REFERENCES actionTypeParam(id);";
+                        "   REFERENCES actionTypeParams(id);";
 
         executeQuery(query);
 

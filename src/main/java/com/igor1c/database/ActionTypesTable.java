@@ -1,5 +1,9 @@
 package com.igor1c.database;
 
+import com.igor1c.entities.ActionTypeEntity;
+
+import java.util.HashMap;
+
 public class ActionTypesTable extends TableController {
 
     public ActionTypesTable() {
@@ -26,11 +30,15 @@ public class ActionTypesTable extends TableController {
 
     public void fillTable() {
 
-        String query =  "INSERT INTO actionTypes VALUES (1, '1C_FILE_UNLOAD_DT', '1C file database - unload DT');\n" +
-                        "INSERT INTO actionTypes VALUES (2, '1C_SERVER_UNLOAD_DT', '1C server database - unload DT');\n" +
-                        "INSERT INTO actionTypes VALUES (3, '7Z_PACK_ARCHIVE', '7Z - make archive');\n" +
-                        "INSERT INTO actionTypes VALUES (4, 'FTP_UPLOAD_FILE', 'FTP - upload file');";
+        HashMap<Integer, ActionTypeEntity> predefinedMap = ActionTypeEntity.getPredefinedMap();
+        for (ActionTypeEntity actionTypeEntity : predefinedMap.values())
+            insert((int) actionTypeEntity.getId(), actionTypeEntity.getName(), actionTypeEntity.getDescription());
 
+    }
+
+    public void insert(int id, String name, String description) {
+
+        String query =  "INSERT INTO " + getTableName() + " VALUES (" + id + ", '" + name + "', '" + description + "');";
         executeQuery(query);
 
     }

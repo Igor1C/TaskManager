@@ -2,9 +2,40 @@ package com.igor1c.entities;
 
 import com.igor1c.entities.BaseEntity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class ActionTypeEntity extends BaseEntity {
 
+    public static final int ONE_C_FILE_UNLOAD_DT = 1;
+    public static final int ONE_C_SERVER_UNLOAD_DT = 2;
+    public static final int SEVEN_Z_PACK_ARCHIVE = 3;
+    public static final int FTP_UPLOAD_FILE = 4;
+
+    private static HashMap<Integer, ActionTypeEntity> PREDEFINED_MAP;
+
+    static {
+        initPredefinedMap();
+    }
+
     private String description;
+
+
+
+    public static void initPredefinedMap() {
+
+        PREDEFINED_MAP = new HashMap<Integer, ActionTypeEntity>();
+
+        ArrayList<ActionTypeEntity> actionTypeEntities = new ArrayList<ActionTypeEntity>();
+        actionTypeEntities.add(new ActionTypeEntity(ONE_C_FILE_UNLOAD_DT, "ONE_C_FILE_UNLOAD_DT", "1C file database - Unload DT"));
+        actionTypeEntities.add(new ActionTypeEntity(ONE_C_SERVER_UNLOAD_DT, "ONE_C_SERVER_UNLOAD_DT", "1C server database - Unload DT"));
+        actionTypeEntities.add(new ActionTypeEntity(SEVEN_Z_PACK_ARCHIVE, "SEVEN_Z_PACK_ARCHIVE", "7Z - Make archive"));
+        actionTypeEntities.add(new ActionTypeEntity(FTP_UPLOAD_FILE, "FTP_UPLOAD_FILE", "FTP - Upload file"));
+
+        for (ActionTypeEntity actionTypeEntity : actionTypeEntities)
+            PREDEFINED_MAP.put((int) actionTypeEntity.getId(), actionTypeEntity);
+
+    }
 
 
 
@@ -14,10 +45,15 @@ public class ActionTypeEntity extends BaseEntity {
 
         setId(id);
         setName(name);
+        setDescription(description);
 
     }
 
 
+
+    public static HashMap<Integer, ActionTypeEntity> getPredefinedMap() {
+        return PREDEFINED_MAP;
+    }
 
     public String getDescription() {
         return description;

@@ -56,6 +56,7 @@ public class DBHelper {
         tableOperationsArray.add(new UserTasksTable());
         tableOperationsArray.add(new TaskActionsTable());
         tableOperationsArray.add(new TaskActionParamsTable());
+        tableOperationsArray.add(new ParamRelationsTable());
 
         for (TableOperations tableOperations : tableOperationsArray) {
             tableOperations.createTable();
