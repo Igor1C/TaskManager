@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e052661d-a88d-4784-b3f8-e162c7db3f11" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/database/TaskActionParamsTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypeParamsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypeParamsTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypesTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypesTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/database/TaskActionsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/database/TaskActionsTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/database/UserTasksTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/database/UserTasksTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/DBHelper.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,10 +23,32 @@
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypesTable.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="340">
+                  <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/TableController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="374">
+                  <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+                  <folding>
+                    <element signature="e#292#293#0" expanded="true" />
+                    <element signature="e#331#332#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/DBHelper.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="735">
-                  <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
+                <state relative-caret-position="204">
+                  <caret line="39" column="11" lean-forward="true" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -30,28 +57,23 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/Application.java">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypeParamsTable.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+                <state relative-caret-position="28">
+                  <caret line="2" column="52" lean-forward="true" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
+                  <folding>
+                    <element signature="e#127#128#0" expanded="true" />
+                    <element signature="e#168#169#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypeParamsTable.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="476">
-                  <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/UserTasksTable.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
+                <state relative-caret-position="136">
+                  <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
                 </state>
               </provider>
             </entry>
@@ -61,28 +83,10 @@
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypesTable.java">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/TaskActionParamsTable.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/TableController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="31" selection-start-line="31" selection-end-line="31" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/TableOperations.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+                <state relative-caret-position="204">
+                  <caret line="14" column="54" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
                 </state>
               </provider>
             </entry>
@@ -120,12 +124,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/entities/BaseEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/entities/ActionTypeEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/database/TableOperations.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/database/TableController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypesTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/database/UserTasksTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypeParamsTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/DBHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypesTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypeParamsTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/database/TaskActionsTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/DBHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/database/UserTasksTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/database/TaskActionParamsTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/database/TableController.java" />
       </list>
     </option>
   </component>
@@ -137,9 +143,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+    <option name="x" value="582" />
+    <option name="y" value="-13" />
     <option name="width" value="1294" />
-    <option name="height" value="1407" />
+    <option name="height" value="1045" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -224,7 +231,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1577001793244" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1577003692876" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -272,7 +279,7 @@
       <workItem from="1576351020211" duration="4366000" />
       <workItem from="1576513777070" duration="4204000" />
       <workItem from="1576688076064" duration="2343000" />
-      <workItem from="1577000295916" duration="1347000" />
+      <workItem from="1577000295916" duration="3394000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <created>1576515056454</created>
@@ -365,16 +372,24 @@
       <option name="project" value="LOCAL" />
       <updated>1577001438488</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Work">
+      <created>1577001842537</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1577001842538</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12260000" />
+    <option name="totallyTimeSpent" value="14307000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25675675" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25675675" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -384,16 +399,16 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32969603" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.5557963" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4972178" visible="true" weight="0.55494934" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49920508" visible="true" weight="0.1909587" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49920508" weight="0.1909587" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32969603" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007949" side_tool="true" visible="true" weight="0.1909587" />
-      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49880764" weight="0.32969603" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50278217" side_tool="true" visible="true" weight="0.55494934" />
+      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4972178" weight="0.32969603" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -439,34 +454,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/TableController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/TableOperations.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/DBHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypesTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -477,17 +468,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypeParamsTable.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/TaskActionsTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+        <state relative-caret-position="204">
+          <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypesTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/UserTasksTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
+        <state relative-caret-position="136">
+          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/TaskActionParamsTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" column="54" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/ActionTypeParamsTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="2" column="52" lean-forward="true" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
+          <folding>
+            <element signature="e#127#128#0" expanded="true" />
+            <element signature="e#168#169#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/DBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="39" column="11" lean-forward="true" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/database/TableController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+          <folding>
+            <element signature="e#292#293#0" expanded="true" />
+            <element signature="e#331#332#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

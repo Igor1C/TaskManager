@@ -8,7 +8,7 @@ public class UserTasksTable extends TableController {
 
     public void createTable() {
 
-        String query =  "CREATE TABLE actionTypeParams(\n" +
+        String query =  "CREATE TABLE userTasks(\n" +
                         "   id BIGINT AUTO_INCREMENT PRIMARY KEY,\n" +
                         "   name VARCHAR(255) NOT NULL" +
                         ");";

@@ -11,8 +11,8 @@ public class TaskActionsTable extends TableController {
         String query =  "CREATE TABLE taskActions(\n" +
                         "   id BIGINT AUTO_INCREMENT PRIMARY KEY,\n" +
                         "   name VARCHAR(255) NOT NULL,\n" +
-                        "   actionType BIGINT,\n" +
-                        "   userTask BIGINT\n" +
+                        "   actionType BIGINT NOT NULL,\n" +
+                        "   userTask BIGINT NOT NULL\n" +
                         ");";
 
         executeQuery(query);

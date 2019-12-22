@@ -1,9 +1,6 @@
 package com.igor1c.taskmanager;
 
-import com.igor1c.database.ActionTypeParamsTable;
-import com.igor1c.database.ActionTypesTable;
-import com.igor1c.database.TableOperations;
-import com.igor1c.database.UserTasksTable;
+import com.igor1c.database.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,14 +14,6 @@ public class DBHelper {
     public static final String DB_DRIVER = "org.h2.Driver";
 
     public Connection connection;
-
-    /*static {
-        try {
-            Class.forName(DB_DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
 
 
 
@@ -65,6 +54,8 @@ public class DBHelper {
         tableOperationsArray.add(new ActionTypesTable());
         tableOperationsArray.add(new ActionTypeParamsTable());
         tableOperationsArray.add(new UserTasksTable());
+        tableOperationsArray.add(new TaskActionsTable());
+        tableOperationsArray.add(new TaskActionParamsTable());
 
         for (TableOperations tableOperations : tableOperationsArray) {
             tableOperations.createTable();

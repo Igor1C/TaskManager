@@ -18,12 +18,8 @@ public class ActionTypesTable extends TableController {
 
     }
 
-    public void createForeignKeys() {
+    public void createForeignKeys() {}
 
-    }
-
-    public void createExtraConstraints() {
-
-    }
+    public void createExtraConstraints() {}
 
 }

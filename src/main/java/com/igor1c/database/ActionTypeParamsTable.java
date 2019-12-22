@@ -11,7 +11,7 @@ public class ActionTypeParamsTable extends TableController {
         String query =  "CREATE TABLE actionTypeParams(\n" +
                         "   id BIGINT AUTO_INCREMENT PRIMARY KEY,\n" +
                         "   name VARCHAR(255) NOT NULL,\n" +
-                        "   actionType BIGINT\n" +
+                        "   actionType BIGINT NOT NULL\n" +
                         ");";
 
         executeQuery(query);
