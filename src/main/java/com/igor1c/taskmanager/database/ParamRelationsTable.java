@@ -1,8 +1,8 @@
-package com.igor1c.database;
+package com.igor1c.taskmanager.database;
 
-import com.igor1c.entities.ActionTypeEntity;
-import com.igor1c.entities.ActionTypeParamEntity;
-import com.igor1c.entities.ParamRelationEntity;
+import com.igor1c.taskmanager.entities.ActionTypeEntity;
+import com.igor1c.taskmanager.entities.ActionTypeParamEntity;
+import com.igor1c.taskmanager.entities.ParamRelationEntity;
 
 public class ParamRelationsTable extends TableController<ParamRelationEntity> {
 

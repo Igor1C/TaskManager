@@ -1,6 +1,6 @@
-package com.igor1c.database;
+package com.igor1c.taskmanager.database;
 
-import com.igor1c.entities.TaskActionParamEntity;
+import com.igor1c.taskmanager.entities.TaskActionParamEntity;
 
 public class TaskActionParamsTable extends TableController<TaskActionParamEntity> {
 

@@ -1,7 +1,4 @@
-package com.igor1c.entities;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+package com.igor1c.taskmanager.entities;
 
 public class UserTaskEntity extends BaseEntity {
 

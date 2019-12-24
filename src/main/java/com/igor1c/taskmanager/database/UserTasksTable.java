@@ -1,6 +1,6 @@
-package com.igor1c.database;
+package com.igor1c.taskmanager.database;
 
-import com.igor1c.entities.UserTaskEntity;
+import com.igor1c.taskmanager.entities.UserTaskEntity;
 
 public class UserTasksTable extends TableController<UserTaskEntity> {
 

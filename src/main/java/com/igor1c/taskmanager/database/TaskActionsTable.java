@@ -1,6 +1,6 @@
-package com.igor1c.database;
+package com.igor1c.taskmanager.database;
 
-import com.igor1c.entities.TaskActionEntity;
+import com.igor1c.taskmanager.entities.TaskActionEntity;
 
 public class TaskActionsTable extends TableController<TaskActionEntity> {
 

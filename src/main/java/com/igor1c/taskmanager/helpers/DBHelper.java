@@ -1,11 +1,9 @@
-package com.igor1c.taskmanager;
+package com.igor1c.taskmanager.helpers;
 
-import com.igor1c.database.*;
+import java.sql.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.igor1c.taskmanager.database.*;
+
 import java.util.ArrayList;
 
 public class DBHelper {
@@ -37,6 +35,8 @@ public class DBHelper {
 
     }
 
+
+
     public void executeQuery(String query) {
 
         try {
@@ -47,6 +47,23 @@ public class DBHelper {
         }
 
     }
+
+    public ResultSet executePreparedStatement(String query) {
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet;
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+
 
     public static void createDatabase() {
 

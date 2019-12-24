@@ -1,4 +1,4 @@
-package com.igor1c.entities;
+package com.igor1c.taskmanager.entities;
 
 import java.util.ArrayList;
 import java.util.HashMap;

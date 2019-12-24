@@ -1,4 +1,4 @@
-package com.igor1c.entities;
+package com.igor1c.taskmanager.entities;
 
 public class TaskActionParamEntity extends BaseEntity {
 

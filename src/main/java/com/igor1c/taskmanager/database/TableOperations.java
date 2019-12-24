@@ -1,4 +1,6 @@
-package com.igor1c.database;
+package com.igor1c.taskmanager.database;
+
+import java.util.ArrayList;
 
 public interface TableOperations<E> {
 
@@ -8,6 +10,7 @@ public interface TableOperations<E> {
 
     void fillTable();
 
+    ArrayList<E> select();
     void insert(E entity);
 
 }
