@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+
     <meta charset="UTF-8"/>
-    <title>Twitter Bootstrap Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Task Manager</title>
 
     <link th:href="@{/bootstrap/css/bootstrap.min.css}"
           rel="stylesheet" media="screen"/>
-
-
-    <script th:src="@{/jquery/jquery.min.js}"></script>
-    <script th:src="@{/popper/popper.min.js}"></script>
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 
 </head>
 
 <body>
 
-<h2>Hello Twitter Bootstrap</h2>
-
-<div class="btn-group">
-    <button type="button" class="btn btn-success">This is a success button</button>
-    <button type="button" class="btn btn-warning">This is a warning button</button>
-    <button type="button" class="btn btn-danger">This is a danger button</button>
+<div class="container table-light">
+    <div class="row table-dark text-center">
+        <div class="col-1 border">#</div>
+        <div class="col border">Name</div>
+        <div class="col border">Description</div>
+    </div>
+    <div type="button" class="row bullet-button" th:each="actionType : ${actionTypes}">
+        <div class="col-1 border text-center" th:text="${actionType.id}"></div>
+        <div class="col border" th:text="${actionType.name}"></div>
+        <div class="col border" th:text="${actionType.description}"></div>
+    </div>
 </div>
+
+
+
+
+<script th:src="@{/jquery/jquery.min.js}"></script>
+<script th:src="@{/popper/popper.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
 </body>
 
 </html>
