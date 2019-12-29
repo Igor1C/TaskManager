@@ -1,7 +1,10 @@
 package com.igor1c.taskmanager;
 
+import com.igor1c.taskmanager.database.ActionTypesTable;
+import com.igor1c.taskmanager.helpers.DBHelper;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import java.util.HashMap;
 

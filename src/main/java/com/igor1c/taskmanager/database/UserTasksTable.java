@@ -15,7 +15,7 @@ public class UserTasksTable extends TableController<UserTaskEntity> {
                         "   name VARCHAR(255) NOT NULL" +
                         ");";
 
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 

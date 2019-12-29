@@ -51,6 +51,12 @@ public class ActionTypeParamEntity extends BaseEntity {
     }
 
 
+    public BaseEntity createEntity() {
+        return new ActionTypeParamEntity();
+    }
+
+
+
     public String getName() {
         return name;
     }

@@ -20,7 +20,7 @@ public class ActionTypesTable extends TableController<ActionTypeEntity> {
                         "   description VARCHAR(255) NOT NULL\n" +
                         ");";
 
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 
@@ -39,7 +39,7 @@ public class ActionTypesTable extends TableController<ActionTypeEntity> {
     public void insert(ActionTypeEntity entity) {
 
         String query =  "INSERT INTO " + getTableName() + " VALUES (" + entity.getId() + ", '" + entity.getName() + "', '" + entity.getDescription() + "');";
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 

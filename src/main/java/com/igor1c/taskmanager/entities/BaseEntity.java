@@ -1,5 +1,7 @@
 package com.igor1c.taskmanager.entities;
 
+import java.sql.ResultSet;
+
 public abstract class BaseEntity {
 
     protected long id;
@@ -7,6 +9,14 @@ public abstract class BaseEntity {
 
 
     public BaseEntity() {}
+
+    public BaseEntity(ResultSet resultSet) {
+        fillFromResultSet(resultSet);
+    }
+
+
+
+    public void fillFromResultSet(ResultSet resultSet) {}
 
 
 

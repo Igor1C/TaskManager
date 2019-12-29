@@ -1,11 +1,13 @@
 package com.igor1c.taskmanager.database;
 
+import com.igor1c.taskmanager.entities.BaseEntity;
+import com.igor1c.taskmanager.entities.EntityFactory;
 import com.igor1c.taskmanager.helpers.DBHelper;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public abstract class TableController<E> extends DBHelper implements TableOperations<E> {
+public abstract class TableController<E extends BaseEntity> extends DBHelper implements TableOperations<E> {
 
     private String tableName;
 
@@ -45,7 +47,13 @@ public abstract class TableController<E> extends DBHelper implements TableOperat
 
 
 
-    public ArrayList<E> select(String whereConditions) {
+    public ArrayList<BaseEntity> select() {
+        return select("");
+    }
+
+    public ArrayList<BaseEntity> select(String whereConditions) {
+
+        openConnection();
 
         String query =  "SELECT\n" +
                         "   *\n" +
@@ -57,18 +65,21 @@ public abstract class TableController<E> extends DBHelper implements TableOperat
                             "WHERE\n" +
                             "   " + whereConditions;
 
-        ArrayList<E> entitiesArrayList = new ArrayList<>();
+        ArrayList<BaseEntity> entitiesArrayList = new ArrayList<>();
 
         ResultSet resultSet = executePreparedStatement(query);
         try {
             while (resultSet.next()) {
-                ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-                int columnCount = resultSetMetaData.getColumnCount();
+                BaseEntity entity = EntityFactory.createEntity(tableName);
+                entity.fillFromResultSet(resultSet);
+                entitiesArrayList.add(entity);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        closeConnection();
 
         return entitiesArrayList;
 

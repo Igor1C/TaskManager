@@ -18,7 +18,7 @@ public class ParamRelationsTable extends TableController<ParamRelationEntity> {
                         "   actionTypeParam BIGINT NOT NULL\n" +
                         ");";
 
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 
@@ -31,7 +31,7 @@ public class ParamRelationsTable extends TableController<ParamRelationEntity> {
                         "   ADD FOREIGN KEY (actionTypeParam)\n" +
                         "   REFERENCES actionTypeParams(id);";
 
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 
@@ -53,7 +53,7 @@ public class ParamRelationsTable extends TableController<ParamRelationEntity> {
     public void insert(ParamRelationEntity entity) {
 
         String query =  "INSERT INTO " + getTableName() + " (actionType, actionTypeParam) VALUES (" + entity.getActionType() + ", " + entity.getActionTypeParam() + ");";
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 

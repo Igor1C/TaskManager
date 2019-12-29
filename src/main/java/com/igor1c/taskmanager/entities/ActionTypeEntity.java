@@ -1,5 +1,7 @@
 package com.igor1c.taskmanager.entities;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -45,6 +47,20 @@ public class ActionTypeEntity extends BaseEntity {
         setId(id);
         setName(name);
         setDescription(description);
+
+    }
+
+
+
+    public void fillFromResultSet(ResultSet resultSet) {
+
+        try {
+            setId(resultSet.getLong(resultSet.findColumn("id")));
+            setName(resultSet.getString(resultSet.findColumn("name")));
+            setDescription(resultSet.getString(resultSet.findColumn("description")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

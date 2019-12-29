@@ -21,6 +21,12 @@ public class TaskActionEntity extends BaseEntity {
 
 
 
+    public BaseEntity createEntity() {
+        return new TaskActionEntity();
+    }
+
+
+
     public String getName() {
         return name;
     }

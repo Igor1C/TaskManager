@@ -17,7 +17,7 @@ public class TaskActionParamsTable extends TableController<TaskActionParamEntity
                         "   taskAction BIGINT NOT NULL\n" +
                         ");";
 
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 
@@ -30,7 +30,7 @@ public class TaskActionParamsTable extends TableController<TaskActionParamEntity
                         "   ADD FOREIGN KEY (taskAction)\n" +
                         "   REFERENCES taskActions(id);";
 
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 

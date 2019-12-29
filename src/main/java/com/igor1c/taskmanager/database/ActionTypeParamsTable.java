@@ -18,7 +18,7 @@ public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity
                         "   description VARCHAR(255) NOT NULL" +
                         ");";
 
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 
@@ -37,7 +37,7 @@ public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity
     public void insert(ActionTypeParamEntity entity) {
 
         String query =  "INSERT INTO " + getTableName() + " VALUES (" + entity.getId() + ", '" + entity.getName() + "', '" + entity.getDescription() + "');";
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 

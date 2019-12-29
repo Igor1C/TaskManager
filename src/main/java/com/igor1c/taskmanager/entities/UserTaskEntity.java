@@ -17,6 +17,12 @@ public class UserTaskEntity extends BaseEntity {
 
 
 
+    public BaseEntity createEntity() {
+        return new UserTaskEntity();
+    }
+
+
+
     public String getName() {
         return name;
     }

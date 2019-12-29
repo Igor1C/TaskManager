@@ -25,6 +25,12 @@ public class ParamRelationEntity extends BaseEntity {
 
 
 
+    public BaseEntity createEntity() {
+        return new ParamRelationEntity();
+    }
+
+
+
     public long getActionType() {
         return actionType;
     }

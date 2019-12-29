@@ -17,7 +17,7 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
                         "   userTask BIGINT NOT NULL\n" +
                         ");";
 
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 
@@ -30,7 +30,7 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
                         "   ADD FOREIGN KEY (userTask)\n" +
                         "   REFERENCES userTasks(id);";
 
-        executeQuery(query);
+        executeDbQuery(query);
 
     }
 
