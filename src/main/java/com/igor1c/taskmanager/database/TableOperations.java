@@ -14,6 +14,7 @@ public interface TableOperations<E> {
 
     ArrayList<BaseEntity> select();
     ArrayList<BaseEntity> select(String whereConditions);
+    BaseEntity selectById(long id);
     void insert(E entity);
 
 }

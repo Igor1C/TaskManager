@@ -45,6 +45,17 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
     }
 
+    protected ArrayList<BaseEntity> executeDbPreparedStatementProcess(String query) {
+
+        openConnection();
+        ResultSet resultSet = executePreparedStatement(query);
+        ArrayList<BaseEntity> baseEntityArrayList = processResultSet(resultSet);
+        closeConnection();
+
+        return baseEntityArrayList;
+
+    }
+
 
 
     public ArrayList<BaseEntity> select() {
@@ -65,9 +76,28 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
                             "WHERE\n" +
                             "   " + whereConditions;
 
+        ResultSet resultSet = executePreparedStatement(query);
+        ArrayList<BaseEntity> baseEntityArrayList = processResultSet(resultSet);
+        closeConnection();
+
+        return baseEntityArrayList;
+
+    }
+
+    public BaseEntity selectById(long id) {
+
+        ArrayList<BaseEntity> baseEntityArrayList = select("id=" + id);
+        if (baseEntityArrayList.isEmpty())
+            return null;
+        else
+            return baseEntityArrayList.get(0);
+
+    }
+
+    protected ArrayList<BaseEntity> processResultSet(ResultSet resultSet) {
+
         ArrayList<BaseEntity> entitiesArrayList = new ArrayList<>();
 
-        ResultSet resultSet = executePreparedStatement(query);
         try {
             while (resultSet.next()) {
                 BaseEntity entity = EntityFactory.createEntity(tableName);
@@ -79,19 +109,17 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
             e.printStackTrace();
         }
 
-        closeConnection();
-
         return entitiesArrayList;
 
     }
 
 
 
-    public String getTableName() {
+    protected String getTableName() {
         return tableName;
     }
 
-    public void setTableName(String tableName) {
+    protected void setTableName(String tableName) {
         this.tableName = tableName;
     }
 
