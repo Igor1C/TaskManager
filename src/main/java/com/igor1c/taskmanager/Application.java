@@ -1,6 +1,8 @@
 package com.igor1c.taskmanager;
 
 import com.igor1c.taskmanager.database.ActionTypesTable;
+import com.igor1c.taskmanager.database.UserTasksTable;
+import com.igor1c.taskmanager.entities.UserTaskEntity;
 import com.igor1c.taskmanager.helpers.DBHelper;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -24,6 +26,16 @@ public class Application {
                 .run(args);
 
         //DBHelper.createDatabase();
+        /*UserTasksTable userTasksTable = new UserTasksTable();
+
+        UserTaskEntity userTaskEntity = new UserTaskEntity(1, "Task 1");
+        userTasksTable.insert(userTaskEntity);
+
+        userTaskEntity = new UserTaskEntity(2, "Task 2");
+        userTasksTable.insert(userTaskEntity);
+
+        userTaskEntity = new UserTaskEntity(3, "Task 3");
+        userTasksTable.insert(userTaskEntity);*/
 
     }
 

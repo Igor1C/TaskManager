@@ -1,0 +1,52 @@
+.main-page {
+    background-color: #38383A;
+}
+
+.div-main-container {
+    background-color: #C3B7AC;
+    width: 1200px;
+    border-radius: 10px;
+}
+
+.div-table {
+
+}
+
+.div-th {
+    background-color: #38383A;
+    margin: 1px;
+    border-style: solid;
+    border-color: #EAE1CD;
+    border-width: 1px;
+    border-radius: 5px;
+    color: #F0E7E8;
+}
+
+.div-basic {
+    margin: 1px;
+    background-color: #F0E7E8;
+    border-style: solid;
+    border-color: #83959B;
+    border-width: 1px;
+    border-radius: 3px;
+    color: #38383A;
+}
+
+.div-row-basic:hover > .div-basic {
+    background-color: #73b6b1;
+}
+
+.div-vertical-separator-lg {
+    height: 75px;
+    width: 1px;
+}
+
+.div-horizontal-separator-small {
+    height: 1px;
+    width: 10px;
+}
+
+.vertical-center-alignment {
+    margin-top: auto;
+    margin-bottom: auto;
+}

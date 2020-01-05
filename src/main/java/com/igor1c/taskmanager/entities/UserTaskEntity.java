@@ -1,5 +1,8 @@
 package com.igor1c.taskmanager.entities;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class UserTaskEntity extends BaseEntity {
 
     private String name;
@@ -7,6 +10,10 @@ public class UserTaskEntity extends BaseEntity {
 
 
     public UserTaskEntity() {}
+
+    public UserTaskEntity(String name) {
+        setName(name);
+    }
 
     public UserTaskEntity(long id, String name) {
 
@@ -17,8 +24,15 @@ public class UserTaskEntity extends BaseEntity {
 
 
 
-    public BaseEntity createEntity() {
-        return new UserTaskEntity();
+    public void fillFromResultSet(ResultSet resultSet) {
+
+        try {
+            setId(resultSet.getLong(resultSet.findColumn("id")));
+            setName(resultSet.getString(resultSet.findColumn("name")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

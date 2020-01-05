@@ -2,6 +2,7 @@ package com.igor1c.taskmanager.controllers;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
 import com.igor1c.taskmanager.controllers.requests.GetActionTypeInfoRequest;
+import com.igor1c.taskmanager.controllers.requests.SaveUserTaskRequest;
 import com.igor1c.taskmanager.controllers.responses.BaseEntityListResponse;
 import com.igor1c.taskmanager.controllers.responses.GetActionTypeInfoResponse;
 import com.igor1c.taskmanager.database.ActionTypeParamsTable;
@@ -62,6 +63,19 @@ public class MainController {
         baseEntityListResponse.setBaseEntityList(entityArrayList);
 
         return ResponseEntity.ok(baseEntityListResponse);
+
+    }
+
+    @PostMapping("/saveUserTask")
+    public void saveUserTask(@Valid @RequestBody SaveUserTaskRequest saveUserTaskRequest) {
+
+        int id = saveUserTaskRequest.getId();
+        String name = saveUserTaskRequest.getName();
+
+        if (saveUserTaskRequest.getId() == 0) {
+            UserTasksTable userTasksTable = new UserTasksTable();
+            UserTaskEntity userTaskEntity = new UserTaskEntity(name);
+        }
 
     }
 

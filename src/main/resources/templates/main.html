@@ -7,60 +7,140 @@
     <title>Task Manager</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen"/>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/igor1c.css}" rel="stylesheet" media="screen"/>
 
 </head>
 
-<body ng-app="TaskManager" ng-controller="TaskManagerController">
-
-    <div class="container table-light">
-        <div class="row table-dark text-center">
-            <div class="col-sm-1 border">#</div>
-            <div class="col-sm border">Name</div>
-            <div class="col-sm border">Description</div>
-        </div>
-        <div th:each="actionType : ${actionTypes}">
-            <div class="row bullet-button" type="button" th:ng-click="'actionTypeOnClick(' + ${actionType.id} + ')'">
-                <div class="col-sm-1 border text-center" th:text="${actionType.id}"></div>
-                <div class="col-sm border" th:text="${actionType.name}"></div>
-                <div class="col-sm border" th:text="${actionType.description}"></div>
-            </div>
-        </div>
-    </div>
+<body class="main-page" ng-app="TaskManager" ng-controller="TaskManagerController">
 
     <br/>
 
-    <div class="container" style="visibility: collapse" id="actionTypeInfo">
-        <div class="row justify-content-md-center">
-            <div class="col-2 bg-dark text-light border text-center">Name</div>
-            <div class="col-4 border" id="actionTypeInfoName"></div>
-        </div>
-        <div class="row justify-content-md-center">
-            <div class="col-2 bg-dark text-light border text-center">Description</div>
-            <div class="col-4 border" id="actionTypeInfoDescription"></div>
+    <div class="div-main-container container-lg">
+
+        <br/>
+
+        <div id="userTasks" class="container div-table">
+            <div class="row justify-content-md-center">
+                <div class="div-th col-1 text-center">#</div>
+                <div class="div-th col-4 text-center">Name</div>
+            </div>
+            <div class="div-row-basic row justify-content-md-center" ng-repeat="userTask in userTasks">
+                <div class="div-basic col-1 text-center">{{userTask.id}}</div>
+                <div class="div-basic col-4">{{userTask.name}}</div>
+            </div>
         </div>
 
-        <br />
+        <br/>
 
-        <div class="row justify-content-md-center text-center">
-            <div class="col-1 bg-dark text-light border">#</div>
-            <div class="col-4 bg-dark text-light border">Name</div>
-            <div class="col-4 bg-dark text-light border">Description</div>
+        <div class="row justify-content-md-center">
+            <button id="userTaskAdd" type="button" class="btn-sm btn-success col-1 border text-center"
+                th:ng-click="'addUserTaskOnClick()'">Add
+            </button>
         </div>
-        <div class="row justify-content-md-center" ng-repeat="actionTypeParam in actionTypeParams">
-            <div class="col-1 border text-center">{{actionTypeParam.id}}</div>
-            <div class="col-4 border">{{actionTypeParam.name}}</div>
-            <div class="col-4 border">{{actionTypeParam.description}}</div>
-        </div>
+
+        <br/>
+
     </div>
 
-    <div class="container">
+    <div class="div-vertical-separator-lg"></div>
+
+    <div id="userTaskControlPanel" class="div-main-container container-lg collapse">
+
+        <br/>
+
         <div class="row justify-content-md-center">
-            <div class="col-1 bg-dark text-light border">#</div>
-            <div class="col-4 bg-dark text-light border">Name</div>
-            <div class="col-4 bg-dark text-light border">Description</div>
+            <button id="userTaskSave" type="button" class="btn-sm btn-info col-1 border text-center"
+                    th:ng-click="'saveUserTaskOnClick()'">Save
+            </button>
+
+            <div class="div-horizontal-separator-small"></div>
+
+            <button id="userTaskCancel" type="button" class="btn-sm btn-secondary col-1 border text-center"
+                    th:ng-click="'cancelUserTaskOnClick()'">Cancel
+            </button>
+
+            <div class="div-horizontal-separator-small"></div>
+
+            <button id="userTaskDelete" type="button" class="btn-sm btn-danger col-1 border text-center collapse"
+                    th:ng-click="'deleteUserTaskOnClick()'">Delete
+            </button>
         </div>
+
+        <br/>
+
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="div-th col-1 text-center vertical-center-alignment">ID</div>
+                <div class="col-4">
+                    <input id="userTaskId" type="text" class="form-control-sm"/>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="div-th col-1 text-center vertical-center-alignment">Name</div>
+                <div class="col-4">
+                    <input id="userTaskName" type="text" class="form-control-sm"/>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+
+    </div>
+
+    <div id="userTaskControlPanelSeparator" class="div-vertical-separator-lg collapse"></div>
+
+    <div class="div-main-container container-lg">
+
+        <br/>
+
+        <div class="container div-table">
+            <div class="row text-center">
+                <div class="div-th col-1">#</div>
+                <div class="div-th col">Name</div>
+                <div class="div-th col">Description</div>
+            </div>
+            <div th:each="actionType : ${actionTypes}">
+                <div class="div-row-basic row" th:ng-click="'actionTypeOnClick(' + ${actionType.id} + ')'">
+                    <div class="div-basic col-1 border text-center" th:text="${actionType.id}"></div>
+                    <div class="div-basic col border" th:text="${actionType.name}"></div>
+                    <div class="div-basic col border" th:text="${actionType.description}"></div>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+
+        <div id="actionTypeInfo" class="container div-table" style="visibility: visible">
+
+            <div class="row justify-content-md-center">
+                <div class="div-th col-2 text-center">Name</div>
+                <div id="actionTypeInfoName" class="div-basic col-4"></div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="div-th col-2 text-center">Description</div>
+                <div id="actionTypeInfoDescription" class="div-basic col-4"></div>
+            </div>
+
+            <br/>
+
+            <div class="row justify-content-md-center text-center">
+                <div class="div-th col-1">#</div>
+                <div class="div-th col-4">Name</div>
+                <div class="div-th col-4">Description</div>
+            </div>
+            <div class="row justify-content-md-center" ng-repeat="actionTypeParam in actionTypeParams">
+                <div class="div-basic col-1 text-center">{{actionTypeParam.id}}</div>
+                <div class="div-basic col-4">{{actionTypeParam.name}}</div>
+                <div class="div-basic col-4">{{actionTypeParam.description}}</div>
+            </div>
+
+            <br/>
+
+        </div>
+
+        <br/>
+
     </div>
 
     <script th:src="@{/jquery/jquery.min.js}"></script>

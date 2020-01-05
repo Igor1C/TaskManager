@@ -25,6 +25,11 @@ public class UserTasksTable extends TableController<UserTaskEntity> {
 
     public void fillTable() {}
 
-    public void insert(UserTaskEntity entity) {}
+    public void insert(UserTaskEntity entity) {
+
+        String query =  "INSERT INTO " + getTableName() + " VALUES (" + entity.getId() + ", '" + entity.getName() + "');";
+        executeDbQuery(query);
+
+    }
 
 }
