@@ -7,7 +7,10 @@ import java.util.HashMap;
 public class ActionTypesTable extends TableController<ActionTypeEntity> {
 
     public ActionTypesTable() {
-        super("actionTypes");
+
+        super(  "actionTypes",
+                new String[]{"name", "description"});
+
     }
 
 
@@ -33,13 +36,6 @@ public class ActionTypesTable extends TableController<ActionTypeEntity> {
         HashMap<Integer, ActionTypeEntity> predefinedMap = ActionTypeEntity.getPredefinedMap();
         for (ActionTypeEntity actionTypeEntity : predefinedMap.values())
             insert(actionTypeEntity);
-
-    }
-
-    public void insert(ActionTypeEntity entity) {
-
-        String query =  "INSERT INTO " + getTableName() + " VALUES (" + entity.getId() + ", '" + entity.getName() + "', '" + entity.getDescription() + "');";
-        executeDbQuery(query);
 
     }
 

@@ -10,7 +10,10 @@ import java.util.HashMap;
 public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity> {
 
     public ActionTypeParamsTable() {
-        super("actionTypeParams");
+
+        super(  "actionTypeParams",
+                new String[]{"name", "description"});
+
     }
 
     public void createTable() {
@@ -53,13 +56,6 @@ public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity
                         "   paramRelations.actionType=" + id;
 
         return executeDbPreparedStatementProcess(query);
-
-    }
-
-    public void insert(ActionTypeParamEntity entity) {
-
-        String query =  "INSERT INTO " + getTableName() + " VALUES (" + entity.getId() + ", '" + entity.getName() + "', '" + entity.getDescription() + "');";
-        executeDbQuery(query);
 
     }
 

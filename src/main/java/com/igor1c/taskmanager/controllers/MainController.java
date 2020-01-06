@@ -1,7 +1,6 @@
 package com.igor1c.taskmanager.controllers;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
-import com.igor1c.taskmanager.controllers.requests.GetActionTypeInfoRequest;
+import com.igor1c.taskmanager.controllers.requests.IdRequest;
 import com.igor1c.taskmanager.controllers.requests.SaveUserTaskRequest;
 import com.igor1c.taskmanager.controllers.responses.BaseEntityListResponse;
 import com.igor1c.taskmanager.controllers.responses.GetActionTypeInfoResponse;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 
 @Controller
@@ -36,9 +34,9 @@ public class MainController {
     }
 
     @PostMapping("/getActionTypeInfo")
-    public ResponseEntity<?> getActionTypeInfo(@Valid @RequestBody GetActionTypeInfoRequest getActionTypeInfoRequest) {
+    public ResponseEntity<?> getActionTypeInfo(@RequestBody IdRequest idRequest) {
 
-        long actionTypeId = getActionTypeInfoRequest.getId();
+        long actionTypeId = idRequest.getId();
 
         ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
         ArrayList<BaseEntity> entityArrayList = actionTypeParamsTable.selectByActionTypeId(actionTypeId);
@@ -66,16 +64,30 @@ public class MainController {
 
     }
 
+    @PostMapping("/getUserTask")
+    public ResponseEntity<?> getUserTask(@RequestBody IdRequest idRequest) {
+
+        UserTasksTable table = new UserTasksTable();
+        BaseEntity entity = table.selectById(idRequest.getId());
+
+        return ResponseEntity.ok(entity);
+
+    }
+
     @PostMapping("/saveUserTask")
-    public void saveUserTask(@Valid @RequestBody SaveUserTaskRequest saveUserTaskRequest) {
+    public ResponseEntity<?> saveUserTask(@RequestBody SaveUserTaskRequest saveUserTaskRequest) {
 
         int id = saveUserTaskRequest.getId();
         String name = saveUserTaskRequest.getName();
 
-        if (saveUserTaskRequest.getId() == 0) {
-            UserTasksTable userTasksTable = new UserTasksTable();
+        if (id == 0) {
             UserTaskEntity userTaskEntity = new UserTaskEntity(name);
+
+            UserTasksTable userTasksTable = new UserTasksTable();
+            userTasksTable.insert(userTaskEntity);
         }
+
+        return ResponseEntity.ok(new String());
 
     }
 

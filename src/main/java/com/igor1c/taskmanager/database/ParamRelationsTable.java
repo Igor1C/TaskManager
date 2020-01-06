@@ -7,7 +7,10 @@ import com.igor1c.taskmanager.entities.ParamRelationEntity;
 public class ParamRelationsTable extends TableController<ParamRelationEntity> {
 
     public ParamRelationsTable() {
-        super("paramRelations");
+
+        super(  "paramRelations",
+                new String[]{"actionType", "actionTypeParam"});
+
     }
 
     public void createTable() {
@@ -47,13 +50,6 @@ public class ParamRelationsTable extends TableController<ParamRelationEntity> {
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_SERVER_REF));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_USER));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_PASSWORD));
-
-    }
-
-    public void insert(ParamRelationEntity entity) {
-
-        String query =  "INSERT INTO " + getTableName() + " (actionType, actionTypeParam) VALUES (" + entity.getActionType() + ", " + entity.getActionTypeParam() + ");";
-        executeDbQuery(query);
 
     }
 

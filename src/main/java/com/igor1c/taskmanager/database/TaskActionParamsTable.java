@@ -5,7 +5,10 @@ import com.igor1c.taskmanager.entities.TaskActionParamEntity;
 public class TaskActionParamsTable extends TableController<TaskActionParamEntity> {
 
     public TaskActionParamsTable() {
-        super("taskActionParams");
+
+        super(  "taskActionParams",
+                new String[]{"name", "actionTypeParam", "taskAction"});
+
     }
 
     public void createTable() {
@@ -37,7 +40,5 @@ public class TaskActionParamsTable extends TableController<TaskActionParamEntity
     public void createExtraConstraints() {}
 
     public void fillTable() {}
-
-    public void insert(TaskActionParamEntity entity) {}
 
 }

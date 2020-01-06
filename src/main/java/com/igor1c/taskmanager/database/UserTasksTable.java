@@ -2,10 +2,16 @@ package com.igor1c.taskmanager.database;
 
 import com.igor1c.taskmanager.entities.UserTaskEntity;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+
 public class UserTasksTable extends TableController<UserTaskEntity> {
 
     public UserTasksTable() {
-        super("userTasks");
+
+        super(  "userTasks",
+                new String[]{"name"});
+
     }
 
     public void createTable() {
@@ -24,12 +30,5 @@ public class UserTasksTable extends TableController<UserTaskEntity> {
     public void createExtraConstraints() {}
 
     public void fillTable() {}
-
-    public void insert(UserTaskEntity entity) {
-
-        String query =  "INSERT INTO " + getTableName() + " VALUES (" + entity.getId() + ", '" + entity.getName() + "');";
-        executeDbQuery(query);
-
-    }
 
 }

@@ -1,16 +1,12 @@
 package com.igor1c.taskmanager.controllers.requests;
 
-import com.igor1c.taskmanager.database.ActionTypesTable;
-
-import javax.validation.constraints.NotBlank;
-
-public class GetActionTypeInfoRequest {
+public class IdRequest {
 
     int id;
 
 
 
-    public GetActionTypeInfoRequest(int id) {
+    public IdRequest(int id) {
         setId(id);
     }
 
@@ -23,4 +19,5 @@ public class GetActionTypeInfoRequest {
     public void setId(int id) {
         this.id = id;
     }
+
 }

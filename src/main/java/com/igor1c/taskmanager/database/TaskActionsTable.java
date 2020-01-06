@@ -5,7 +5,10 @@ import com.igor1c.taskmanager.entities.TaskActionEntity;
 public class TaskActionsTable extends TableController<TaskActionEntity> {
 
     public TaskActionsTable() {
-        super("taskActions");
+
+        super(  "taskActions",
+                new String[]{"name", "actionType", "userTask"});
+
     }
 
     public void createTable() {
@@ -37,7 +40,5 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
     public void createExtraConstraints() {}
 
     public void fillTable() {}
-
-    public void insert(TaskActionEntity entity) {}
 
 }

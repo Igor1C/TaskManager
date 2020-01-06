@@ -25,9 +25,11 @@
                 <div class="div-th col-1 text-center">#</div>
                 <div class="div-th col-4 text-center">Name</div>
             </div>
-            <div class="div-row-basic row justify-content-md-center" ng-repeat="userTask in userTasks">
-                <div class="div-basic col-1 text-center">{{userTask.id}}</div>
-                <div class="div-basic col-4">{{userTask.name}}</div>
+            <div ng-repeat="userTask in userTasks">
+                <div class="div-row-basic row justify-content-md-center" th:ng-click="'userTaskOnClick(userTask.id)'">
+                    <div class="div-basic col-1 text-center">{{userTask.id}}</div>
+                    <div class="div-basic col-4">{{userTask.name}}</div>
+                </div>
             </div>
         </div>
 
@@ -50,21 +52,15 @@
         <br/>
 
         <div class="row justify-content-md-center">
-            <button id="userTaskSave" type="button" class="btn-sm btn-info col-1 border text-center"
-                    th:ng-click="'saveUserTaskOnClick()'">Save
-            </button>
+            <button id="userTaskSave" type="button" class="btn-sm btn-info col-1 border text-center" th:ng-click="'saveUserTaskOnClick()'">Save</button>
 
             <div class="div-horizontal-separator-small"></div>
 
-            <button id="userTaskCancel" type="button" class="btn-sm btn-secondary col-1 border text-center"
-                    th:ng-click="'cancelUserTaskOnClick()'">Cancel
-            </button>
+            <button id="userTaskCancel" type="button" class="btn-sm btn-secondary col-1 border text-center" th:ng-click="'cancelUserTaskOnClick()'">Cancel</button>
 
             <div class="div-horizontal-separator-small"></div>
 
-            <button id="userTaskDelete" type="button" class="btn-sm btn-danger col-1 border text-center collapse"
-                    th:ng-click="'deleteUserTaskOnClick()'">Delete
-            </button>
+            <button id="userTaskDelete" type="button" class="btn-sm btn-danger col-1 border text-center collapse" th:ng-click="'deleteUserTaskOnClick()'">Delete</button>
         </div>
 
         <br/>
@@ -73,13 +69,13 @@
             <div class="row justify-content-md-center">
                 <div class="div-th col-1 text-center vertical-center-alignment">ID</div>
                 <div class="col-4">
-                    <input id="userTaskId" type="text" class="form-control-sm"/>
+                    <input id="userTaskId" type="text" class="form-control-sm" ng-model="userTaskId"/>
                 </div>
             </div>
             <div class="row justify-content-md-center">
                 <div class="div-th col-1 text-center vertical-center-alignment">Name</div>
                 <div class="col-4">
-                    <input id="userTaskName" type="text" class="form-control-sm"/>
+                    <input id="userTaskName" type="text" class="form-control-sm" ng-model="userTaskName"/>
                 </div>
             </div>
         </div>

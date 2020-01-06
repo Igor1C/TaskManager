@@ -25,16 +25,10 @@ public class Application {
                 .properties(props)
                 .run(args);
 
-        //DBHelper.createDatabase();
-        /*UserTasksTable userTasksTable = new UserTasksTable();
+        /*DBHelper.createDatabase();
+        UserTasksTable userTasksTable = new UserTasksTable();
 
-        UserTaskEntity userTaskEntity = new UserTaskEntity(1, "Task 1");
-        userTasksTable.insert(userTaskEntity);
-
-        userTaskEntity = new UserTaskEntity(2, "Task 2");
-        userTasksTable.insert(userTaskEntity);
-
-        userTaskEntity = new UserTaskEntity(3, "Task 3");
+        UserTaskEntity userTaskEntity = new UserTaskEntity("Test super");
         userTasksTable.insert(userTaskEntity);*/
 
     }
