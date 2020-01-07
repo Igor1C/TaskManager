@@ -2,23 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e052661d-a88d-4784-b3f8-e162c7db3f11" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/IdRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/SaveUserTaskRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/GetActionTypeInfoRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ActionTypeParamsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ActionTypeParamsTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ActionTypesTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ActionTypesTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ParamRelationsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ParamRelationsTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableOperations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionParamsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionParamsTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTasksTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTasksTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DBHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/igor1c.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/igor1c.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/igor1c/taskmanager/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/igor1c/taskmanager/Application.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,11 +30,45 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="28" column="102" selection-start-line="28" selection-start-column="87" selection-end-line="28" selection-end-column="102" />
+            <state relative-caret-position="133">
+              <caret line="70" column="29" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="742">
+              <caret line="50" column="14" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
+              <folding>
+                <element signature="e#664#665#0" expanded="true" />
+                <element signature="e#697#698#0" expanded="true" />
+                <element signature="e#946#947#0" expanded="true" />
+                <element signature="e#1032#1033#0" expanded="true" />
+                <element signature="e#1007#1008#0" expanded="true" />
+                <element signature="e#1035#1036#0" expanded="true" />
+                <element signature="e#1075#1076#0" expanded="true" />
+                <element signature="e#1109#1110#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="612">
+              <caret line="41" column="42" lean-forward="true" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+              <folding>
+                <element signature="initializer##0;class#ActionTypeEntity#0" />
+                <element signature="e#1536#1537#0" expanded="true" />
+                <element signature="e#1585#1586#0" expanded="true" />
+                <element signature="method#ActionTypeEntity#1;class#ActionTypeEntity#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -48,24 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="22" column="30" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="30" />
-              <folding>
-                <element signature="e#1272#1384#0" />
-                <element signature="e#1618#1731#0" />
-                <element signature="e#1780#1893#0" />
-                <element signature="e#886#926#0" />
-                <element signature="e#1608#1893#0" />
-                <element signature="e#1626#1884#0" />
-                <element signature="e#1770#1874#0" />
-                <element signature="e#1965#2418#0" />
-                <element signature="e#2008#2205#0" />
-                <element signature="e#2211#2411#0" />
-                <element signature="e#2448#2862#0" />
-                <element signature="e#2585#2853#0" />
-                <element signature="e#2768#2843#0" />
-                <element signature="e#2432#2797#0" />
-              </folding>
+            <state relative-caret-position="2278">
+              <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
             </state>
           </provider>
         </entry>
@@ -73,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/css/igor1c.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="48" column="26" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="26" />
+            <state relative-caret-position="731">
+              <caret line="55" column="23" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -82,8 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="504">
+              <caret line="104" selection-start-line="104" selection-end-line="104" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -92,39 +104,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/IdRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="88" selection-start-line="88" selection-end-line="88" />
+            <state relative-caret-position="336">
+              <caret line="91" selection-start-line="91" selection-end-line="91" />
               <folding>
+                <element signature="method#TableController#0;class#TableController#0" />
+                <element signature="method#fillTableFields#0;class#TableController#0" />
                 <element signature="method#select#1;class#TableController#0" />
                 <element signature="method#selectById#0;class#TableController#0" />
-                <element signature="method#insert#0;class#TableController#0" />
-                <element signature="method#executeDbQuery#0;class#TableController#0" />
                 <element signature="method#executeDbPreparedStatement#0;class#TableController#0" />
                 <element signature="method#executeDbPreparedStatementProcess#0;class#TableController#0" />
                 <element signature="method#processResultSet#0;class#TableController#0" />
-                <element signature="method#getFieldsString#0;class#TableController#0" />
-                <element signature="method#getValuesString#0;class#TableController#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableOperations.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DBHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+            <state relative-caret-position="308">
+              <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -145,7 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>щк</find>
       <find>main</find>
       <find>&lt;/@c.page&gt;</find>
       <find>executeQuery</find>
@@ -171,6 +171,11 @@
       <find>div-main-container</find>
       <find>E</find>
       <find>&lt;E</find>
+      <find>idString</find>
+      <find>userTaskId</find>
+      <find>div-block-caption</find>
+      <find>executeDbQuery</find>
+      <find>div-vertical-separator-sm</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -198,14 +203,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/controllers/UserTaskController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/helpers/DBHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/UserTaskController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DBHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ParamRelationEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionParamEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/BaseEntity.java" />
         <option value="$PROJECT_DIR$/src/main/resources/public/css/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/src/main/resources/public/js/bootstrap.min.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeEntity.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/parts/common2.ftl" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/parts/common.ftl" />
         <option value="$PROJECT_DIR$/pom.xml" />
@@ -222,7 +224,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/WebMvcConfig.java" />
         <option value="$PROJECT_DIR$/src/main/resources/css/igor1c2.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/EntityFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/css/igor1c.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/SaveUserTaskRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTasksTable.java" />
@@ -230,14 +231,18 @@
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ActionTypesTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ParamRelationsTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionParamsTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/Application.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/IdRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/main.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/js/main.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableOperations.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableOperations.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DBHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/js/main.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/css/igor1c.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/main.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionEntity.java" />
       </list>
     </option>
   </component>
@@ -265,10 +270,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="1416" />
+    <option name="x" value="-7" />
+    <option name="width" value="1294" />
+    <option name="height" value="1407" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -276,6 +280,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -405,8 +411,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -418,7 +422,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1578326465654" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1578330726783" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -509,7 +513,8 @@
       <workItem from="1578221317116" duration="3207000" />
       <workItem from="1578242520365" duration="6064000" />
       <workItem from="1578294184848" duration="2153000" />
-      <workItem from="1578307190290" duration="8799000" />
+      <workItem from="1578307190290" duration="13046000" />
+      <workItem from="1578383881473" duration="7783000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <created>1576515056454</created>
@@ -679,11 +684,18 @@
       <option name="project" value="LOCAL" />
       <updated>1578243978631</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Work">
+      <created>1578326624366</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1578326624366</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134747000" />
+    <option name="totallyTimeSpent" value="146777000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -696,8 +708,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15580286" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2853736" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -760,6 +773,26 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>userTaskEntity</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>saveUserTaskRequest</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>saveUserTaskRequest.getName()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>generatedKeys.getLong(1)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>actionTypeEntity</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -784,30 +817,9 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>clazz.getMethod(&quot;get&quot; + currentFieldName.substring(0, 1).toUpperCase() + currentFieldName.substring(1))</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>&quot;get&quot; + currentFieldName.substring(0, 1).toUpperCase() + currentFieldName.substring(1)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>currentFieldName.substring(0, 1).toUpperCase() + currentFieldName.substring(1)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>simpleTypes</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/main2.ftl" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/parts/common.ftl" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -882,13 +894,6 @@
             <element signature="e#249#250#0" expanded="true" />
             <element signature="e#278#279#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/css/igor1c.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="26" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1119,16 +1124,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DBHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/BaseEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1145,28 +1140,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="12" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="initializer##0;class#ActionTypeEntity#0" />
-            <element signature="method#initPredefinedMap#0;class#ActionTypeEntity#0" />
-            <element signature="method#ActionTypeEntity#1;class#ActionTypeEntity#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ActionTypesTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="11" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1226,20 +1199,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.4.RELEASE/spring-web-5.0.4.RELEASE.jar!/org/springframework/http/ResponseEntity.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1248,13 +1207,6 @@
             <element signature="e#3171#3172#0" expanded="true" />
             <element signature="e#3215#3216#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.4.RELEASE/spring-web-5.0.4.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="121" selection-start-line="121" selection-end-line="121" />
         </state>
       </provider>
     </entry>
@@ -1268,10 +1220,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/GetActionTypeInfoRequest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/GetActionTypeInfoRequest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/IdRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        <state relative-caret-position="255">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_221/src.zip!/java/sql/Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-850">
+          <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
+          <folding>
+            <element signature="docComment;class#Connection#0" />
+            <element signature="e#3076#3946#0" />
+            <element signature="e#4005#5675#0" />
+            <element signature="e#5761#7248#0" />
+            <element signature="e#7321#7891#0" />
+            <element signature="e#7951#9767#0" />
+            <element signature="e#9837#10202#0" />
+            <element signature="e#10257#10845#0" />
+            <element signature="e#10890#11451#0" />
+            <element signature="e#11498#12214#0" />
+            <element signature="e#12258#13141#0" />
+            <element signature="e#13191#13263#0" />
+            <element signature="e#13295#13907#0" />
+            <element signature="e#13969#14472#0" />
+            <element signature="e#14538#14909#0" />
+            <element signature="e#14961#15958#0" />
+            <element signature="e#16021#16338#0" />
+            <element signature="e#16389#16466#0" />
+            <element signature="e#16514#16910#0" />
+            <element signature="e#16958#17193#0" />
+            <element signature="e#17241#17718#0" />
+            <element signature="e#17766#18336#0" />
+            <element signature="e#18384#19599#0" />
+            <element signature="e#19670#20385#0" />
+            <element signature="e#20446#21315#0" />
+            <element signature="e#21371#21784#0" />
+            <element signature="e#21908#23392#0" />
+            <element signature="e#23502#25206#0" />
+            <element signature="e#25376#27059#0" />
+            <element signature="e#27211#28293#0" />
+            <element signature="e#28368#29558#0" />
+            <element signature="e#29713#30681#0" />
+            <element signature="e#30749#31303#0" />
+            <element signature="e#31355#32163#0" />
+            <element signature="e#32219#33122#0" />
+            <element signature="e#33189#34005#0" />
+            <element signature="e#34071#34789#0" />
+            <element signature="e#34863#36673#0" />
+            <element signature="e#36831#38908#0" />
+            <element signature="e#39104#41137#0" />
+            <element signature="e#41350#43754#0" />
+            <element signature="e#43863#46323#0" />
+            <element signature="e#46430#48876#0" />
+            <element signature="e#48984#49740#0" />
+            <element signature="e#49789#50513#0" />
+            <element signature="e#50562#51323#0" />
+            <element signature="e#51374#52119#0" />
+            <element signature="e#52176#53513#0" />
+            <element signature="e#53582#56932#0" />
+            <element signature="e#57044#58673#0" />
+            <element signature="e#58781#59917#0" />
+            <element signature="e#60007#60773#0" />
+            <element signature="e#60848#62479#0" />
+            <element signature="e#62559#63305#0" />
+            <element signature="e#63461#64276#0" />
+            <element signature="e#64337#64669#0" />
+            <element signature="e#64719#66545#0" />
+            <element signature="e#66606#71460#0" />
+            <element signature="e#71552#72143#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.4.RELEASE/spring-web-5.0.4.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1280,76 +1315,105 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="30" />
+        <state relative-caret-position="2278">
+          <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/css/igor1c.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="55" column="23" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="104" selection-start-line="104" selection-end-line="104" />
           <folding>
-            <element signature="e#1272#1384#0" />
-            <element signature="e#1618#1731#0" />
-            <element signature="e#1780#1893#0" />
-            <element signature="e#886#926#0" />
-            <element signature="e#1608#1893#0" />
-            <element signature="e#1626#1884#0" />
-            <element signature="e#1770#1874#0" />
-            <element signature="e#1965#2418#0" />
-            <element signature="e#2008#2205#0" />
-            <element signature="e#2211#2411#0" />
-            <element signature="e#2448#2862#0" />
-            <element signature="e#2585#2853#0" />
-            <element signature="e#2768#2843#0" />
-            <element signature="e#2432#2797#0" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
+          <folding>
+            <element signature="method#TableController#0;class#TableController#0" />
+            <element signature="method#fillTableFields#0;class#TableController#0" />
+            <element signature="method#select#1;class#TableController#0" />
+            <element signature="method#selectById#0;class#TableController#0" />
+            <element signature="method#executeDbPreparedStatement#0;class#TableController#0" />
+            <element signature="method#executeDbPreparedStatementProcess#0;class#TableController#0" />
+            <element signature="method#processResultSet#0;class#TableController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ActionTypesTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="11" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="742">
+          <caret line="50" column="14" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
+          <folding>
+            <element signature="e#664#665#0" expanded="true" />
+            <element signature="e#697#698#0" expanded="true" />
+            <element signature="e#946#947#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#1007#1008#0" expanded="true" />
+            <element signature="e#1035#1036#0" expanded="true" />
+            <element signature="e#1075#1076#0" expanded="true" />
+            <element signature="e#1109#1110#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="41" column="42" lean-forward="true" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+          <folding>
+            <element signature="initializer##0;class#ActionTypeEntity#0" />
+            <element signature="e#1536#1537#0" expanded="true" />
+            <element signature="e#1585#1586#0" expanded="true" />
+            <element signature="method#ActionTypeEntity#1;class#ActionTypeEntity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="28" column="102" selection-start-line="28" selection-start-column="87" selection-end-line="28" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/IdRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="88" selection-start-line="88" selection-end-line="88" />
-          <folding>
-            <element signature="method#select#1;class#TableController#0" />
-            <element signature="method#selectById#0;class#TableController#0" />
-            <element signature="method#insert#0;class#TableController#0" />
-            <element signature="method#executeDbQuery#0;class#TableController#0" />
-            <element signature="method#executeDbPreparedStatement#0;class#TableController#0" />
-            <element signature="method#executeDbPreparedStatementProcess#0;class#TableController#0" />
-            <element signature="method#processResultSet#0;class#TableController#0" />
-            <element signature="method#getFieldsString#0;class#TableController#0" />
-            <element signature="method#getValuesString#0;class#TableController#0" />
-          </folding>
+        <state relative-caret-position="133">
+          <caret line="70" column="29" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
         </state>
       </provider>
     </entry>

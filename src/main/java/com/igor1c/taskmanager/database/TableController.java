@@ -77,26 +77,36 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
     }
 
-    public void insert(BaseEntity baseEntity) {
+    public long insert(BaseEntity baseEntity) {
 
-        String query = "INSERT INTO " + getTableName() + getFieldsString(baseEntity.getId()) + getValuesString(baseEntity);
-        executeDbQuery(query);
+        String query = "INSERT INTO " + getTableName() + " " + getFieldsString(baseEntity.getId()) + " VALUES " + getValuesString(baseEntity);
+        return executeDbQuery(query);
 
     }
 
     public void update(BaseEntity baseEntity) {
 
+        String query = "UPDATE " + getTableName() + " SET " + getFieldsString(false) + " = " + getValuesString(baseEntity, false) + " WHERE id=" + baseEntity.getId();
+        executeDbQuery(query);
 
+    }
+
+    public void deleteById(long id) {
+
+        String query = "DELETE FROM " + getTableName() + " WHERE id=" + id;
+        executeDbQuery(query);
 
     }
 
 
 
-    protected void executeDbQuery(String query) {
+    protected long executeDbQuery(String query) {
 
         openConnection();
-        executeQuery(query);
+        long id = executeQuery(query);
         closeConnection();
+
+        return id;
 
     }
 
@@ -140,12 +150,18 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
     }
 
-    protected String getFieldsString(long id) {
+    private String getFieldsString(long id) {
+
+        return getFieldsString(id != 0);
+
+    }
+
+    private String getFieldsString(boolean useId) {
 
         String resultString = "(";
         boolean firstIteration = true;
 
-        if (id != 0) {
+        if (useId) {
             firstIteration = false;
             resultString = resultString.concat("id");
         }
@@ -163,15 +179,21 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
     }
 
-    protected String getValuesString(BaseEntity baseEntity) {
+    private String getValuesString(BaseEntity baseEntity) {
 
-        String resultString = " VALUES (";
+        return getValuesString(baseEntity, baseEntity.getId() != 0);
+
+    }
+
+    private String getValuesString(BaseEntity baseEntity, boolean useId) {
+
+        String resultString = "(";
         boolean firstIteration = true;
 
         long currentId = baseEntity.getId();
-        if (currentId != 0) {
+        if (useId) {
             firstIteration = false;
-            resultString = resultString.concat("'" + String.valueOf(currentId) + "'");
+            resultString = resultString.concat("'" + currentId + "'");
         }
 
         Class clazz = baseEntity.getClass();

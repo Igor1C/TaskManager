@@ -9,6 +9,7 @@ import com.igor1c.taskmanager.database.ActionTypesTable;
 import com.igor1c.taskmanager.database.UserTasksTable;
 import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.ArrayList;
 
 @Controller
+@Scope("session")
 public class MainController {
+
+    UserTaskEntity userTaskEntity;
 
     @GetMapping("")
     public String main(Model model) {
@@ -68,24 +72,47 @@ public class MainController {
     public ResponseEntity<?> getUserTask(@RequestBody IdRequest idRequest) {
 
         UserTasksTable table = new UserTasksTable();
-        BaseEntity entity = table.selectById(idRequest.getId());
+        userTaskEntity = (UserTaskEntity) table.selectById(idRequest.getId());
 
-        return ResponseEntity.ok(entity);
+        return ResponseEntity.ok(userTaskEntity);
 
     }
 
     @PostMapping("/saveUserTask")
     public ResponseEntity<?> saveUserTask(@RequestBody SaveUserTaskRequest saveUserTaskRequest) {
 
-        int id = saveUserTaskRequest.getId();
-        String name = saveUserTaskRequest.getName();
+        long id = saveUserTaskRequest.getId();
 
-        if (id == 0) {
-            UserTaskEntity userTaskEntity = new UserTaskEntity(name);
-
-            UserTasksTable userTasksTable = new UserTasksTable();
-            userTasksTable.insert(userTaskEntity);
+        UserTasksTable table = new UserTasksTable();
+        if (saveUserTaskRequest.getId() == 0) {
+            userTaskEntity = new UserTaskEntity(saveUserTaskRequest.getName());
+            id = table.insert(userTaskEntity);
+            userTaskEntity.setId(id);
+        } else {
+            userTaskEntity.setName(saveUserTaskRequest.getName());
+            table.update(userTaskEntity);
         }
+
+        return ResponseEntity.ok(id);
+
+    }
+
+    @PostMapping("/cancelUserTask")
+    public ResponseEntity<?> cancelUserTask() {
+
+        userTaskEntity = null;
+
+        return ResponseEntity.ok(new String());
+
+    }
+
+    @PostMapping("/deleteUserTask")
+    public ResponseEntity<?> deleteUserTask(@RequestBody IdRequest idRequest) {
+
+        UserTasksTable table = new UserTasksTable();
+        table.deleteById(idRequest.getId());
+
+        userTaskEntity = null;
 
         return ResponseEntity.ok(new String());
 

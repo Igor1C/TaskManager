@@ -37,14 +37,23 @@ public class DBHelper {
 
 
 
-    public void executeQuery(String query) {
+    public long executeQuery(String query) {
 
         try {
             Statement statement = connection.createStatement();
-            statement.executeUpdate(query);
+            statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next())
+                return generatedKeys.getLong(1);
+            else
+                return 0;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return 0;
 
     }
 

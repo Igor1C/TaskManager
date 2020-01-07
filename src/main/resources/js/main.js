@@ -10,11 +10,14 @@ app.controller("TaskManagerController", function($scope, $http) {
     $scope.userTaskOnClick = function(id) {
 
         getUserTask(id);
+        $('#userTaskDelete').removeClass('collapse');
+
 
     }
 
     $scope.addUserTaskOnClick = function() {
 
+        clearUserTaskControlPanel();
         changeUserTaskControlPanelVisibility(true);
         $('#userTaskDelete').addClass('collapse');
 
@@ -23,6 +26,7 @@ app.controller("TaskManagerController", function($scope, $http) {
     $scope.saveUserTaskOnClick = function() {
 
         saveUserTask();
+        $('#userTaskDelete').removeClass('collapse');
 
     };
 
@@ -30,12 +34,14 @@ app.controller("TaskManagerController", function($scope, $http) {
 
         changeUserTaskControlPanelVisibility(false);
         $('#userTaskDelete').addClass('collapse');
+        cancelUserTask();
 
     };
 
     $scope.deleteUserTaskOnClick = function() {
 
-        changeUserTaskControlPanelVisibility(false);
+        deleteUserTask();
+
         $('#userTaskDelete').addClass('collapse');
 
     };
@@ -81,20 +87,6 @@ app.controller("TaskManagerController", function($scope, $http) {
 
     };
 
-    function changeUserTaskControlPanelVisibility(currentVisibility) {
-
-        if (currentVisibility == false) {
-            $('#userTaskAdd').removeClass('collapse');
-            $('#userTaskControlPanel').addClass('collapse');
-            $('#userTaskControlPanelSeparator').addClass('collapse');
-        } else {
-            $('#userTaskAdd').addClass('collapse');
-            $('#userTaskControlPanel').removeClass('collapse');
-            $('#userTaskControlPanelSeparator').removeClass('collapse');
-        }
-
-    }
-
     function saveUserTask() {
 
         jsonData = JSON.stringify({idString: $scope.userTaskId, name: $scope.userTaskName});
@@ -104,10 +96,63 @@ app.controller("TaskManagerController", function($scope, $http) {
             contentType: "application/json; charset=utf-8",
             url: "/saveUserTask",
             data: jsonData,
-            success: function () {
+            success: function (data) {
+                $scope.userTaskId = data;
+                $scope.$apply();
+
                 getUserTasks();
             }
         });
+
+    }
+
+    function cancelUserTask() {
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/cancelUserTask",
+            success: function () {}
+        });
+
+    }
+
+    function deleteUserTask() {
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/deleteUserTask",
+            data: JSON.stringify($scope.userTaskId),
+            success: function () {
+                changeUserTaskControlPanelVisibility(false);
+                clearUserTaskControlPanel();
+                getUserTasks();
+            }
+        });
+
+    };
+
+    function changeUserTaskControlPanelVisibility(currentVisibility) {
+
+        if (currentVisibility == false) {
+            $('#userTaskControlPanel').addClass('collapse');
+            $('#userTaskControlPanelSeparator').addClass('collapse');
+            $('#userTaskActionsControlPanel').addClass('collapse');
+            $('#userTaskActionsControlPanelSeparator').addClass('collapse');
+        } else {
+            $('#userTaskControlPanel').removeClass('collapse');
+            $('#userTaskControlPanelSeparator').removeClass('collapse');
+            $('#userTaskActionsControlPanel').removeClass('collapse');
+            $('#userTaskActionsControlPanelSeparator').removeClass('collapse');
+        }
+
+    }
+
+    function clearUserTaskControlPanel() {
+
+        $scope.userTaskId = 0;
+        $scope.userTaskName = null;
 
     }
 

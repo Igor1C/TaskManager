@@ -38,6 +38,10 @@ public class ActionTypeEntity extends BaseEntity {
 
     }
 
+    public static ActionTypeEntity getActionTypeEntity(long id) {
+        return getPredefinedMap().get(id);
+    }
+
 
 
     public ActionTypeEntity() {}

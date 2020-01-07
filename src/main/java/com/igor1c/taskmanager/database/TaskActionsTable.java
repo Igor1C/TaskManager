@@ -7,7 +7,7 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
     public TaskActionsTable() {
 
         super(  "taskActions",
-                new String[]{"name", "actionType", "userTask"});
+                new String[]{"name", "actionType", "userTask", "order"});
 
     }
 
@@ -17,7 +17,8 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
                         "   id BIGINT AUTO_INCREMENT PRIMARY KEY,\n" +
                         "   name VARCHAR(255) NOT NULL,\n" +
                         "   actionType BIGINT NOT NULL,\n" +
-                        "   userTask BIGINT NOT NULL\n" +
+                        "   userTask BIGINT NOT NULL,\n" +
+                        "   order BIGINT\n" +
                         ");";
 
         executeDbQuery(query);

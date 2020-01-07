@@ -16,9 +16,15 @@
 
     <br/>
 
+    <!-- ALL USER TASKS -->
+
     <div class="div-main-container container-lg">
 
         <br/>
+
+        <div class="div-block-caption">All user tasks</div>
+
+        <div class="div-vertical-separator-sm"></div>
 
         <div id="userTasks" class="container div-table">
             <div class="row justify-content-md-center">
@@ -45,9 +51,34 @@
 
     </div>
 
-    <div class="div-vertical-separator-lg"></div>
+
+
+    <!-- USER TASK CONTROL PANEL -->
+
+    <div id="userTaskControlPanelSeparator" class="div-vertical-separator-lg collapse"></div>
 
     <div id="userTaskControlPanel" class="div-main-container container-lg collapse">
+
+        <br/>
+
+        <div class="div-block-caption">User task</div>
+
+        <div class="div-vertical-separator-sm"></div>
+
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="div-th col-1 text-center vertical-center-alignment">ID</div>
+                <div class="col-4">
+                    <input id="userTaskId" type="text" class="form-control-sm" ng-model="userTaskId" disabled />
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="div-th col-1 text-center vertical-center-alignment">Name</div>
+                <div class="col-4">
+                    <input id="userTaskName" type="text" class="form-control-sm" ng-model="userTaskName" />
+                </div>
+            </div>
+        </div>
 
         <br/>
 
@@ -65,17 +96,34 @@
 
         <br/>
 
-        <div class="container">
+    </div>
+
+
+
+    <!-- USER TASK ACTIONS -->
+
+    <div id="userTaskActionsControlPanelSeparator" class="div-vertical-separator-lg collapse"></div>
+
+    <div id="userTaskActionsControlPanel" class="div-main-container container-lg collapse">
+
+        <br/>
+
+        <div class="div-block-caption">User task actions</div>
+
+        <div class="div-vertical-separator-sm"></div>
+
+        <div id="userTaskActions" class="container div-table">
             <div class="row justify-content-md-center">
-                <div class="div-th col-1 text-center vertical-center-alignment">ID</div>
-                <div class="col-4">
-                    <input id="userTaskId" type="text" class="form-control-sm" ng-model="userTaskId"/>
-                </div>
+                <div class="div-th col-1 text-center">#</div>
+                <div class="div-th col-1 text-center">Order</div>
+                <div class="div-th col-4 text-center">Action task</div>
             </div>
-            <div class="row justify-content-md-center">
-                <div class="div-th col-1 text-center vertical-center-alignment">Name</div>
-                <div class="col-4">
-                    <input id="userTaskName" type="text" class="form-control-sm" ng-model="userTaskName"/>
+            <div ng-repeat="taskAction in taskActions">
+                <div class="div-row-basic row justify-content-md-center"
+                     th:ng-click="'taskActionOnClick(taskAction.id)'">
+                    <div class="div-basic col-1 text-center">{{taskAction.id}}</div>
+                    <div class="div-basic col-4">{{taskAction.order}}</div>
+                    <div class="div-basic col-4">{{taskAction.actionTypeString}}</div>
                 </div>
             </div>
         </div>
@@ -84,11 +132,19 @@
 
     </div>
 
-    <div id="userTaskControlPanelSeparator" class="div-vertical-separator-lg collapse"></div>
+
+
+    <!-- ACTION TYPES -->
+
+    <div class="div-vertical-separator-lg"></div>
 
     <div class="div-main-container container-lg">
 
         <br/>
+
+        <div class="div-block-caption">Action types</div>
+
+        <div class="div-vertical-separator-sm"></div>
 
         <div class="container div-table">
             <div class="row text-center">
