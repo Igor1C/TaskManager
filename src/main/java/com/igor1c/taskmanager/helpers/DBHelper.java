@@ -79,7 +79,7 @@ public class DBHelper {
         ArrayList<TableOperations> tableOperationsArray = new ArrayList<TableOperations>();
         tableOperationsArray.add(new ActionTypesTable());
         tableOperationsArray.add(new ActionTypeParamsTable());
-        tableOperationsArray.add(new UserTasksTable());
+        tableOperationsArray.add(new UserTaskTable());
         tableOperationsArray.add(new TaskActionsTable());
         tableOperationsArray.add(new TaskActionParamsTable());
         tableOperationsArray.add(new ParamRelationsTable());

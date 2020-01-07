@@ -2,7 +2,6 @@ var app = angular.module("TaskManager", []);
 
 app.controller("TaskManagerController", function($scope, $http) {
 
-    $scope.actionTypeParams = [];
     getUserTasks();
 
 

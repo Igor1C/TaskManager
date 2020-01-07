@@ -2,12 +2,9 @@ package com.igor1c.taskmanager.database;
 
 import com.igor1c.taskmanager.entities.UserTaskEntity;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
+public class UserTaskTable extends TableController<UserTaskEntity> {
 
-public class UserTasksTable extends TableController<UserTaskEntity> {
-
-    public UserTasksTable() {
+    public UserTaskTable() {
 
         super(  "userTasks",
                 new String[]{"name"});

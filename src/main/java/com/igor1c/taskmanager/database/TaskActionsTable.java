@@ -7,7 +7,7 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
     public TaskActionsTable() {
 
         super(  "taskActions",
-                new String[]{"name", "actionType", "userTask", "order"});
+                new String[]{"name", "actionType", "userTask", "taskOrder"});
 
     }
 
@@ -18,7 +18,7 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
                         "   name VARCHAR(255) NOT NULL,\n" +
                         "   actionType BIGINT NOT NULL,\n" +
                         "   userTask BIGINT NOT NULL,\n" +
-                        "   order BIGINT\n" +
+                        "   taskOrder BIGINT\n" +
                         ");";
 
         executeDbQuery(query);

@@ -5,24 +5,24 @@ public class TaskActionEntity extends BaseEntity {
     private String name;
     private long actionType;
     private long userTask;
-    private long order;
+    private long taskOrder;
 
 
 
     public TaskActionEntity() {}
 
-    public TaskActionEntity(String name, long actionType, long userTask, long order) {
+    public TaskActionEntity(String name, long actionType, long userTask, long taskOrder) {
 
         setName(name);
         setActionType(actionType);
         setUserTask(userTask);
-        setOrder(order);
+        setTaskOrder(taskOrder);
 
     }
 
-    public TaskActionEntity(long id, String name, long actionType, long userTask, long order) {
+    public TaskActionEntity(long id, String name, long actionType, long userTask, long taskOrder) {
 
-        this(name, actionType, userTask, order);
+        this(name, actionType, userTask, taskOrder);
         setId(id);
 
     }
@@ -63,12 +63,12 @@ public class TaskActionEntity extends BaseEntity {
         this.userTask = userTask;
     }
 
-    public long getOrder() {
-        return order;
+    public long getTaskOrder() {
+        return taskOrder;
     }
 
-    public void setOrder(long order) {
-        this.order = order;
+    public void setTaskOrder(long taskOrder) {
+        this.taskOrder = taskOrder;
     }
 
 }

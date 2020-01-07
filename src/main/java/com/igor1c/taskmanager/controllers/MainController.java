@@ -6,7 +6,7 @@ import com.igor1c.taskmanager.controllers.responses.BaseEntityListResponse;
 import com.igor1c.taskmanager.controllers.responses.GetActionTypeInfoResponse;
 import com.igor1c.taskmanager.database.ActionTypeParamsTable;
 import com.igor1c.taskmanager.database.ActionTypesTable;
-import com.igor1c.taskmanager.database.UserTasksTable;
+import com.igor1c.taskmanager.database.UserTaskTable;
 import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
 import org.springframework.context.annotation.Scope;
@@ -58,7 +58,7 @@ public class MainController {
     @PostMapping("/getUserTasks")
     public ResponseEntity<?> getUserTasks() {
 
-        UserTasksTable userTasksTable = new UserTasksTable();
+        UserTaskTable userTasksTable = new UserTaskTable();
         ArrayList<BaseEntity> entityArrayList = userTasksTable.select();
 
         BaseEntityListResponse baseEntityListResponse = new BaseEntityListResponse();
@@ -71,7 +71,7 @@ public class MainController {
     @PostMapping("/getUserTask")
     public ResponseEntity<?> getUserTask(@RequestBody IdRequest idRequest) {
 
-        UserTasksTable table = new UserTasksTable();
+        UserTaskTable table = new UserTaskTable();
         userTaskEntity = (UserTaskEntity) table.selectById(idRequest.getId());
 
         return ResponseEntity.ok(userTaskEntity);
@@ -83,7 +83,7 @@ public class MainController {
 
         long id = saveUserTaskRequest.getId();
 
-        UserTasksTable table = new UserTasksTable();
+        UserTaskTable table = new UserTaskTable();
         if (saveUserTaskRequest.getId() == 0) {
             userTaskEntity = new UserTaskEntity(saveUserTaskRequest.getName());
             id = table.insert(userTaskEntity);
@@ -109,7 +109,7 @@ public class MainController {
     @PostMapping("/deleteUserTask")
     public ResponseEntity<?> deleteUserTask(@RequestBody IdRequest idRequest) {
 
-        UserTasksTable table = new UserTasksTable();
+        UserTaskTable table = new UserTaskTable();
         table.deleteById(idRequest.getId());
 
         userTaskEntity = null;
