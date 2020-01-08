@@ -1,15 +1,13 @@
 package com.igor1c.taskmanager.controllers;
 
 import com.igor1c.taskmanager.controllers.requests.IdRequest;
+import com.igor1c.taskmanager.controllers.requests.SaveTaskActionRequest;
 import com.igor1c.taskmanager.controllers.requests.SaveUserTaskRequest;
 import com.igor1c.taskmanager.controllers.responses.BaseEntityListResponse;
-import com.igor1c.taskmanager.controllers.responses.GetActionTypeInfoResponse;
-import com.igor1c.taskmanager.database.ActionTypeParamsTable;
 import com.igor1c.taskmanager.database.ActionTypesTable;
 import com.igor1c.taskmanager.database.TaskActionsTable;
 import com.igor1c.taskmanager.database.UserTaskTable;
 import com.igor1c.taskmanager.entities.BaseEntity;
-import com.igor1c.taskmanager.entities.TaskActionEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
@@ -30,30 +28,7 @@ public class MainController {
     @GetMapping("")
     public String main(Model model) {
 
-        ActionTypesTable actionTypesTable = new ActionTypesTable();
-        ArrayList<BaseEntity> entityArrayList = actionTypesTable.select();
-
-        model.addAttribute("actionTypes", entityArrayList);
-
         return "main.html";
-
-    }
-
-    @PostMapping("/getActionTypeInfo")
-    public ResponseEntity<?> getActionTypeInfo(@RequestBody IdRequest idRequest) {
-
-        long actionTypeId = idRequest.getId();
-
-        ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
-        ArrayList<BaseEntity> entityArrayList = actionTypeParamsTable.selectByActionTypeId(actionTypeId);
-
-        ActionTypesTable actionTypesTable = new ActionTypesTable();
-
-        GetActionTypeInfoResponse getActionTypeInfoResponse = new GetActionTypeInfoResponse();
-        getActionTypeInfoResponse.setActionTypeEntity(actionTypesTable.selectById(actionTypeId));
-        getActionTypeInfoResponse.setBaseEntityList(entityArrayList);
-
-        return ResponseEntity.ok(getActionTypeInfoResponse);
 
     }
 
@@ -90,7 +65,7 @@ public class MainController {
         long id = saveUserTaskRequest.getId();
 
         UserTaskTable table = new UserTaskTable();
-        if (saveUserTaskRequest.getId() == 0) {
+        if (id == 0) {
             userTaskEntity = new UserTaskEntity(saveUserTaskRequest.getName());
             id = table.insert(userTaskEntity);
             userTaskEntity.setId(id);
@@ -121,6 +96,33 @@ public class MainController {
         userTaskEntity = null;
 
         return ResponseEntity.ok(new String());
+
+    }
+
+    @PostMapping("/getActionTypes")
+    public ResponseEntity<?> getActionTypes() {
+
+        ActionTypesTable table = new ActionTypesTable();
+        ArrayList<BaseEntity> entityArrayList = table.select();
+
+        return ResponseEntity.ok(entityArrayList);
+
+    }
+
+    @PostMapping("/saveTaskAction")
+    public ResponseEntity<?> saveTaskAction(@RequestBody SaveTaskActionRequest saveTaskActionRequest) {
+
+        long id = saveTaskActionRequest.getId();
+        long actionType = saveTaskActionRequest.getActionType();
+
+        ActionTypesTable table = new ActionTypesTable();
+        if (id == 0) {
+
+        } else {
+
+        }
+
+        return ResponseEntity.ok(id);
 
     }
 

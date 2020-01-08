@@ -2,9 +2,21 @@
     background-color: #38383A;
 }
 
-.div-main-container {
+.div-container-main {
     background-color: #C3B7AC;
     width: 1200px;
+    border-radius: 10px;
+}
+
+.div-container-1 {
+    background-color: #afa18d;
+    width: 1000px;
+    border-radius: 10px;
+}
+
+.div-container-2 {
+    background-color: #cdc589;
+    width: 800px;
     border-radius: 10px;
 }
 

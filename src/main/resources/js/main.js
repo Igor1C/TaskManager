@@ -3,6 +3,7 @@ var app = angular.module("TaskManager", []);
 app.controller("TaskManagerController", function($scope, $http) {
 
     getUserTasks();
+    getActionTypes();
 
 
 
@@ -21,6 +22,8 @@ app.controller("TaskManagerController", function($scope, $http) {
         $('#userTaskDelete').addClass('collapse');
 
     };
+
+
 
     $scope.saveUserTaskOnClick = function() {
 
@@ -45,11 +48,21 @@ app.controller("TaskManagerController", function($scope, $http) {
 
     };
 
-    $scope.actionTypeOnClick = function (id) {
 
-        getActionTypeInfo(id);
 
-    };
+    $scope.addTaskActionOnClick = function() {
+
+        clearUserTaskControlPanel();
+        changeTaskActionControlPanelVisibility(true);
+        $('#userTaskDelete').addClass('collapse');
+
+    }
+
+    $scope.saveTaskActionOnClick = function() {
+
+        saveTaskAction();
+
+    }
 
 
 
@@ -66,6 +79,8 @@ app.controller("TaskManagerController", function($scope, $http) {
         });
 
     };
+
+
 
     function getUserTask(id) {
 
@@ -89,7 +104,7 @@ app.controller("TaskManagerController", function($scope, $http) {
 
     function saveUserTask() {
 
-        jsonData = JSON.stringify({idString: $scope.userTaskId, name: $scope.userTaskName});
+        jsonData = JSON.stringify({id: $scope.userTaskId, name: $scope.userTaskName});
 
         $.ajax({
             type: "POST",
@@ -133,6 +148,8 @@ app.controller("TaskManagerController", function($scope, $http) {
 
     };
 
+
+
     function changeUserTaskControlPanelVisibility(currentVisibility) {
 
         if (currentVisibility == false) {
@@ -156,25 +173,53 @@ app.controller("TaskManagerController", function($scope, $http) {
 
     }
 
-    function getActionTypeInfo(id) {
+
+
+    function changeTaskActionControlPanelVisibility(currentVisibility) {
+
+        if (currentVisibility == false) {
+            $('#taskActionControlPanel').addClass('collapse');
+            $('#taskActionControlPanelSeparator').addClass('collapse');
+        } else {
+            $('#taskActionControlPanel').removeClass('collapse');
+            $('#taskActionControlPanelSeparator').removeClass('collapse');
+        }
+
+    }
+
+    function saveTaskAction() {
+
+        jsonData = JSON.stringify({idString: $scope.taskActionId, actionType: $scope.actionType});
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/saveTaskAction",
+            data: jsonData,
+            success: function (data) {
+                $scope.taskActionId = data;
+                $scope.$apply();
+
+                getUserTasks();
+            }
+        });
+
+    }
+
+
+
+    function getActionTypes() {
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "/getActionTypeInfo",
-            data: JSON.stringify(id),
-            dataType: 'json',
+            url: "/getActionTypes",
             success: function (data) {
-                $('#actionTypeInfoName').html(data.actionTypeEntity.name);
-                $('#actionTypeInfoDescription').html(data.actionTypeEntity.description);
-
-                $scope.actionTypeParams = data.baseEntityList;
+                $scope.actionTypes = data;
                 $scope.$apply();
-
-                document.getElementById('actionTypeInfo').style.visibility = "visible";
             }
         });
 
-    };
+    }
 
 });
