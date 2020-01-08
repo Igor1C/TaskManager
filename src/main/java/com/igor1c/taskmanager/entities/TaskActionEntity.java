@@ -1,5 +1,8 @@
 package com.igor1c.taskmanager.entities;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class TaskActionEntity extends BaseEntity {
 
     private String name;
@@ -29,8 +32,18 @@ public class TaskActionEntity extends BaseEntity {
 
 
 
-    public BaseEntity createEntity() {
-        return new TaskActionEntity();
+    public void fillFromResultSet(ResultSet resultSet) {
+
+        try {
+            setId(resultSet.getLong(resultSet.findColumn("id")));
+            setName(resultSet.getString(resultSet.findColumn("name")));
+            setActionType(resultSet.getLong(resultSet.findColumn("actionType")));
+            setUserTask(resultSet.getLong(resultSet.findColumn("userTask")));
+            setTaskOrder(resultSet.getLong(resultSet.findColumn("taskOrder")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -47,8 +60,12 @@ public class TaskActionEntity extends BaseEntity {
         return actionType;
     }
 
-    public String getActionTypeString() {
+    public String getActionTypeName() {
         return ActionTypeEntity.getActionTypeEntity(getActionType()).getName();
+    }
+
+    public String getActionTypeDescription() {
+        return ActionTypeEntity.getActionTypeEntity(getActionType()).getDescription();
     }
 
     public void setActionType(long actionType) {

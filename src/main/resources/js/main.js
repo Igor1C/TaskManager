@@ -78,6 +78,7 @@ app.controller("TaskManagerController", function($scope, $http) {
             success: function (data) {
                 $scope.userTaskId = data.id;
                 $scope.userTaskName = data.name;
+                $scope.taskActions = data.taskActions;
                 $scope.$apply();
 
                 changeUserTaskControlPanelVisibility(true);

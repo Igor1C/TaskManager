@@ -33,7 +33,7 @@ public class ActionTypesTable extends TableController<ActionTypeEntity> {
 
     public void fillTable() {
 
-        HashMap<Integer, ActionTypeEntity> predefinedMap = ActionTypeEntity.getPredefinedMap();
+        HashMap<Long, ActionTypeEntity> predefinedMap = ActionTypeEntity.getPredefinedMap();
         for (ActionTypeEntity actionTypeEntity : predefinedMap.values())
             insert(actionTypeEntity);
 

@@ -12,7 +12,7 @@ public class ActionTypeEntity extends BaseEntity {
     public static final int SEVEN_Z_PACK_ARCHIVE = 3;
     public static final int FTP_UPLOAD_FILE = 4;
 
-    private static HashMap<Integer, ActionTypeEntity> PREDEFINED_MAP;
+    private static HashMap<Long, ActionTypeEntity> PREDEFINED_MAP;
 
     static {
         initPredefinedMap();
@@ -25,7 +25,7 @@ public class ActionTypeEntity extends BaseEntity {
 
     public static void initPredefinedMap() {
 
-        PREDEFINED_MAP = new HashMap<Integer, ActionTypeEntity>();
+        PREDEFINED_MAP = new HashMap<Long, ActionTypeEntity>();
 
         ArrayList<ActionTypeEntity> actionTypeEntities = new ArrayList<ActionTypeEntity>();
         actionTypeEntities.add(new ActionTypeEntity(ONE_C_FILE_UNLOAD_DT, "ONE_C_FILE_UNLOAD_DT", "1C file database - Unload DT"));
@@ -34,7 +34,7 @@ public class ActionTypeEntity extends BaseEntity {
         actionTypeEntities.add(new ActionTypeEntity(FTP_UPLOAD_FILE, "FTP_UPLOAD_FILE", "FTP - Upload file"));
 
         for (ActionTypeEntity actionTypeEntity : actionTypeEntities)
-            PREDEFINED_MAP.put((int) actionTypeEntity.getId(), actionTypeEntity);
+            PREDEFINED_MAP.put(actionTypeEntity.getId(), actionTypeEntity);
 
     }
 
@@ -70,7 +70,7 @@ public class ActionTypeEntity extends BaseEntity {
 
 
 
-    public static HashMap<Integer, ActionTypeEntity> getPredefinedMap() {
+    public static HashMap<Long, ActionTypeEntity> getPredefinedMap() {
         return PREDEFINED_MAP;
     }
 

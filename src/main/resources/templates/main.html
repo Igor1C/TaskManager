@@ -55,7 +55,7 @@
 
     <!-- USER TASK CONTROL PANEL -->
 
-    <div id="userTaskControlPanelSeparator" class="div-vertical-separator-lg collapse"></div>
+    <div id="userTaskControlPanelSeparator" class="div-vertical-separator-sm collapse"></div>
 
     <div id="userTaskControlPanel" class="div-main-container container-lg collapse">
 
@@ -102,7 +102,7 @@
 
     <!-- USER TASK ACTIONS -->
 
-    <div id="userTaskActionsControlPanelSeparator" class="div-vertical-separator-lg collapse"></div>
+    <div id="userTaskActionsControlPanelSeparator" class="div-vertical-separator-sm collapse"></div>
 
     <div id="userTaskActionsControlPanel" class="div-main-container container-lg collapse">
 
@@ -122,11 +122,66 @@
                 <div class="div-row-basic row justify-content-md-center"
                      th:ng-click="'taskActionOnClick(taskAction.id)'">
                     <div class="div-basic col-1 text-center">{{taskAction.id}}</div>
-                    <div class="div-basic col-4">{{taskAction.taskOrder}}</div>
-                    <div class="div-basic col-4">{{taskAction.actionTypeString}}</div>
+                    <div class="div-basic col-1 text-center">{{taskAction.taskOrder}}</div>
+                    <div class="div-basic col-4">{{taskAction.actionTypeDescription}}</div>
                 </div>
             </div>
         </div>
+
+        <br/>
+
+        <div class="row justify-content-md-center">
+            <button id="taskActionAdd" type="button" class="btn-sm btn-success col-1 border text-center" th:ng-click="'addTaskActionOnClick()'">Add</button>
+
+            <div class="div-horizontal-separator-small"></div>
+
+            <button id="taskActionSave" type="button" class="btn-sm btn-info col-1 border text-center" th:ng-click="'saveTaskActionOnClick()'">Save</button>
+
+            <div class="div-horizontal-separator-small"></div>
+
+            <button id="taskActionCancel" type="button" class="btn-sm btn-secondary col-1 border text-center" th:ng-click="'cancelTaskActionOnClick()'">Cancel</button>
+
+            <div class="div-horizontal-separator-small"></div>
+
+            <button id="taskActionDelete" type="button" class="btn-sm btn-danger col-1 border text-center" th:ng-click="'deleteTaskActionOnClick()'">Delete</button>
+        </div>
+
+        <br/>
+
+    </div>
+
+
+
+    <!-- TASK ACTION -->
+
+    <div id="userTaskActionControlPanelSeparator" class="div-vertical-separator-sm"></div>
+
+    <div id="userTaskActionControlPanel" class="div-main-container container-lg">
+
+        <br/>
+
+        <div class="div-block-caption">Task action</div>
+
+        <div class="div-vertical-separator-sm"></div>
+
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="div-th col-1 text-center vertical-center-alignment">ID</div>
+                <div class="col-4">
+                    <input id="taskActionId" type="text" class="form-control-sm" ng-model="taskActionId" disabled />
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="div-th col-1 text-center vertical-center-alignment">Action type</div>
+                <div class="col-4">
+                    <select id="taskActionType" type="text" class="form-control-sm" ng-model="taskActionType" />
+                </div>
+            </div>
+        </div>
+
+        <br/>
+
+
 
         <br/>
 

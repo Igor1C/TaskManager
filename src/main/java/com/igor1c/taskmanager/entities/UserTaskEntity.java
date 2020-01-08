@@ -2,10 +2,12 @@ package com.igor1c.taskmanager.entities;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserTaskEntity extends BaseEntity {
 
     private String name;
+    private ArrayList<BaseEntity> taskActions;
 
 
 
@@ -43,6 +45,14 @@ public class UserTaskEntity extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ArrayList<BaseEntity> getTaskActions() {
+        return taskActions;
+    }
+
+    public void setTaskActions(ArrayList<BaseEntity> taskActions) {
+        this.taskActions = taskActions;
     }
 
 }

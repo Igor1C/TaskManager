@@ -6,8 +6,10 @@ import com.igor1c.taskmanager.controllers.responses.BaseEntityListResponse;
 import com.igor1c.taskmanager.controllers.responses.GetActionTypeInfoResponse;
 import com.igor1c.taskmanager.database.ActionTypeParamsTable;
 import com.igor1c.taskmanager.database.ActionTypesTable;
+import com.igor1c.taskmanager.database.TaskActionsTable;
 import com.igor1c.taskmanager.database.UserTaskTable;
 import com.igor1c.taskmanager.entities.BaseEntity;
+import com.igor1c.taskmanager.entities.TaskActionEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
@@ -71,8 +73,12 @@ public class MainController {
     @PostMapping("/getUserTask")
     public ResponseEntity<?> getUserTask(@RequestBody IdRequest idRequest) {
 
+        TaskActionsTable taskActionsTable = new TaskActionsTable();
+        ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.select("userTask=" + idRequest.getId());
+
         UserTaskTable table = new UserTaskTable();
         userTaskEntity = (UserTaskEntity) table.selectById(idRequest.getId());
+        userTaskEntity.setTaskActions(taskActionEntityArrayList);
 
         return ResponseEntity.ok(userTaskEntity);
 
