@@ -75,6 +75,14 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     }
 
+    $scope.deleteTaskActionOnClick = function () {
+
+        deleteTaskAction();
+
+        $('#taskActionDelete').addClass('collapse');
+
+    }
+
 
 
     /* USER TASK FUNCTIONS */
@@ -161,8 +169,8 @@ app.controller("TaskManagerController", function ($scope, $http) {
             url: "/deleteUserTask",
             data: JSON.stringify($scope.userTaskId),
             success: function () {
-                changeUserTaskControlPanelVisibility(false);
-                clearUserTaskControlPanel();
+                changeTaskActionControlPanelVisibility(false);
+                clearTaskActionControlPanel();
                 getUserTasks();
             }
         });
@@ -212,9 +220,8 @@ app.controller("TaskManagerController", function ($scope, $http) {
             contentType: "application/json; charset=utf-8",
             url: "/addTaskAction",
             success: function (data) {
-                $scope.taskActionId = data.indexInUserTask;
+                processTaskAction(data);
                 getUserTaskFromSession();
-                $scope.$apply();
             }
         });
 
@@ -248,10 +255,24 @@ app.controller("TaskManagerController", function ($scope, $http) {
             url: "/saveTaskAction",
             data: jsonData,
             success: function (data) {
-                $scope.taskActionId = data;
-                $scope.$apply();
-
+                processTaskAction(data);
                 getUserTasks();
+            }
+        });
+
+    }
+
+    function deleteTaskAction() {
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/deleteUserTask",
+            data: JSON.stringify($scope.taskActionIndexInUserTask),
+            success: function () {
+                changeUserTaskControlPanelVisibility(false);
+                clearTaskActionControlPanel();
+                getUserTaskFromSession();
             }
         });
 
@@ -269,14 +290,20 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     }
 
+    function clearTaskActionControlPanel() {
+
+        $scope.taskActionIndexInUserTask = 0;
+        $scope.taskActionOrder = 0;
+        $scope.actionType = 0;
+
+    }
+
     function processTaskAction(data) {
 
         $scope.taskActionIndexInUserTask = data.indexInUserTask;
-        $scope.actionType = data.taskActionType;
+        $scope.taskActionOrder = data.taskOrder;
+        $scope.actionType = data.actionType;
         $scope.$apply();
-
-        alert('data.taskActionType' + data.taskActionType);
-        alert('$scope.actionType' + $scope.actionType);
 
     }
 

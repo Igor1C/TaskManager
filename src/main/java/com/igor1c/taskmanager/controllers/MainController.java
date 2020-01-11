@@ -12,6 +12,7 @@ import com.igor1c.taskmanager.database.UserTaskTable;
 import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.TaskActionEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
+import javafx.concurrent.Task;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -153,18 +154,21 @@ public class MainController {
     @PostMapping("/saveTaskAction")
     public ResponseEntity<?> saveTaskAction(@RequestBody SaveTaskActionRequest saveTaskActionRequest) {
 
-        long id = saveTaskActionRequest.getId();
-        long actionType = saveTaskActionRequest.getActionType();
+        TaskActionEntity entity = (TaskActionEntity) userTaskEntity.getTaskActions().get(saveTaskActionRequest.getIndexInUserTask());
+        entity.setActionType(saveTaskActionRequest.getActionType());
 
-        ActionTypesTable table = new ActionTypesTable();
-        if (id == 0) {
-
-        } else {
-
-        }
-
-        return ResponseEntity.ok(id);
+        return ResponseEntity.ok(entity);
 
     }
+
+    @PostMapping("/deleteTaskAction")
+    public ResponseEntity<?> deleteTaskAction(@RequestBody IdIndexRequest idIndexRequest) {
+
+        BaseEntity entity = userTaskEntity.getTaskActions().remove(idIndexRequest.getIndex());
+
+        return ResponseEntity.ok(new String());
+
+    }
+
 
 }
