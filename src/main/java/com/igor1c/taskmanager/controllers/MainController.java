@@ -1,5 +1,7 @@
 package com.igor1c.taskmanager.controllers;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+import com.igor1c.taskmanager.controllers.requests.IdIndexRequest;
 import com.igor1c.taskmanager.controllers.requests.IdRequest;
 import com.igor1c.taskmanager.controllers.requests.SaveTaskActionRequest;
 import com.igor1c.taskmanager.controllers.requests.SaveUserTaskRequest;
@@ -8,6 +10,7 @@ import com.igor1c.taskmanager.database.ActionTypesTable;
 import com.igor1c.taskmanager.database.TaskActionsTable;
 import com.igor1c.taskmanager.database.UserTaskTable;
 import com.igor1c.taskmanager.entities.BaseEntity;
+import com.igor1c.taskmanager.entities.TaskActionEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +35,10 @@ public class MainController {
 
     }
 
+
+
+    /* USER TASKS */
+
     @PostMapping("/getUserTasks")
     public ResponseEntity<?> getUserTasks() {
 
@@ -54,6 +61,13 @@ public class MainController {
         UserTaskTable table = new UserTaskTable();
         userTaskEntity = (UserTaskEntity) table.selectById(idRequest.getId());
         userTaskEntity.setTaskActions(taskActionEntityArrayList);
+
+        return ResponseEntity.ok(userTaskEntity);
+
+    }
+
+    @PostMapping("/getUserTaskFromSession")
+    public ResponseEntity<?> getUserTaskFromSession() {
 
         return ResponseEntity.ok(userTaskEntity);
 
@@ -99,6 +113,10 @@ public class MainController {
 
     }
 
+
+
+    /* TASK ACTIONS */
+
     @PostMapping("/getActionTypes")
     public ResponseEntity<?> getActionTypes() {
 
@@ -106,6 +124,29 @@ public class MainController {
         ArrayList<BaseEntity> entityArrayList = table.select();
 
         return ResponseEntity.ok(entityArrayList);
+
+    }
+
+    @PostMapping("/addTaskAction")
+    public ResponseEntity<?> addTaskAction() {
+
+        TaskActionEntity taskActionEntity = new TaskActionEntity();
+        taskActionEntity.setUserTask(userTaskEntity.getId());
+
+        ArrayList<BaseEntity> taskActionArrayList = userTaskEntity.getTaskActions();
+        taskActionArrayList.add(taskActionEntity);
+
+        taskActionEntity.setIndexInUserTask(taskActionArrayList.indexOf(taskActionEntity));
+
+        return ResponseEntity.ok(taskActionEntity);
+
+    }
+
+    @PostMapping("/getTaskAction")
+    public ResponseEntity<?> getTaskAction(@RequestBody IdIndexRequest idIndexRequest) {
+
+        BaseEntity entity = userTaskEntity.getTaskActions().get(idIndexRequest.getIndex());
+        return ResponseEntity.ok(entity);
 
     }
 

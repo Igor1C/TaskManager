@@ -2,25 +2,34 @@ package com.igor1c.taskmanager.controllers.requests;
 
 public class SaveTaskActionRequest {
 
-    int id;
-    int actionType;
+    long id;
+    long actionType;
+    int indexInUserTask;
 
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getActionType() {
+    public long getActionType() {
         return actionType;
     }
 
-    public void setActionType(int actionType) {
+    public void setActionType(long actionType) {
         this.actionType = actionType;
+    }
+
+    public int getIndexInUserTask() {
+        return indexInUserTask;
+    }
+
+    public void setIndexInUserTask(int indexInUserTask) {
+        this.indexInUserTask = indexInUserTask;
     }
 
 }

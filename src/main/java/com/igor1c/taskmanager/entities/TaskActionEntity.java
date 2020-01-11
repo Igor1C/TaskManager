@@ -9,6 +9,7 @@ public class TaskActionEntity extends BaseEntity {
     private long actionType;
     private long userTask;
     private long taskOrder;
+    private int indexInUserTask;
 
 
 
@@ -61,11 +62,23 @@ public class TaskActionEntity extends BaseEntity {
     }
 
     public String getActionTypeName() {
-        return ActionTypeEntity.getActionTypeEntity(getActionType()).getName();
+
+        long currentActionType = getActionType();
+        if (currentActionType != 0)
+            return ActionTypeEntity.getActionTypeEntity(currentActionType).getName();
+        else
+            return "";
+
     }
 
     public String getActionTypeDescription() {
-        return ActionTypeEntity.getActionTypeEntity(getActionType()).getDescription();
+
+        long currentActionType = getActionType();
+        if (currentActionType != 0)
+            return ActionTypeEntity.getActionTypeEntity(currentActionType).getDescription();
+        else
+            return "";
+
     }
 
     public void setActionType(long actionType) {
@@ -86,6 +99,14 @@ public class TaskActionEntity extends BaseEntity {
 
     public void setTaskOrder(long taskOrder) {
         this.taskOrder = taskOrder;
+    }
+
+    public int getIndexInUserTask() {
+        return indexInUserTask;
+    }
+
+    public void setIndexInUserTask(int indexInUserTask) {
+        this.indexInUserTask = indexInUserTask;
     }
 
 }

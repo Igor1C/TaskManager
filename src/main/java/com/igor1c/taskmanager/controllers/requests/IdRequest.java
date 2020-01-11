@@ -2,9 +2,11 @@ package com.igor1c.taskmanager.controllers.requests;
 
 public class IdRequest {
 
-    int id;
+    long id;
 
 
+
+    public IdRequest() {}
 
     public IdRequest(int id) {
         setId(id);
@@ -12,11 +14,11 @@ public class IdRequest {
 
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

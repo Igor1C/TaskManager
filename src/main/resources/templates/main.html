@@ -102,11 +102,11 @@
 
 
 
-    <!-- USER TASK ACTIONS -->
+    <!-- TASK ACTIONS -->
 
-    <div id="userTaskActionsControlPanelSeparator" class="div-vertical-separator-sm collapse"></div>
+    <div id="taskActionsControlPanelSeparator" class="div-vertical-separator-sm collapse"></div>
 
-    <div id="userTaskActionsControlPanel" class="div-container-1 container-lg collapse">
+    <div id="taskActionsControlPanel" class="div-container-1 container-lg collapse">
 
         <br/>
 
@@ -114,16 +114,15 @@
 
         <div class="div-vertical-separator-sm"></div>
 
-        <div id="userTaskActions" class="container div-table">
+        <div id="taskActions" class="container div-table">
             <div class="row justify-content-md-center">
                 <div class="div-th col-1 text-center">#</div>
                 <div class="div-th col-1 text-center">Order</div>
                 <div class="div-th col-4 text-center">Action task</div>
             </div>
             <div ng-repeat="taskAction in taskActions">
-                <div class="div-row-basic row justify-content-md-center"
-                     th:ng-click="'taskActionOnClick(taskAction.id)'">
-                    <div class="div-basic col-1 text-center">{{taskAction.id}}</div>
+                <div class="div-row-basic row justify-content-md-center" th:ng-click="'taskActionOnClick(taskAction.id, taskAction.indexInUserTask)'">
+                    <div class="div-basic col-1 text-center">{{taskAction.indexInUserTask}}</div>
                     <div class="div-basic col-1 text-center">{{taskAction.taskOrder}}</div>
                     <div class="div-basic col-4">{{taskAction.actionTypeDescription}}</div>
                 </div>
@@ -142,7 +141,7 @@
 
 
 
-    <!-- TASK ACTION -->
+    <!-- TASK ACTION CONTROL PANEL -->
 
     <div id="taskActionControlPanelSeparator" class="div-vertical-separator-sm collapse"></div>
 
@@ -156,9 +155,9 @@
 
         <div class="container">
             <div class="row justify-content-md-center">
-                <div class="div-th col-2 text-center vertical-center-alignment">ID</div>
+                <div class="div-th col-2 text-center vertical-center-alignment">#</div>
                 <div class="col-4">
-                    <input id="taskActionId" type="text" class="form-control-sm" ng-model="taskActionId" disabled />
+                    <input id="taskActionIndexInUserTask" type="text" class="form-control-sm" ng-model="taskActionIndexInUserTask" disabled />
                 </div>
             </div>
             <div class="row justify-content-md-center">
