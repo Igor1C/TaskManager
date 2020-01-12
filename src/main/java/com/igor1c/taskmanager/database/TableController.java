@@ -1,8 +1,12 @@
 package com.igor1c.taskmanager.database;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.EntityFactory;
 import com.igor1c.taskmanager.helpers.DBHelper;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.omg.CORBA.BooleanHolder;
+import org.omg.CORBA.StringHolder;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -88,6 +92,17 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
         String query = "UPDATE " + getTableName() + " SET " + getFieldsString(false) + " = " + getValuesString(baseEntity, false) + " WHERE id=" + baseEntity.getId();
         executeDbQuery(query);
+
+    }
+
+    public long insertUpdate(BaseEntity baseEntity) {
+
+        if (baseEntity.getId() == 0)
+            return insert(baseEntity);
+        else {
+            update(baseEntity);
+            return baseEntity.getId();
+        }
 
     }
 
@@ -188,38 +203,50 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
     private String getValuesString(BaseEntity baseEntity, boolean useId) {
 
         String resultString = "(";
-        boolean firstIteration = true;
+        BooleanHolder firstIteration = new BooleanHolder(true);
 
-        long currentId = baseEntity.getId();
-        if (useId) {
-            firstIteration = false;
-            resultString = resultString.concat("'" + currentId + "'");
-        }
+        if (useId)
+            resultString = processValueStringId(baseEntity, resultString, firstIteration);
 
         Class clazz = baseEntity.getClass();
 
-        for (String currentFieldName : getTableFields()) {
-            try {
+        for (String currentFieldName : getTableFields())
+            resultString = processValueStringField(baseEntity, resultString, firstIteration, clazz, currentFieldName);
 
-                if (firstIteration)
-                    firstIteration = false;
-                else
-                    resultString = resultString.concat(", ");
+        resultString = resultString.concat(")");
 
-                String methodName = "get" + currentFieldName.substring(0, 1).toUpperCase() + currentFieldName.substring(1);
-                Method method = clazz.getMethod(methodName);
-                Object currentValue = method.invoke(baseEntity);
+        return resultString;
+
+    }
+
+    private String processValueStringId(BaseEntity baseEntity, String resultString, BooleanHolder firstIteration) {
+
+        firstIteration.value = false;
+        return resultString.concat("'" + baseEntity.getId() + "'");
+
+    }
+
+    private String processValueStringField(BaseEntity baseEntity, String resultString, BooleanHolder firstIteration, Class clazz, String currentFieldName) {
+
+        try {
+
+            if (firstIteration.value)
+                firstIteration.value = false;
+            else
+                resultString = resultString.concat(", ");
+
+            String methodName = "get" + currentFieldName.substring(0, 1).toUpperCase() + currentFieldName.substring(1);
+            Method method = clazz.getMethod(methodName);
+            Object currentValue = method.invoke(baseEntity);
+            if (currentValue != null)
                 if (currentValue.getClass() == String.class)
                     resultString = resultString.concat("'" + currentValue + "'");
                 else
                     resultString = resultString.concat(currentValue.toString());
 
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
         }
-
-        resultString = resultString.concat(")");
 
         return resultString;
 

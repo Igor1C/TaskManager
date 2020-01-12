@@ -15,7 +15,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
         getUserTask(id);
         $('#userTaskDelete').removeClass('collapse');
-
+        changeTaskActionControlPanelVisibility(false);
 
     }
 
@@ -24,6 +24,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
         clearUserTaskControlPanel();
         changeUserTaskControlPanelVisibility(true);
         $('#userTaskDelete').addClass('collapse');
+        changeTaskActionControlPanelVisibility(false);
 
     }
 
@@ -39,14 +40,16 @@ app.controller("TaskManagerController", function ($scope, $http) {
         changeUserTaskControlPanelVisibility(false);
         $('#userTaskDelete').addClass('collapse');
         cancelUserTask();
+        changeTaskActionControlPanelVisibility(false);
 
     }
 
     $scope.deleteUserTaskOnClick = function () {
 
+        changeUserTaskControlPanelVisibility(false);
         deleteUserTask();
-
         $('#userTaskDelete').addClass('collapse');
+        changeTaskActionControlPanelVisibility(false);
 
     }
 
@@ -75,10 +78,18 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     }
 
+    $scope.cancelTaskActionOnClick = function () {
+
+        changeTaskActionControlPanelVisibility(false);
+        $('#taskActionDelete').addClass('collapse');
+        cancelTaskAction();
+
+    }
+
     $scope.deleteTaskActionOnClick = function () {
 
+        changeTaskActionControlPanelVisibility(false);
         deleteTaskAction();
-
         $('#taskActionDelete').addClass('collapse');
 
     }
@@ -132,17 +143,15 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     function saveUserTask() {
 
-        jsonData = JSON.stringify({id: $scope.userTaskId, name: $scope.userTaskName});
+        var jsonData = JSON.stringify({id: $scope.userTaskId, name: $scope.userTaskName});
 
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "/saveUserTask",
             data: jsonData,
-            success: function (data) {
-                $scope.userTaskId = data;
-                $scope.$apply();
-
+            success: function () {
+                getUserTaskFromSession();
                 getUserTasks();
             }
         });
@@ -169,7 +178,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             url: "/deleteUserTask",
             data: JSON.stringify($scope.userTaskId),
             success: function () {
-                changeTaskActionControlPanelVisibility(false);
+                changeUserTaskControlPanelVisibility(false);
                 clearTaskActionControlPanel();
                 getUserTasks();
             }
@@ -229,7 +238,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     function getTaskAction(id, index) {
 
-        jsonData = JSON.stringify({id: id, index: index});
+        var jsonData = JSON.stringify({id: id, index: index});
 
         $.ajax({
             type: "POST",
@@ -247,7 +256,9 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     function saveTaskAction() {
 
-        jsonData = JSON.stringify({id: $scope.taskActionId, actionType: $scope.actionType});
+        var jsonData = JSON.stringify({ order: $scope.taskActionOrder,
+                                        actionType: $scope.actionType,
+                                        indexInUserTask: $scope.taskActionIndexInUserTask});
 
         $.ajax({
             type: "POST",
@@ -256,7 +267,19 @@ app.controller("TaskManagerController", function ($scope, $http) {
             data: jsonData,
             success: function (data) {
                 processTaskAction(data);
-                getUserTasks();
+                getUserTaskFromSession();
+            }
+        });
+
+    }
+
+    function cancelTaskAction() {
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/cancelUserTask",
+            success: function () {
             }
         });
 
@@ -264,13 +287,14 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     function deleteTaskAction() {
 
+        var jsonData = JSON.stringify({index: $scope.taskActionIndexInUserTask});
+
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "/deleteUserTask",
-            data: JSON.stringify($scope.taskActionIndexInUserTask),
+            url: "/deleteTaskAction",
+            data: jsonData,
             success: function () {
-                changeUserTaskControlPanelVisibility(false);
                 clearTaskActionControlPanel();
                 getUserTaskFromSession();
             }

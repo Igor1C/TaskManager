@@ -1,5 +1,7 @@
 package com.igor1c.taskmanager.database;
 
+import com.igor1c.taskmanager.entities.BaseEntity;
+import com.igor1c.taskmanager.entities.TaskActionEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
 
 public class UserTaskTable extends TableController<UserTaskEntity> {
@@ -10,6 +12,8 @@ public class UserTaskTable extends TableController<UserTaskEntity> {
                 new String[]{"name"});
 
     }
+
+
 
     public void createTable() {
 
@@ -27,5 +31,21 @@ public class UserTaskTable extends TableController<UserTaskEntity> {
     public void createExtraConstraints() {}
 
     public void fillTable() {}
+
+
+
+    public long fullInsertUpdate(UserTaskEntity entity) {
+
+        long id = insertUpdate(entity);
+
+        TaskActionsTable taskActionsTable = new TaskActionsTable();
+        for (BaseEntity taskActionEntity : entity.getTaskActions()) {
+            ((TaskActionEntity) taskActionEntity).setUserTask(id);
+            taskActionsTable.insertUpdate(taskActionEntity);
+        }
+
+        return id;
+
+    }
 
 }

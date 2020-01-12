@@ -77,19 +77,15 @@ public class MainController {
     @PostMapping("/saveUserTask")
     public ResponseEntity<?> saveUserTask(@RequestBody SaveUserTaskRequest saveUserTaskRequest) {
 
-        long id = saveUserTaskRequest.getId();
+        if (saveUserTaskRequest.getId() == 0)
+            userTaskEntity = new UserTaskEntity();
+
+        userTaskEntity.setName(saveUserTaskRequest.getName());
 
         UserTaskTable table = new UserTaskTable();
-        if (id == 0) {
-            userTaskEntity = new UserTaskEntity(saveUserTaskRequest.getName());
-            id = table.insert(userTaskEntity);
-            userTaskEntity.setId(id);
-        } else {
-            userTaskEntity.setName(saveUserTaskRequest.getName());
-            table.update(userTaskEntity);
-        }
+        userTaskEntity.setId(table.fullInsertUpdate(userTaskEntity));
 
-        return ResponseEntity.ok(id);
+        return ResponseEntity.ok(new String());
 
     }
 
@@ -155,6 +151,7 @@ public class MainController {
     public ResponseEntity<?> saveTaskAction(@RequestBody SaveTaskActionRequest saveTaskActionRequest) {
 
         TaskActionEntity entity = (TaskActionEntity) userTaskEntity.getTaskActions().get(saveTaskActionRequest.getIndexInUserTask());
+        entity.setTaskOrder(saveTaskActionRequest.getOrder());
         entity.setActionType(saveTaskActionRequest.getActionType());
 
         return ResponseEntity.ok(entity);
@@ -164,7 +161,8 @@ public class MainController {
     @PostMapping("/deleteTaskAction")
     public ResponseEntity<?> deleteTaskAction(@RequestBody IdIndexRequest idIndexRequest) {
 
-        BaseEntity entity = userTaskEntity.getTaskActions().remove(idIndexRequest.getIndex());
+        userTaskEntity.getTaskActions().remove(idIndexRequest.getIndex());
+        userTaskEntity.renewTaskActionIndexes();
 
         return ResponseEntity.ok(new String());
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class UserTaskEntity extends BaseEntity {
 
     private String name;
-    private ArrayList<BaseEntity> taskActions;
+    private ArrayList<BaseEntity> taskActions = new ArrayList<>();
 
 
 
@@ -37,6 +37,12 @@ public class UserTaskEntity extends BaseEntity {
 
     }
 
+    public void renewTaskActionIndexes() {
+
+        for (int i = 0; i < taskActions.size(); i++)
+            ((TaskActionEntity) taskActions.get(i)).setIndexInUserTask(i);
+
+    }
 
 
     public String getName() {

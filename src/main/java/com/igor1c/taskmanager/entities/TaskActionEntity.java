@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class TaskActionEntity extends BaseEntity {
 
-    private String name;
+    private String name = "";
     private long actionType;
     private long userTask;
     private long taskOrder;
