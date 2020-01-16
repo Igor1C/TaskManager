@@ -1,64 +1,13 @@
+
+/* MAIN ELEMENTS */
+
 .main-page {
-    background-color: #38383A;
+    background-color: #38383a;
 }
 
-.div-container-main {
-    background-color: #C3B7AC;
-    width: 1200px;
-    border-radius: 10px;
-}
 
-.div-container-1 {
-    background-color: #afa18d;
-    width: 1000px;
-    border-radius: 10px;
-}
 
-.div-container-2 {
-    background-color: #cdc589;
-    width: 800px;
-    border-radius: 10px;
-}
-
-.div-table {
-
-}
-
-.div-block-caption {
-
-    background-color: #EAE1CD;
-    display: inline;
-    border-style: solid;
-    border-color: #2b2b2b;
-    border-width: 2px;
-    border-radius: 10px;
-    padding: 5px;
-
-}
-
-.div-th {
-    background-color: #38383A;
-    margin: 1px;
-    border-style: solid;
-    border-color: #EAE1CD;
-    border-width: 1px;
-    border-radius: 5px;
-    color: #F0E7E8;
-}
-
-.div-basic {
-    margin: 1px;
-    background-color: #F0E7E8;
-    border-style: solid;
-    border-color: #83959B;
-    border-width: 1px;
-    border-radius: 3px;
-    color: #38383A;
-}
-
-.div-row-basic:hover > .div-basic {
-    background-color: #73b6b1;
-}
+/* SEPARATORS */
 
 .div-vertical-separator-lg {
     height: 75px;
@@ -75,7 +24,22 @@
     width: 10px;
 }
 
-.vertical-center-alignment {
-    margin-top: auto;
-    margin-bottom: auto;
+
+
+/* CARDS */
+
+.card-caption {
+    background-color: rgba(0, 172, 193, 0.28);
+}
+
+
+
+/* DIFFERENT */
+
+.element-align-center {
+    margin: auto !important;
+}
+
+.text-align-center {
+    text-align: center !important;
 }

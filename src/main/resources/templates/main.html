@@ -6,205 +6,84 @@
     <meta charset="UTF-8"/>
     <title>Task Manager</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
-    <link th:href="@{/css/igor1c.css}" rel="stylesheet" media="screen"/>
-
 </head>
 
 <body class="main-page" ng-app="TaskManager" ng-controller="TaskManagerController">
 
-    <div class="div-vertical-separator-sm"></div>
-
-
-
     <!-- ALL USER TASKS -->
 
-    <div class="div-container-main container-lg">
-
-        <br/>
-
-        <div class="div-block-caption">All user tasks</div>
-
-        <div class="div-vertical-separator-sm"></div>
-
-        <div id="userTasks" class="container div-table">
-            <div class="row justify-content-md-center">
-                <div class="div-th col-1 text-center">#</div>
-                <div class="div-th col-4 text-center">Name</div>
+    <div id="userTasksControlPanel" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Task Manager</span>
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link">About</a>
+                    <a class="mdl-navigation__link">Portfolio</a>
+                </nav>
             </div>
-            <div ng-repeat="userTask in userTasks">
-                <div class="div-row-basic row justify-content-md-center" th:ng-click="'userTaskOnClick(userTask.id)'">
-                    <div class="div-basic col-1 text-center">{{userTask.id}}</div>
-                    <div class="div-basic col-4">{{userTask.name}}</div>
+        </header>
+
+        <main class="mdl-layout__content">
+            <div class="div-vertical-separator-sm"></div>
+
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col" ng-repeat="userTask in userTasks">
+                    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__actions mdl-card--border card-caption">
+                            <h2 class="mdl-card__title-text">ID: {{userTask.id}}</h2>
+                        </div>
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__supporting-text">Name: {{userTask.name}}</h2>
+                            <br/>
+                            <h2 class="mdl-card__supporting-text">Actions quote: {{userTask.taskActions.size}}</h2>
+                            <br/>
+                            <h2 class="mdl-card__supporting-text">Last exec.: {{userTask.lastExecution}}</h2>
+                        </div>
+                        <div class="mdl-card__menu">
+                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                <i class="material-icons">share</i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <br/>
+            <table id="userTasks" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp element-align-center" style="visibility: collapse">
+                <thead>
+                    <tr>
+                        <th class="text-align-center">#</th>
+                        <th class="text-align-center">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-align-center" ng-repeat="userTask in userTasks" th:ng-click="'userTaskOnClick(userTask.id)'">
+                        <td class="text-align-center">{{userTask.id}}</td>
+                        <td>{{userTask.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <div class="row justify-content-md-center">
-            <button id="userTaskAdd" type="button" class="btn-sm btn-success col-1 border text-center"
-                th:ng-click="'addUserTaskOnClick()'">Add
-            </button>
-        </div>
+            <div class="div-vertical-separator-sm"></div>
 
-        <br/>
+            <div class="text-align-center">
+                <button id="userTaskAdd" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" th:ng-click="'addUserTaskOnClick()'">
+                    <i class="material-icons">+</i>
+                </button>
+            </div>
+        </main>
 
     </div>
 
 
 
-    <!-- USER TASK CONTROL PANEL -->
-
-    <div id="userTaskControlPanelSeparator" class="div-vertical-separator-sm collapse"></div>
-
-    <div id="userTaskControlPanel" class="div-container-1 container-lg collapse">
-
-        <br/>
-
-        <div class="div-block-caption">User task</div>
-
-        <div class="div-vertical-separator-sm"></div>
-
-        <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="div-th col-1 text-center vertical-center-alignment">ID</div>
-                <div class="col-4">
-                    <input id="userTaskId" type="text" class="form-control-sm" ng-model="userTaskId" disabled />
-                </div>
-            </div>
-            <div class="row justify-content-md-center">
-                <div class="div-th col-1 text-center vertical-center-alignment">Name</div>
-                <div class="col-4">
-                    <input id="userTaskName" type="text" class="form-control-sm" ng-model="userTaskName" />
-                </div>
-            </div>
-        </div>
-
-        <br/>
-
-        <div class="row justify-content-md-center">
-            <button id="userTaskSave" type="button" class="btn-sm btn-info col-1 border text-center" th:ng-click="'saveUserTaskOnClick()'">Save</button>
-
-            <div class="div-horizontal-separator-small"></div>
-
-            <button id="userTaskCancel" type="button" class="btn-sm btn-secondary col-1 border text-center" th:ng-click="'cancelUserTaskOnClick()'">Cancel</button>
-
-            <div class="div-horizontal-separator-small"></div>
-
-            <button id="userTaskDelete" type="button" class="btn-sm btn-danger col-1 border text-center collapse" th:ng-click="'deleteUserTaskOnClick()'">Delete</button>
-        </div>
-
-        <br/>
-
-    </div>
-
-
-
-    <!-- TASK ACTIONS -->
-
-    <div id="taskActionsControlPanelSeparator" class="div-vertical-separator-sm collapse"></div>
-
-    <div id="taskActionsControlPanel" class="div-container-1 container-lg collapse">
-
-        <br/>
-
-        <div class="div-block-caption">User task actions</div>
-
-        <div class="div-vertical-separator-sm"></div>
-
-        <div id="taskActions" class="container div-table">
-            <div class="row justify-content-md-center">
-                <div class="div-th col-1 text-center">#</div>
-                <div class="div-th col-1 text-center">Order</div>
-                <div class="div-th col-4 text-center">Action task</div>
-            </div>
-            <div ng-repeat="taskAction in taskActions">
-                <div class="div-row-basic row justify-content-md-center" th:ng-click="'taskActionOnClick(taskAction.id, taskAction.indexInUserTask)'">
-                    <div class="div-basic col-1 text-center">{{taskAction.indexInUserTask}}</div>
-                    <div class="div-basic col-1 text-center">{{taskAction.taskOrder}}</div>
-                    <div class="div-basic col-4">{{taskAction.actionTypeDescription}}</div>
-                </div>
-            </div>
-        </div>
-
-        <br/>
-
-        <div class="row justify-content-md-center">
-            <button id="taskActionAdd" type="button" class="btn-sm btn-success col-1 border text-center" th:ng-click="'addTaskActionOnClick()'">Add</button>
-        </div>
-
-        <br/>
-
-    </div>
-
-
-
-    <!-- TASK ACTION CONTROL PANEL -->
-
-    <div id="taskActionControlPanelSeparator" class="div-vertical-separator-sm collapse"></div>
-
-    <div id="taskActionControlPanel" class="div-container-2 container-lg collapse">
-
-        <br/>
-
-        <div class="div-block-caption">Task action</div>
-
-        <div class="div-vertical-separator-sm"></div>
-
-        <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="div-th col-2 text-center vertical-center-alignment">#</div>
-                <div class="col-4">
-                    <input id="taskActionIndexInUserTask" type="text" class="form-control-sm" ng-model="taskActionIndexInUserTask" disabled />
-                </div>
-            </div>
-            <div class="row justify-content-md-center">
-                <div class="div-th col-2 text-center vertical-center-alignment">Order</div>
-                <div class="col-4">
-                    <input id="taskActionOrder" type="text" class="form-control-sm" ng-model="taskActionOrder" />
-                </div>
-            </div>
-            <div class="row justify-content-md-center">
-                <div class="div-th col-2 text-center vertical-center-alignment">Action type</div>
-                <div class="col-4">
-                    <select class="col-4" ng-model="actionType">
-                        <option value=""></option>
-                        <option ng-repeat="actionType in actionTypes" ng-value="actionType.id">{{actionType.description}}</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <br/>
-
-        <div class="row justify-content-md-center">
-            <button id="taskActionSave" type="button" class="btn-sm btn-info col-1 border text-center" th:ng-click="'saveTaskActionOnClick()'">Save</button>
-
-            <div class="div-horizontal-separator-small"></div>
-
-            <button id="taskActionCancel" type="button" class="btn-sm btn-secondary col-1 border text-center" th:ng-click="'cancelTaskActionOnClick()'">Cancel</button>
-
-            <div class="div-horizontal-separator-small"></div>
-
-            <button id="taskActionDelete" type="button" class="btn-sm btn-danger col-1 border text-center" th:ng-click="'deleteTaskActionOnClick()'">Delete</button>
-        </div>
-
-        <br/>
-
-    </div>
-
-
-
-    <div class="div-vertical-separator-sm"></div>
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
     <script th:src="@{/jquery/jquery.min.js}"></script>
     <script th:src="@{/popper/popper.min.js}"></script>
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/material.min.js}"></script>
     <script th:src="@{/js/main.js}"></script>
+    <link th:href="@{/css/material.brown-blue.min.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{/css/igor1c.css}" rel="stylesheet" media="screen"/>
 
 </body>
 

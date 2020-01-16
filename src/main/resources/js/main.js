@@ -191,13 +191,9 @@ app.controller("TaskManagerController", function ($scope, $http) {
         if (currentVisibility == false) {
             $('#userTaskControlPanel').addClass('collapse');
             $('#userTaskControlPanelSeparator').addClass('collapse');
-            $('#taskActionsControlPanel').addClass('collapse');
-            $('#taskActionsControlPanelSeparator').addClass('collapse');
         } else {
             $('#userTaskControlPanel').removeClass('collapse');
             $('#userTaskControlPanelSeparator').removeClass('collapse');
-            $('#taskActionsControlPanel').removeClass('collapse');
-            $('#taskActionsControlPanelSeparator').removeClass('collapse');
         }
 
     }
