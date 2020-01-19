@@ -3,6 +3,7 @@ package com.igor1c.taskmanager.controllers.requests;
 public class SaveTaskActionRequest {
 
     long id;
+    String name;
     int order;
     long actionType;
     int indexInUserTask;
@@ -15,6 +16,14 @@ public class SaveTaskActionRequest {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getOrder() {

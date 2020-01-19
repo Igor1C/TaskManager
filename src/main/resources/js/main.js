@@ -7,96 +7,113 @@ app.controller("TaskManagerController", function ($scope, $http) {
     getUserTasks();
     getActionTypes();
 
+    var dialog = document.querySelector('dialog');
+
 
 
     /* USER TASK BUTTONS */
 
-    $scope.userTaskOnClick = function (id) {
+    $scope.userTaskOpenOnClick = function(id) {
 
         getUserTask(id);
-        $('#userTaskDelete').removeClass('collapse');
-        changeTaskActionControlPanelVisibility(false);
 
     }
 
-    $scope.addUserTaskOnClick = function () {
+    $scope.userTaskAddOnClick = function() {
 
-        clearUserTaskControlPanel();
-        changeUserTaskControlPanelVisibility(true);
-        $('#userTaskDelete').addClass('collapse');
-        changeTaskActionControlPanelVisibility(false);
+        addUserTask();
 
     }
 
-    $scope.saveUserTaskOnClick = function () {
+    $scope.userTaskSaveOnClick = function() {
 
         saveUserTask();
-        $('#userTaskDelete').removeClass('collapse');
+        closeDialog();
 
     }
 
-    $scope.cancelUserTaskOnClick = function () {
+    $scope.userTaskCancelOnClick = function() {
 
-        changeUserTaskControlPanelVisibility(false);
-        $('#userTaskDelete').addClass('collapse');
+        closeDialog();
         cancelUserTask();
-        changeTaskActionControlPanelVisibility(false);
 
     }
 
-    $scope.deleteUserTaskOnClick = function () {
+    $scope.userTaskDeleteOnClick = function() {
 
-        changeUserTaskControlPanelVisibility(false);
+        closeDialog();
         deleteUserTask();
-        $('#userTaskDelete').addClass('collapse');
-        changeTaskActionControlPanelVisibility(false);
 
     }
 
 
 
-    /* TASK ACTION BUTTONS */
+    /* TASK ACTION ELEMENTS */
 
-    $scope.taskActionOnClick = function(id, index) {
-
-        getTaskAction(id, index);
-        $('#taskActionDelete').removeClass('collapse');
-
-    }
-
-    $scope.addTaskActionOnClick = function () {
+    $scope.addTaskActionOnClick = function() {
 
         addTaskAction();
-        changeTaskActionControlPanelVisibility(true);
+        changeUserTaskDialogVisibility(true);
         $('#taskActionDelete').addClass('collapse');
 
     }
 
-    $scope.saveTaskActionOnClick = function () {
+    $scope.moveTaskActionOnClick = function(taskAction, moveUp) {
 
-        saveTaskAction();
-
-    }
-
-    $scope.cancelTaskActionOnClick = function () {
-
-        changeTaskActionControlPanelVisibility(false);
-        $('#taskActionDelete').addClass('collapse');
-        cancelTaskAction();
+        moveTaskAction(taskAction, moveUp);
 
     }
 
-    $scope.deleteTaskActionOnClick = function () {
+    $scope.deleteTaskActionOnClick = function() {
 
-        changeTaskActionControlPanelVisibility(false);
+        changeUserTaskDialogVisibility(false);
         deleteTaskAction();
         $('#taskActionDelete').addClass('collapse');
 
     }
 
+    $scope.taskActionInputOnChange = function(taskAction) {
+
+        saveTaskAction(taskAction);
+
+    }
 
 
-    /* USER TASK FUNCTIONS */
+
+    /* FUNCTIONS OF DIALOG */
+
+    function openDialog() {
+
+        if (!dialog.showModal()) {
+            dialogPolyfill.registerDialog(dialog);
+        };
+        dialog.showModal();
+
+    }
+
+    function closeDialog() {
+
+        dialog.close();
+
+    }
+
+
+
+    /* FUNCTIONS OF USER TASKS */
+
+    function addUserTask() {
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/addUserTask",
+            success: function(data) {
+                processUserTask(data);
+                openDialog();
+            }
+        });
+
+    }
 
     function getUserTasks() {
 
@@ -104,7 +121,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             type: "POST",
             contentType: "application/json",
             url: "/getUserTasks",
-            success: function (data) {
+            success: function(data) {
                 $scope.userTasks = data.baseEntityList;
                 $scope.$apply();
             }
@@ -119,10 +136,10 @@ app.controller("TaskManagerController", function ($scope, $http) {
             contentType: "application/json",
             url: "/getUserTask",
             data: JSON.stringify(id),
-            dataType: 'json',
-            success: function (data) {
+            success: function(data) {
                 processUserTask(data);
-                changeUserTaskControlPanelVisibility(true);
+                changeUserTaskDialogVisibility(true);
+                openDialog();
             }
         });
 
@@ -134,7 +151,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             type: "POST",
             contentType: "application/json",
             url: "/getUserTaskFromSession",
-            success: function (data) {
+            success: function(data) {
                 processUserTask(data);
             }
         });
@@ -143,15 +160,14 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     function saveUserTask() {
 
-        var jsonData = JSON.stringify({id: $scope.userTaskId, name: $scope.userTaskName});
+        var jsonData = JSON.stringify({id: $scope.userTask.id, name: $scope.userTask.name});
 
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "/saveUserTask",
             data: jsonData,
-            success: function () {
-                getUserTaskFromSession();
+            success: function() {
                 getUserTasks();
             }
         });
@@ -164,7 +180,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "/cancelUserTask",
-            success: function () {
+            success: function() {
             }
         });
 
@@ -176,47 +192,24 @@ app.controller("TaskManagerController", function ($scope, $http) {
             type: "POST",
             contentType: "application/json",
             url: "/deleteUserTask",
-            data: JSON.stringify($scope.userTaskId),
-            success: function () {
-                changeUserTaskControlPanelVisibility(false);
-                clearTaskActionControlPanel();
+            data: JSON.stringify($scope.userTask.id),
+            success: function() {
                 getUserTasks();
             }
         });
 
     }
 
-    function changeUserTaskControlPanelVisibility(currentVisibility) {
-
-        if (currentVisibility == false) {
-            $('#userTaskControlPanel').addClass('collapse');
-            $('#userTaskControlPanelSeparator').addClass('collapse');
-        } else {
-            $('#userTaskControlPanel').removeClass('collapse');
-            $('#userTaskControlPanelSeparator').removeClass('collapse');
-        }
-
-    }
-
-    function clearUserTaskControlPanel() {
-
-        $scope.userTaskId = 0;
-        $scope.userTaskName = null;
-
-    }
-
     function processUserTask(data) {
 
-        $scope.userTaskId = data.id;
-        $scope.userTaskName = data.name;
-        $scope.taskActions = data.taskActions;
+        $scope.userTask = data;
         $scope.$apply();
 
     }
 
 
 
-    /* TASK ACTION FUNCTIONS */
+    /* FUNCTIONS OF TASK ACTIONS */
 
     function addTaskAction() {
 
@@ -232,29 +225,31 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     }
 
-    function getTaskAction(id, index) {
+    function moveTaskAction(taskAction, moveUp) {
 
-        var jsonData = JSON.stringify({id: id, index: index});
+        var jsonData = JSON.stringify({ id: taskAction.id,
+                                        index: taskAction.indexInUserTask,
+                                        moveUp: moveUp});
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "/getTaskAction",
+            url: "/moveTaskAction",
             data: jsonData,
-            dataType: 'json',
-            success: function (data) {
-                processTaskAction(data);
-                changeTaskActionControlPanelVisibility(true);
+            success: function () {
+                getUserTaskFromSession();
             }
         });
 
     }
 
-    function saveTaskAction() {
+    function saveTaskAction(taskAction) {
 
-        var jsonData = JSON.stringify({ order: $scope.taskActionOrder,
-                                        actionType: $scope.actionType,
-                                        indexInUserTask: $scope.taskActionIndexInUserTask});
+        var jsonData = JSON.stringify({ id: taskAction.id,
+                                        name: taskAction.name,
+                                        actionType: taskAction.actionType,
+                                        taskOrder: taskAction.taskOrder,
+                                        indexInUserTask: taskAction.indexInUserTask});
 
         $.ajax({
             type: "POST",
@@ -262,20 +257,6 @@ app.controller("TaskManagerController", function ($scope, $http) {
             url: "/saveTaskAction",
             data: jsonData,
             success: function (data) {
-                processTaskAction(data);
-                getUserTaskFromSession();
-            }
-        });
-
-    }
-
-    function cancelTaskAction() {
-
-        $.ajax({
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            url: "/cancelUserTask",
-            success: function () {
             }
         });
 
@@ -298,38 +279,9 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     }
 
-    function changeTaskActionControlPanelVisibility(currentVisibility) {
-
-        if (currentVisibility == false) {
-            $('#taskActionControlPanel').addClass('collapse');
-            $('#taskActionControlPanelSeparator').addClass('collapse');
-        } else {
-            $('#taskActionControlPanel').removeClass('collapse');
-            $('#taskActionControlPanelSeparator').removeClass('collapse');
-        }
-
-    }
-
-    function clearTaskActionControlPanel() {
-
-        $scope.taskActionIndexInUserTask = 0;
-        $scope.taskActionOrder = 0;
-        $scope.actionType = 0;
-
-    }
-
-    function processTaskAction(data) {
-
-        $scope.taskActionIndexInUserTask = data.indexInUserTask;
-        $scope.taskActionOrder = data.taskOrder;
-        $scope.actionType = data.actionType;
-        $scope.$apply();
-
-    }
 
 
-
-    /* ACTION TYPE FUNCTIONS */
+    /* FUNCTIONS OF ACTION TYPES */
 
     function getActionTypes() {
 

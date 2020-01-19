@@ -1,10 +1,7 @@
 package com.igor1c.taskmanager.controllers;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
-import com.igor1c.taskmanager.controllers.requests.IdIndexRequest;
-import com.igor1c.taskmanager.controllers.requests.IdRequest;
-import com.igor1c.taskmanager.controllers.requests.SaveTaskActionRequest;
-import com.igor1c.taskmanager.controllers.requests.SaveUserTaskRequest;
+import com.igor1c.taskmanager.controllers.requests.*;
 import com.igor1c.taskmanager.controllers.responses.BaseEntityListResponse;
 import com.igor1c.taskmanager.database.ActionTypesTable;
 import com.igor1c.taskmanager.database.TaskActionsTable;
@@ -22,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Controller
 @Scope("session")
@@ -40,11 +38,25 @@ public class MainController {
 
     /* USER TASKS */
 
+    @PostMapping("/addUserTask")
+    public ResponseEntity<?> addUserTask() {
+
+        userTaskEntity = new UserTaskEntity();
+        return ResponseEntity.ok(userTaskEntity);
+
+    }
+
     @PostMapping("/getUserTasks")
     public ResponseEntity<?> getUserTasks() {
 
         UserTaskTable userTasksTable = new UserTaskTable();
         ArrayList<BaseEntity> entityArrayList = userTasksTable.select();
+
+        TaskActionsTable taskActionsTable = new TaskActionsTable();
+        for (BaseEntity entity : entityArrayList) {
+            ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.select("userTask=" + entity.getId());
+            ((UserTaskEntity) entity).setTaskActions(taskActionEntityArrayList);
+        }
 
         BaseEntityListResponse baseEntityListResponse = new BaseEntityListResponse();
         baseEntityListResponse.setBaseEntityList(entityArrayList);
@@ -62,6 +74,7 @@ public class MainController {
         UserTaskTable table = new UserTaskTable();
         userTaskEntity = (UserTaskEntity) table.selectById(idRequest.getId());
         userTaskEntity.setTaskActions(taskActionEntityArrayList);
+        userTaskEntity.renewTaskActionIndexes();
 
         return ResponseEntity.ok(userTaskEntity);
 
@@ -151,6 +164,7 @@ public class MainController {
     public ResponseEntity<?> saveTaskAction(@RequestBody SaveTaskActionRequest saveTaskActionRequest) {
 
         TaskActionEntity entity = (TaskActionEntity) userTaskEntity.getTaskActions().get(saveTaskActionRequest.getIndexInUserTask());
+        entity.setName(saveTaskActionRequest.getName());
         entity.setTaskOrder(saveTaskActionRequest.getOrder());
         entity.setActionType(saveTaskActionRequest.getActionType());
 
@@ -168,5 +182,23 @@ public class MainController {
 
     }
 
+    @PostMapping("/moveTaskAction")
+    public ResponseEntity<?> moveTaskAction(@RequestBody IdIndexMoveUpRequest idIndexMoveUpRequest) {
+
+        int index1 = idIndexMoveUpRequest.getIndex();
+        int index2 = idIndexMoveUpRequest.isMoveUp() ? index1 - 1 : index1 + 1;
+
+        ArrayList<BaseEntity> taskActionEntities = userTaskEntity.getTaskActions();
+
+        if (index2 < 0
+                || index2 >= taskActionEntities.size())
+            return ResponseEntity.ok(new String());
+
+        Collections.swap(taskActionEntities, index1, index2);
+        userTaskEntity.renewTaskActionIndexes();
+
+        return ResponseEntity.ok(new String());
+
+    }
 
 }

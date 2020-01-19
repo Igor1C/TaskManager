@@ -1,6 +1,6 @@
 /* MAIN ELEMENTS */
 
-.main-page {
+.igor1c-main-page {
     background-color: #38383A;
 }
 
@@ -102,17 +102,17 @@
 
 /* SEPARATORS */
 
-.div-vertical-separator-lg {
+.igor1c-div-vertical-separator-lg {
     height: 75px;
     width: 1px;
 }
 
-.div-vertical-separator-sm {
+.igor1c-div-vertical-separator-sm {
     height: 25px;
     width: 1px;
 }
 
-.div-horizontal-separator-small {
+.igor1c-div-horizontal-separator-small {
     height: 1px;
     width: 10px;
 }

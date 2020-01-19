@@ -44,8 +44,11 @@ public class UserTaskEntity extends BaseEntity {
 
     public void renewTaskActionIndexes() {
 
-        for (int i = 0; i < taskActions.size(); i++)
-            ((TaskActionEntity) taskActions.get(i)).setIndexInUserTask(i);
+        for (int i = 0; i < taskActions.size(); i++) {
+            TaskActionEntity taskActionEntity = (TaskActionEntity) taskActions.get(i);
+            taskActionEntity.setIndexInUserTask(i);
+            taskActionEntity.setTaskOrder(i + 1);
+        }
 
     }
 
@@ -65,6 +68,10 @@ public class UserTaskEntity extends BaseEntity {
         return taskActions;
     }
 
+    public int getTaskActionsSize() {
+        return getTaskActions().size();
+    }
+
     public void setTaskActions(ArrayList<BaseEntity> taskActions) {
         this.taskActions = taskActions;
     }
@@ -73,8 +80,8 @@ public class UserTaskEntity extends BaseEntity {
         return lastExecution;
     }
 
-    public String getLastTimeExecutionString() {
-        return DateHelper.dateToString(DateHelper.sdf_yyyycMMcdd_hhhmmhsscS, getLastExecution());
+    public String getLastExecutionString() {
+        return DateHelper.dateToString(DateHelper.sdf_yyyyhMMhdd_hhcmmcss, getLastExecution());
     }
 
     public void setLastExecution(Date lastExecution) {
