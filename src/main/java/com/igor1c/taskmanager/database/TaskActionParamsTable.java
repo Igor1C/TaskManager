@@ -1,5 +1,6 @@
 package com.igor1c.taskmanager.database;
 
+import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.TaskActionParamEntity;
 
 public class TaskActionParamsTable extends TableController<TaskActionParamEntity> {
@@ -40,5 +41,11 @@ public class TaskActionParamsTable extends TableController<TaskActionParamEntity
     public void createExtraConstraints() {}
 
     public void fillTable() {}
+
+
+
+    public BaseEntity fillEntity(BaseEntity baseEntity) {
+        return baseEntity;
+    }
 
 }

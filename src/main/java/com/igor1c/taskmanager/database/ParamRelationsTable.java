@@ -2,6 +2,7 @@ package com.igor1c.taskmanager.database;
 
 import com.igor1c.taskmanager.entities.ActionTypeEntity;
 import com.igor1c.taskmanager.entities.ActionTypeParamEntity;
+import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.ParamRelationEntity;
 
 public class ParamRelationsTable extends TableController<ParamRelationEntity> {
@@ -51,6 +52,12 @@ public class ParamRelationsTable extends TableController<ParamRelationEntity> {
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_USER));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_PASSWORD));
 
+    }
+
+
+
+    public BaseEntity fillEntity(BaseEntity baseEntity) {
+        return baseEntity;
     }
 
 }

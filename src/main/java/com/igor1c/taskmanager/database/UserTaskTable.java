@@ -4,6 +4,8 @@ import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.TaskActionEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
 
+import java.util.ArrayList;
+
 public class UserTaskTable extends TableController<UserTaskEntity> {
 
     public UserTaskTable() {
@@ -46,6 +48,18 @@ public class UserTaskTable extends TableController<UserTaskEntity> {
 
         return id;
 
+    }
+
+    public BaseEntity fillEntity(BaseEntity baseEntity) {
+
+        UserTaskEntity entity = (UserTaskEntity) baseEntity;
+
+        TaskActionsTable taskActionsTable = new TaskActionsTable();
+        ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.selectOrder("userTask=" + entity.getId(), "taskOrder");
+
+        entity.setTaskActions(taskActionEntityArrayList);
+
+        return entity;
     }
 
 }

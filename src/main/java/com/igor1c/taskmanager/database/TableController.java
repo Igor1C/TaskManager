@@ -46,10 +46,14 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
     public abstract void createExtraConstraints();
 
     public ArrayList<BaseEntity> select() {
-        return select("");
+        return selectOrder("", "");
     }
 
     public ArrayList<BaseEntity> select(String whereConditions) {
+        return selectOrder(whereConditions, "");
+    }
+
+    public ArrayList<BaseEntity> selectOrder(String whereConditions, String orderBy) {
 
         openConnection();
 
@@ -62,6 +66,11 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
             query = query + "\n" +
                     "WHERE\n" +
                     "   " + whereConditions;
+
+        if (orderBy.length() > 0)
+            query = query + "\n" +
+                    "ORDER BY\n" +
+                    "   " + orderBy;
 
         ResultSet resultSet = executePreparedStatement(query);
         ArrayList<BaseEntity> baseEntityArrayList = processResultSet(resultSet);

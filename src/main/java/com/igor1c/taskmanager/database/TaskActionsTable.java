@@ -1,6 +1,10 @@
 package com.igor1c.taskmanager.database;
 
+import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.TaskActionEntity;
+import com.igor1c.taskmanager.entities.UserTaskEntity;
+
+import java.util.ArrayList;
 
 public class TaskActionsTable extends TableController<TaskActionEntity> {
 
@@ -41,5 +45,19 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
     public void createExtraConstraints() {}
 
     public void fillTable() {}
+
+
+
+    public BaseEntity fillEntity(BaseEntity baseEntity) {
+
+        TaskActionEntity entity = (TaskActionEntity) baseEntity;
+
+        TaskActionParamsTable taskActionParamsTable = new TaskActionParamsTable();
+        ArrayList<BaseEntity> taskActionParamEntityArrayList = taskActionParamsTable.select("taskAction=" + entity.getId());
+
+        entity.setTaskActionParams(taskActionParamEntityArrayList);
+
+        return entity;
+    }
 
 }

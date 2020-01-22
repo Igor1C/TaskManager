@@ -62,14 +62,15 @@
 
 
 
-/* DIFFERENT */
+/* ELEMENTS */
 
-.igor1c-element-align-center {
-    margin: auto !important;
+.igor1c-chip {
+    width: 300px;
+    margin-left: 10px;
 }
 
-.igor1c-text-align-center {
-    text-align: center !important;
+.igor1c-chip-label {
+    width: 100px;
 }
 
 .igor1c-floating-label {
@@ -79,7 +80,29 @@
     visibility: visible;
 }
 
-.igor1c-textfield-enabled {
+.igor1c-input {
+    width: 175px;
+    margin-left: 10px;
+}
+
+.igor1c-input-enabled {
     border-bottom: 1px solid rgba(0, 0, 0, .12) !important;
     color: inherit !important;
+}
+
+.igor1c-select {
+    width: 175px;
+    margin-left: 10px;
+}
+
+
+
+/* DIFFERENT */
+
+.igor1c-element-align-center {
+    margin: auto !important;
+}
+
+.igor1c-text-align-center {
+    text-align: center !important;
 }

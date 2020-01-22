@@ -2,6 +2,7 @@ package com.igor1c.taskmanager.entities;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class TaskActionEntity extends BaseEntity {
 
@@ -9,7 +10,9 @@ public class TaskActionEntity extends BaseEntity {
     private long actionType;
     private long userTask;
     private long taskOrder;
+
     private int indexInUserTask;
+    private ArrayList<BaseEntity> taskActionParams = new ArrayList<>();
 
 
 
@@ -101,12 +104,22 @@ public class TaskActionEntity extends BaseEntity {
         this.taskOrder = taskOrder;
     }
 
+
+
     public int getIndexInUserTask() {
         return indexInUserTask;
     }
 
     public void setIndexInUserTask(int indexInUserTask) {
         this.indexInUserTask = indexInUserTask;
+    }
+
+    public ArrayList<BaseEntity> getTaskActionParams() {
+        return taskActionParams;
+    }
+
+    public void setTaskActionParams(ArrayList<BaseEntity> taskActionParams) {
+        this.taskActionParams = taskActionParams;
     }
 
 }

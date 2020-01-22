@@ -46,4 +46,5 @@ public class ParamRelationEntity extends BaseEntity {
     public void setActionTypeParam(long actionTypeParam) {
         this.actionTypeParam = actionTypeParam;
     }
+
 }

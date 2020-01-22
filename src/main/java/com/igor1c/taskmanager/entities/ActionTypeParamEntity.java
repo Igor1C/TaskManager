@@ -26,7 +26,7 @@ public class ActionTypeParamEntity extends BaseEntity {
 
     public static void initPredefinedMap() {
 
-        PREDEFINED_MAP = new HashMap<Integer, ActionTypeParamEntity>();
+        PREDEFINED_MAP = new HashMap<>();
 
         ArrayList<ActionTypeParamEntity> actionTypeParamEntities = new ArrayList<ActionTypeParamEntity>();
         actionTypeParamEntities.add(new ActionTypeParamEntity(ONE_C_DB_FILE_PATH, "ONE_C_DB_FILE_PATH", "1C file database - Path"));
@@ -65,6 +65,7 @@ public class ActionTypeParamEntity extends BaseEntity {
         }
 
     }
+
 
 
     public String getName() {

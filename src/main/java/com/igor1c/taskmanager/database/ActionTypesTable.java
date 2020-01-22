@@ -1,7 +1,10 @@
 package com.igor1c.taskmanager.database;
 
 import com.igor1c.taskmanager.entities.ActionTypeEntity;
+import com.igor1c.taskmanager.entities.BaseEntity;
+import com.igor1c.taskmanager.entities.TaskActionEntity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ActionTypesTable extends TableController<ActionTypeEntity> {
@@ -37,6 +40,20 @@ public class ActionTypesTable extends TableController<ActionTypeEntity> {
         for (ActionTypeEntity actionTypeEntity : predefinedMap.values())
             insert(actionTypeEntity);
 
+    }
+
+
+
+    public BaseEntity fillEntity(BaseEntity baseEntity) {
+
+        ActionTypeEntity entity = (ActionTypeEntity) baseEntity;
+
+        ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
+        ArrayList<BaseEntity> actionTypeParamsEntityArrayList = actionTypeParamsTable.selectByActionTypeId(entity.getId());
+
+        entity.setActionTypeParams(actionTypeParamsEntityArrayList);
+
+        return entity;
     }
 
 }

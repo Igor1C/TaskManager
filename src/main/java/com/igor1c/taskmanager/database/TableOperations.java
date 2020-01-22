@@ -18,5 +18,6 @@ public interface TableOperations<E> {
     long insert(E entity);
     void update(E entity);
     void deleteById(long id);
+    BaseEntity fillEntity(BaseEntity baseEntity);
 
 }

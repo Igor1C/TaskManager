@@ -21,11 +21,13 @@ public class ActionTypeEntity extends BaseEntity {
     private String name;
     private String description;
 
+    private ArrayList<BaseEntity> actionTypeParams = new ArrayList<>();
+
 
 
     public static void initPredefinedMap() {
 
-        PREDEFINED_MAP = new HashMap<Long, ActionTypeEntity>();
+        PREDEFINED_MAP = new HashMap<>();
 
         ArrayList<ActionTypeEntity> actionTypeEntities = new ArrayList<ActionTypeEntity>();
         actionTypeEntities.add(new ActionTypeEntity(ONE_C_FILE_UNLOAD_DT, "ONE_C_FILE_UNLOAD_DT", "1C file database - Unload DT"));
@@ -88,6 +90,16 @@ public class ActionTypeEntity extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+
+    public ArrayList<BaseEntity> getActionTypeParams() {
+        return actionTypeParams;
+    }
+
+    public void setActionTypeParams(ArrayList<BaseEntity> actionTypeParams) {
+        this.actionTypeParams = actionTypeParams;
     }
 
 }

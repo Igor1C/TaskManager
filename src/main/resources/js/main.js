@@ -53,8 +53,6 @@ app.controller("TaskManagerController", function ($scope, $http) {
     $scope.addTaskActionOnClick = function() {
 
         addTaskAction();
-        changeUserTaskDialogVisibility(true);
-        $('#taskActionDelete').addClass('collapse');
 
     }
 
@@ -94,6 +92,16 @@ app.controller("TaskManagerController", function ($scope, $http) {
     function closeDialog() {
 
         dialog.close();
+
+    }
+
+    function changeUserTaskDialogVisibility(deleteButtonVisibility) {
+
+        if (deleteButtonVisibility == false) {
+            $('#userTaskButtonDelete').addClass('collapse');
+        } else {
+            $('#userTaskButtonDelete').removeClass('collapse');
+        }
 
     }
 
@@ -217,8 +225,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "/addTaskAction",
-            success: function (data) {
-                processTaskAction(data);
+            success: function () {
                 getUserTaskFromSession();
             }
         });

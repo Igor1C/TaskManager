@@ -59,4 +59,10 @@ public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity
 
     }
 
+
+
+    public BaseEntity fillEntity(BaseEntity baseEntity) {
+        return baseEntity;
+    }
+
 }
