@@ -93,7 +93,10 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
     public long insert(BaseEntity baseEntity) {
 
         String query = "INSERT INTO " + getTableName() + " " + getFieldsString(baseEntity.getId()) + " VALUES " + getValuesString(baseEntity);
-        return executeDbQuery(query);
+        long id = executeDbQuery(query);
+        baseEntity.setId(id);
+
+        return id;
 
     }
 

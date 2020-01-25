@@ -1,8 +1,6 @@
 package com.igor1c.taskmanager.database;
 
-import com.igor1c.taskmanager.entities.BaseEntity;
-import com.igor1c.taskmanager.entities.TaskActionEntity;
-import com.igor1c.taskmanager.entities.UserTaskEntity;
+import com.igor1c.taskmanager.entities.*;
 
 import java.util.ArrayList;
 
@@ -58,6 +56,30 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
         entity.setTaskActionParams(taskActionParamEntityArrayList);
 
         return entity;
+
+    }
+
+    public BaseEntity initWithBlankActionTypeParams(BaseEntity baseEntity) {
+
+        TaskActionEntity entity = (TaskActionEntity) baseEntity;
+
+        ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
+        ArrayList<BaseEntity> actionTypeParamEntityArrayList = actionTypeParamsTable.selectByActionTypeId(entity.getActionType());
+
+        ArrayList<BaseEntity> taskActionParamEntityArrayList = entity.getTaskActionParams();
+        taskActionParamEntityArrayList.clear();
+
+        for (BaseEntity actionTypeParamEntity : actionTypeParamEntityArrayList) {
+            ActionTypeParamEntity currentActionTypeParamEntity = (ActionTypeParamEntity) actionTypeParamEntity;
+
+            TaskActionParamEntity taskActionParamEntity = new TaskActionParamEntity(currentActionTypeParamEntity.getName(),
+                                                                                    currentActionTypeParamEntity.getId(),
+                                                                                    entity.getId());
+            taskActionParamEntityArrayList.add(taskActionParamEntity);
+        }
+
+        return entity;
+
     }
 
 }

@@ -46,6 +46,12 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     }
 
+    $scope.userTaskInputOnChange = function() {
+
+        modifyUserTaskEntity();
+
+    }
+
 
 
     /* TASK ACTION ELEMENTS */
@@ -62,16 +68,21 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     }
 
-    $scope.deleteTaskActionOnClick = function() {
+    $scope.deleteTaskActionOnClick = function(taskAction) {
 
-        changeUserTaskDialogVisibility(false);
-        deleteTaskAction();
-        $('#taskActionDelete').addClass('collapse');
+        deleteTaskAction(taskAction);
 
     }
 
     $scope.taskActionInputOnChange = function(taskAction) {
 
+        saveTaskAction(taskAction);
+
+    }
+
+    $scope.taskActionTypeOnChange = function(taskAction) {
+
+        changeTaskActionType(taskAction);
         saveTaskAction(taskAction);
 
     }
@@ -188,8 +199,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "/cancelUserTask",
-            success: function() {
-            }
+            success: function() {}
         });
 
     }
@@ -204,6 +214,21 @@ app.controller("TaskManagerController", function ($scope, $http) {
             success: function() {
                 getUserTasks();
             }
+        });
+
+    }
+
+    function modifyUserTaskEntity() {
+
+        var jsonData = JSON.stringify({ id: $scope.userTask.id,
+                                        name: $scope.userTask.name});
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/modifyUserTaskEntity",
+            data: jsonData,
+            success: function (data) {}
         });
 
     }
@@ -263,15 +288,15 @@ app.controller("TaskManagerController", function ($scope, $http) {
             contentType: "application/json; charset=utf-8",
             url: "/saveTaskAction",
             data: jsonData,
-            success: function (data) {
-            }
+            success: function (data) {}
         });
 
     }
 
-    function deleteTaskAction() {
+    function deleteTaskAction(taskAction) {
 
-        var jsonData = JSON.stringify({index: $scope.taskActionIndexInUserTask});
+        var jsonData = JSON.stringify({ id: taskAction.id,
+                                        index: taskAction.taskActionIndexInUserTask});
 
         $.ajax({
             type: "POST",
@@ -279,7 +304,24 @@ app.controller("TaskManagerController", function ($scope, $http) {
             url: "/deleteTaskAction",
             data: jsonData,
             success: function () {
-                clearTaskActionControlPanel();
+                getUserTaskFromSession();
+            }
+        });
+
+    }
+
+    function changeTaskActionType(taskAction) {
+
+        var jsonData = JSON.stringify({ id: taskAction.id,
+                                        index: taskAction.indexInUserTask,
+                                        actionType: taskAction.actionType});
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/changeActionType",
+            data: jsonData,
+            success: function (data) {
                 getUserTaskFromSession();
             }
         });

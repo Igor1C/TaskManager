@@ -112,7 +112,7 @@
             <!-- INPUT OF THE USER TASK -->
 
             <div id="userTaskNameDiv" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input id="userTaskName" class="mdl-textfield__input" type="text" ng-model="userTask.name">
+                <input id="userTaskName" class="mdl-textfield__input" type="text" ng-model="userTask.name" ng-change="userTaskInputOnChange()">
                 <label class="mdl-textfield__label igor1c-floating-label" for="userTaskName">Name</label>
             </div>
             <br/>
@@ -146,7 +146,7 @@
                             <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-cancel" th:ng-click="'moveTaskActionOnClick(taskAction, false)'">
                                 <i class="material-icons">arrow_downward</i>
                             </button>
-                            <button id="taskActionButtonDelete" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-delete" th:ng-click="'taskActionDeleteOnClick()'">
+                            <button id="taskActionButtonDelete" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-delete" th:ng-click="'deleteTaskActionOnClick(taskAction)'">
                                 <i class="material-icons">delete</i>
                             </button>
                         </div>
@@ -163,9 +163,8 @@
                         <span class="mdl-chip mdl-chip--contact igor1c-chip">
                             <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-chip-label igor1c-chip-label">Action type</span>
                             <span class="mdl-chip__text">
-                                <select class="igor1c-select" ng-model="taskAction.actionType" ng-change="taskActionInputOnChange(taskAction)">
-                                    <option value=""></option>
-                                    <option ng-repeat="actionType in actionTypes" ng-value="actionType.id">{{actionType.description}}</option>
+                                <select class="igor1c-select" ng-model="taskAction.actionType" ng-change="taskActionTypeOnChange(taskAction)">
+                                    <option ng-repeat="actionType in actionTypes" ng-value="actionType.id" >{{actionType.description}}</option>
                                 </select>
                             </span>
                         </span>
@@ -175,6 +174,22 @@
                                 <input type="text" class="igor1c-input" ng-model="taskAction.taskOrder" disabled>
                             </span>
                         </span>
+                    </div>
+
+                    <!-- PARAMS OF THE TASK ACTION -->
+                    <div class="mdl-card mdl-card mdl-shadow--2dp">
+                        <div ng-repeat="taskActionParam in taskAction.taskActionParams">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input id="taskActionParamName" class="mdl-textfield__input" type="text" ng-model="taskActionParam.description">
+                                <label class="mdl-textfield__label igor1c-floating-label" for="taskActionParamName">{{taskActionParam.description}}</label>
+                            </div>
+                            <!--<span class="mdl-chip mdl-chip--contact igor1c-chip">
+                                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-chip-label igor1c-chip-label">{{taskActionParam.name}}</span>
+                                <span class="mdl-chip__text">
+                                    <input type="text" class="igor1c-input" ng-model="taskActionParam.description"/>
+                                </span>
+                            </span>-->
+                        </div>
                     </div>
                 </div>
             </div>

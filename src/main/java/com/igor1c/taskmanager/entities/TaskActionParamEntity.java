@@ -10,12 +10,18 @@ public class TaskActionParamEntity extends BaseEntity {
 
     public TaskActionParamEntity() {}
 
-    public TaskActionParamEntity(long id, String name, long actionTypeParam, long taskAction) {
+    public TaskActionParamEntity(String name, long actionTypeParam, long taskAction) {
 
-        setId(id);
         setName(name);
         setActionTypeParam(actionTypeParam);
         setTaskAction(taskAction);
+
+    }
+
+    public TaskActionParamEntity(long id, String name, long actionTypeParam, long taskAction) {
+
+        this(name, actionTypeParam, taskAction);
+        setId(id);
 
     }
 

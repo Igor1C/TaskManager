@@ -67,15 +67,14 @@ public class MainController {
     @PostMapping("/getUserTask")
     public ResponseEntity<?> getUserTask(@RequestBody IdRequest idRequest) {
 
-        TaskActionsTable taskActionsTable = new TaskActionsTable();
-        ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.selectOrder("userTask=" + idRequest.getId(), "taskOrder");
-
         UserTaskTable table = new UserTaskTable();
         userTaskEntity = (UserTaskEntity) table.selectById(idRequest.getId());
-        userTaskEntity.setTaskActions(taskActionEntityArrayList);
-        userTaskEntity.renewTaskActionIndexes();
+        table.fillEntity(userTaskEntity);
 
-        /*ActionTypesTable actionTypesTable = new ActionTypesTable();
+        /*TaskActionsTable taskActionsTable = new TaskActionsTable();
+
+        ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.selectOrder("userTask=" + idRequest.getId(), "taskOrder");
+        ActionTypesTable actionTypesTable = new ActionTypesTable();
         ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
         for (BaseEntity taskActionEntity : taskActionEntityArrayList) {
             TaskActionEntity currentTaskActonEntity = (TaskActionEntity) taskActionEntity;
@@ -98,15 +97,16 @@ public class MainController {
     }
 
     @PostMapping("/saveUserTask")
-    public ResponseEntity<?> saveUserTask(@RequestBody SaveUserTaskRequest saveUserTaskRequest) {
+    public ResponseEntity<?> saveUserTask(@RequestBody IdNameRequest idNameRequest) {
 
-        if (saveUserTaskRequest.getId() == 0)
-            userTaskEntity = new UserTaskEntity();
+        //if (saveUserTaskRequest.getId() == 0)
+        //    userTaskEntity = new UserTaskEntity();
 
-        userTaskEntity.setName(saveUserTaskRequest.getName());
+        userTaskEntity.setName(idNameRequest.getName());
 
         UserTaskTable table = new UserTaskTable();
-        userTaskEntity.setId(table.fullInsertUpdate(userTaskEntity));
+        table.fullInsertUpdate(userTaskEntity);
+        table.deleteUnusedTaskActions(userTaskEntity);
 
         return ResponseEntity.ok(new String());
 
@@ -125,9 +125,18 @@ public class MainController {
     public ResponseEntity<?> deleteUserTask(@RequestBody IdRequest idRequest) {
 
         UserTaskTable table = new UserTaskTable();
-        table.deleteById(idRequest.getId());
+        table.fullDelete(userTaskEntity);
 
         userTaskEntity = null;
+
+        return ResponseEntity.ok(new String());
+
+    }
+
+    @PostMapping("/modifyUserTaskEntity")
+    public ResponseEntity<?> modifyUserTaskEntity(@RequestBody IdNameRequest idNameRequest) {
+
+        userTaskEntity.setName(idNameRequest.getName());
 
         return ResponseEntity.ok(new String());
 
@@ -164,6 +173,7 @@ public class MainController {
 
     }
 
+    @Deprecated
     @PostMapping("/getTaskAction")
     public ResponseEntity<?> getTaskAction(@RequestBody IdIndexRequest idIndexRequest) {
 
@@ -216,10 +226,12 @@ public class MainController {
     @PostMapping("/changeActionType")
     public ResponseEntity<?> changeActionType(@RequestBody IdIndexActionTypeRequest idIndexActionTypeRequest) {
 
-        ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
-        ArrayList<BaseEntity> actionTypeParams = actionTypeParamsTable.select("actionType=" + idIndexActionTypeRequest.getActionType());
+        //ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
+        //ArrayList<BaseEntity> actionTypeParams = actionTypeParamsTable.select("actionType=" + idIndexActionTypeRequest.getActionType());
 
-        ((ActionTypeEntity) userTaskEntity.getTaskActions().get(idIndexActionTypeRequest.getIndex())).setActionTypeParams(actionTypeParams);
+        TaskActionsTable taskActionsTable = new TaskActionsTable();
+        TaskActionEntity taskActionEntity = (TaskActionEntity) userTaskEntity.getTaskActions().get(idIndexActionTypeRequest.getIndex());
+        taskActionsTable.initWithBlankActionTypeParams(taskActionEntity);
 
         return ResponseEntity.ok(new String());
 

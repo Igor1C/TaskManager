@@ -4,7 +4,9 @@ import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.TaskActionEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserTaskTable extends TableController<UserTaskEntity> {
 
@@ -36,6 +38,22 @@ public class UserTaskTable extends TableController<UserTaskEntity> {
 
 
 
+    public BaseEntity fillEntity(BaseEntity baseEntity) {
+
+        UserTaskEntity entity = (UserTaskEntity) baseEntity;
+
+        TaskActionsTable taskActionsTable = new TaskActionsTable();
+        ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.selectOrder("userTask=" + entity.getId(), "taskOrder");
+
+        for (BaseEntity taskActionEntity : taskActionEntityArrayList)
+            taskActionsTable.fillEntity(taskActionEntity);
+
+        entity.setTaskActions(taskActionEntityArrayList);
+        entity.renewTaskActionIndexes();
+
+        return entity;
+    }
+
     public long fullInsertUpdate(UserTaskEntity entity) {
 
         long id = insertUpdate(entity);
@@ -50,16 +68,36 @@ public class UserTaskTable extends TableController<UserTaskEntity> {
 
     }
 
-    public BaseEntity fillEntity(BaseEntity baseEntity) {
+    public void fullDelete(UserTaskEntity entity) {
 
-        UserTaskEntity entity = (UserTaskEntity) baseEntity;
+        entity.getTaskActions().clear();
+        deleteUnusedTaskActions(entity);
+        deleteById(entity.getId());
+
+    }
+
+    // The method deletes all task actions, which exist in the DB and don't exist in array of task actions.
+    public void deleteUnusedTaskActions(BaseEntity baseEntity) {
+
+        UserTaskEntity userTaskEntity = (UserTaskEntity) baseEntity;
+        ArrayList<BaseEntity> currentTaskActionsArrayList = userTaskEntity.getTaskActions();
 
         TaskActionsTable taskActionsTable = new TaskActionsTable();
-        ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.selectOrder("userTask=" + entity.getId(), "taskOrder");
 
-        entity.setTaskActions(taskActionEntityArrayList);
+        ArrayList<Long> currentTaskActionsIdArray = new ArrayList<>();
+        for (BaseEntity currentTaskAction : currentTaskActionsArrayList) {
+            long currentTaskActionId = currentTaskAction.getId();
+            if (currentTaskActionId != 0)
+                currentTaskActionsIdArray.add(currentTaskActionId);
+        }
 
-        return entity;
+        ArrayList<BaseEntity> taskActionsArrayList = taskActionsTable.select("userTask=" + userTaskEntity.getId());
+        for (BaseEntity currentTaskAction : taskActionsArrayList) {
+            long currentTaskActionId = currentTaskAction.getId();
+            if (!currentTaskActionsIdArray.contains(currentTaskActionId))
+                taskActionsTable.deleteById(currentTaskActionId);
+        }
+
     }
 
 }
