@@ -16,6 +16,8 @@ public class TaskActionEntity extends BaseEntity {
 
 
 
+    // CONSTRUCTORS
+
     public TaskActionEntity() {}
 
     public TaskActionEntity(String name, long actionType, long userTask, long taskOrder) {
@@ -36,6 +38,8 @@ public class TaskActionEntity extends BaseEntity {
 
 
 
+    // METHODS OF THE PROCESSING
+
     public void fillFromResultSet(ResultSet resultSet) {
 
         try {
@@ -51,6 +55,8 @@ public class TaskActionEntity extends BaseEntity {
     }
 
 
+
+    // GETTERS & SETTERS OF THE DATABASE FIELDS
 
     public String getName() {
         return name;
@@ -105,6 +111,8 @@ public class TaskActionEntity extends BaseEntity {
     }
 
 
+
+    // GETTERS & SETTERS OF THE CLASS FIELDS
 
     public int getIndexInUserTask() {
         return indexInUserTask;

@@ -136,6 +136,7 @@
             <!-- TASK ACTIONS OF THE USER TASK -->
 
             <div class="mdl-grid igor1c-grid-dialog">
+
                 <div class="mdl-cell mdl-cell--4-col" ng-repeat="taskAction in userTask.taskActions">
                     <div class="mdl-card mdl-card mdl-shadow--2dp">
 
@@ -177,18 +178,13 @@
                     </div>
 
                     <!-- PARAMS OF THE TASK ACTION -->
+
                     <div class="mdl-card mdl-card mdl-shadow--2dp">
                         <div ng-repeat="taskActionParam in taskAction.taskActionParams">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input id="taskActionParamName" class="mdl-textfield__input" type="text" ng-model="taskActionParam.description">
-                                <label class="mdl-textfield__label igor1c-floating-label" for="taskActionParamName">{{taskActionParam.description}}</label>
+                                <input id="taskActionParamName{{taskActionParam.indexInTaskAction}}" class="mdl-textfield__input" type="text" ng-model="taskActionParam.paramValue" ng-change="taskActionParamInputOnChange(taskAction, taskActionParam)">
+                                <label class="mdl-textfield__label igor1c-floating-label" for="taskActionParamName{{taskActionParam.indexInTaskAction}}">{{taskActionParam.name}}</label>
                             </div>
-                            <!--<span class="mdl-chip mdl-chip--contact igor1c-chip">
-                                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-chip-label igor1c-chip-label">{{taskActionParam.name}}</span>
-                                <span class="mdl-chip__text">
-                                    <input type="text" class="igor1c-input" ng-model="taskActionParam.description"/>
-                                </span>
-                            </span>-->
                         </div>
                     </div>
                 </div>

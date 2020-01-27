@@ -1,37 +1,19 @@
 package com.igor1c.taskmanager.controllers.requests;
 
-public class SaveTaskActionRequest {
+public class SaveTaskActionRequest extends IdNameRequest {
 
-    long id;
-    String name;
-    int order;
+    long taskOrder;
     long actionType;
     int indexInUserTask;
 
 
 
-    public long getId() {
-        return id;
+    public long getTaskOrder() {
+        return taskOrder;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
+    public void setTaskOrder(long taskOrder) {
+        this.taskOrder = taskOrder;
     }
 
     public long getActionType() {

@@ -44,13 +44,15 @@ public class ParamRelationsTable extends TableController<ParamRelationEntity> {
     public void fillTable() {
 
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_FILE_PATH));
-        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_USER));
-        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_PASSWORD));
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.USER));
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.PASSWORD));
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.DESTINATION_FOLDER));
 
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_SERVER_SRV));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_SERVER_REF));
-        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_USER));
-        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_PASSWORD));
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.USER));
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.PASSWORD));
+        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.DESTINATION_FOLDER));
 
     }
 

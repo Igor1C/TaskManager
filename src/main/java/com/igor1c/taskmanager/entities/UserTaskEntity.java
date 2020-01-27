@@ -16,6 +16,8 @@ public class UserTaskEntity extends BaseEntity {
 
 
 
+    // CONSTRUCTORS
+
     public UserTaskEntity() {}
 
     public UserTaskEntity(String name) {
@@ -30,6 +32,8 @@ public class UserTaskEntity extends BaseEntity {
     }
 
 
+
+    // METHODS OF PROCESSING
 
     public void fillFromResultSet(ResultSet resultSet) {
 
@@ -54,6 +58,8 @@ public class UserTaskEntity extends BaseEntity {
 
 
 
+    // GETTERS & SETTERS OF DATABASE FIELDS
+
     public String getName() {
         return name;
     }
@@ -63,6 +69,8 @@ public class UserTaskEntity extends BaseEntity {
     }
 
 
+
+    // GETTERS & SETTERS OF CLASS FIELDS
 
     public ArrayList<BaseEntity> getTaskActions() {
         return taskActions;

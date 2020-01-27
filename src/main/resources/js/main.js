@@ -11,7 +11,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
 
 
-    /* USER TASK BUTTONS */
+    /* USER TASK ELEMENTS */
 
     $scope.userTaskOpenOnClick = function(id) {
 
@@ -83,13 +83,22 @@ app.controller("TaskManagerController", function ($scope, $http) {
     $scope.taskActionTypeOnChange = function(taskAction) {
 
         changeTaskActionType(taskAction);
-        saveTaskAction(taskAction);
 
     }
 
 
 
-    /* FUNCTIONS OF DIALOG */
+    /* TASK ACTION PARAM ELEMENTS */
+
+    $scope.taskActionParamInputOnChange = function(taskAction, taskActionParam) {
+
+        saveTaskActionParam(taskAction, taskActionParam);
+
+    }
+
+
+
+    /* FUNCTIONS OF THE DIALOG */
 
     function openDialog() {
 
@@ -118,7 +127,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
 
 
-    /* FUNCTIONS OF USER TASKS */
+    /* FUNCTIONS OF THE USER TASKS */
 
     function addUserTask() {
 
@@ -242,7 +251,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
 
 
-    /* FUNCTIONS OF TASK ACTIONS */
+    /* FUNCTIONS OF THE TASK ACTIONS */
 
     function addTaskAction() {
 
@@ -322,6 +331,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             url: "/changeActionType",
             data: jsonData,
             success: function (data) {
+                saveTaskAction(taskAction);
                 getUserTaskFromSession();
             }
         });
@@ -330,7 +340,30 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
 
 
-    /* FUNCTIONS OF ACTION TYPES */
+    /* FUNCTIONS OF THE TASK ACTION PARAMS */
+
+    function saveTaskActionParam(taskAction, taskActionParam) {
+
+        var jsonData = JSON.stringify({ id: taskAction.id,
+                                        name: taskActionParam.name,
+                                        taskAction: taskAction.id,
+                                        paramValue: taskActionParam.paramValue,
+                                        indexInTaskAction: taskActionParam.indexInTaskAction,
+                                        taskActionIndexInUserTask: taskAction.indexInUserTask});
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/saveTaskActionParam",
+            data: jsonData,
+            success: function (data) {}
+        });
+
+    }
+
+
+
+    /* FUNCTIONS OF THE ACTION TYPES */
 
     function getActionTypes() {
 

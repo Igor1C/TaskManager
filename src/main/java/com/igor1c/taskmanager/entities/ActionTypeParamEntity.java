@@ -10,8 +10,11 @@ public class ActionTypeParamEntity extends BaseEntity {
     public static final int ONE_C_DB_FILE_PATH = 1;
     public static final int ONE_C_DB_SERVER_SRV = 2;
     public static final int ONE_C_DB_SERVER_REF = 3;
-    public static final int ONE_C_DB_USER = 4;
-    public static final int ONE_C_DB_PASSWORD = 5;
+    public static final int USER = 4;
+    public static final int PASSWORD = 5;
+    public static final int DESTINATION_FOLDER = 6;
+    public static final int FTP_ADDRESS = 7;
+    public static final int PORT = 7;
 
     private static HashMap<Integer, ActionTypeParamEntity> PREDEFINED_MAP;
 
@@ -32,8 +35,11 @@ public class ActionTypeParamEntity extends BaseEntity {
         actionTypeParamEntities.add(new ActionTypeParamEntity(ONE_C_DB_FILE_PATH, "ONE_C_DB_FILE_PATH", "1C file database - Path"));
         actionTypeParamEntities.add(new ActionTypeParamEntity(ONE_C_DB_SERVER_SRV, "ONE_C_DB_SERVER_SRV", "1C server database - Server name"));
         actionTypeParamEntities.add(new ActionTypeParamEntity(ONE_C_DB_SERVER_REF, "ONE_C_DB_SERVER_REF", "1C server database - Database name"));
-        actionTypeParamEntities.add(new ActionTypeParamEntity(ONE_C_DB_USER, "ONE_C_DB_USER", "1C database - Username"));
-        actionTypeParamEntities.add(new ActionTypeParamEntity(ONE_C_DB_PASSWORD, "ONE_C_DB_PASSWORD", "1C database - Password"));
+        actionTypeParamEntities.add(new ActionTypeParamEntity(USER, "USER", "Username"));
+        actionTypeParamEntities.add(new ActionTypeParamEntity(PASSWORD, "PASSWORD", "Password"));
+        actionTypeParamEntities.add(new ActionTypeParamEntity(DESTINATION_FOLDER, "DESTINATION_FOLDER", "1C database - backup folder"));
+        actionTypeParamEntities.add(new ActionTypeParamEntity(FTP_ADDRESS, "FTP_ADDRESS", "FTP address"));
+        actionTypeParamEntities.add(new ActionTypeParamEntity(PORT, "PORT", "Port"));
 
         for (ActionTypeParamEntity actionTypeParamEntity : actionTypeParamEntities)
             PREDEFINED_MAP.put((int) actionTypeParamEntity.getId(), actionTypeParamEntity);

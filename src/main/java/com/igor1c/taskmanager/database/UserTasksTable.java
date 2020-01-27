@@ -3,14 +3,16 @@ package com.igor1c.taskmanager.database;
 import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.TaskActionEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
+import com.igor1c.taskmanager.helpers.EntityHelper;
 
+import javax.swing.text.html.parser.Entity;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UserTaskTable extends TableController<UserTaskEntity> {
+public class UserTasksTable extends TableController<UserTaskEntity> {
 
-    public UserTaskTable() {
+    public UserTasksTable() {
 
         super(  "userTasks",
                 new String[]{"name"});
@@ -18,6 +20,8 @@ public class UserTaskTable extends TableController<UserTaskEntity> {
     }
 
 
+
+    // TABLE CREATION
 
     public void createTable() {
 
@@ -38,21 +42,7 @@ public class UserTaskTable extends TableController<UserTaskEntity> {
 
 
 
-    public BaseEntity fillEntity(BaseEntity baseEntity) {
-
-        UserTaskEntity entity = (UserTaskEntity) baseEntity;
-
-        TaskActionsTable taskActionsTable = new TaskActionsTable();
-        ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.selectOrder("userTask=" + entity.getId(), "taskOrder");
-
-        for (BaseEntity taskActionEntity : taskActionEntityArrayList)
-            taskActionsTable.fillEntity(taskActionEntity);
-
-        entity.setTaskActions(taskActionEntityArrayList);
-        entity.renewTaskActionIndexes();
-
-        return entity;
-    }
+    // CRUD
 
     public long fullInsertUpdate(UserTaskEntity entity) {
 
@@ -60,8 +50,9 @@ public class UserTaskTable extends TableController<UserTaskEntity> {
 
         TaskActionsTable taskActionsTable = new TaskActionsTable();
         for (BaseEntity taskActionEntity : entity.getTaskActions()) {
-            ((TaskActionEntity) taskActionEntity).setUserTask(id);
-            taskActionsTable.insertUpdate(taskActionEntity);
+            TaskActionEntity currentTaskActionEntity = (TaskActionEntity) taskActionEntity;
+            currentTaskActionEntity.setUserTask(id);
+            taskActionsTable.fullInsertUpdate(currentTaskActionEntity);
         }
 
         return id;
@@ -84,20 +75,36 @@ public class UserTaskTable extends TableController<UserTaskEntity> {
 
         TaskActionsTable taskActionsTable = new TaskActionsTable();
 
-        ArrayList<Long> currentTaskActionsIdArray = new ArrayList<>();
-        for (BaseEntity currentTaskAction : currentTaskActionsArrayList) {
-            long currentTaskActionId = currentTaskAction.getId();
-            if (currentTaskActionId != 0)
-                currentTaskActionsIdArray.add(currentTaskActionId);
-        }
+        ArrayList<Long> currentTaskActionsIdArray = EntityHelper.generateIdArray(currentTaskActionsArrayList);
 
         ArrayList<BaseEntity> taskActionsArrayList = taskActionsTable.select("userTask=" + userTaskEntity.getId());
         for (BaseEntity currentTaskAction : taskActionsArrayList) {
             long currentTaskActionId = currentTaskAction.getId();
-            if (!currentTaskActionsIdArray.contains(currentTaskActionId))
-                taskActionsTable.deleteById(currentTaskActionId);
+            if (!currentTaskActionsIdArray.contains(currentTaskActionId)) {
+                taskActionsTable.fullDelete((TaskActionEntity) currentTaskAction);
+            }
         }
 
+    }
+
+
+
+    // PROCESSING OF ENTITY
+
+    public BaseEntity fillEntity(BaseEntity baseEntity) {
+
+        UserTaskEntity entity = (UserTaskEntity) baseEntity;
+
+        TaskActionsTable taskActionsTable = new TaskActionsTable();
+        ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.selectOrder("userTask=" + entity.getId(), "taskOrder");
+
+        for (BaseEntity taskActionEntity : taskActionEntityArrayList)
+            taskActionsTable.fillEntity(taskActionEntity);
+
+        entity.setTaskActions(taskActionEntityArrayList);
+        entity.renewTaskActionIndexes();
+
+        return entity;
     }
 
 }

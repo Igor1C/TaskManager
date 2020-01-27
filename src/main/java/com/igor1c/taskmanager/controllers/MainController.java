@@ -1,14 +1,11 @@
 package com.igor1c.taskmanager.controllers;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.igor1c.taskmanager.controllers.requests.*;
 import com.igor1c.taskmanager.controllers.responses.BaseEntityListResponse;
-import com.igor1c.taskmanager.database.ActionTypeParamsTable;
 import com.igor1c.taskmanager.database.ActionTypesTable;
 import com.igor1c.taskmanager.database.TaskActionsTable;
-import com.igor1c.taskmanager.database.UserTaskTable;
+import com.igor1c.taskmanager.database.UserTasksTable;
 import com.igor1c.taskmanager.entities.*;
-import javafx.concurrent.Task;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -48,7 +45,7 @@ public class MainController {
     @PostMapping("/getUserTasks")
     public ResponseEntity<?> getUserTasks() {
 
-        UserTaskTable userTasksTable = new UserTaskTable();
+        UserTasksTable userTasksTable = new UserTasksTable();
         ArrayList<BaseEntity> entityArrayList = userTasksTable.select();
 
         TaskActionsTable taskActionsTable = new TaskActionsTable();
@@ -67,23 +64,9 @@ public class MainController {
     @PostMapping("/getUserTask")
     public ResponseEntity<?> getUserTask(@RequestBody IdRequest idRequest) {
 
-        UserTaskTable table = new UserTaskTable();
+        UserTasksTable table = new UserTasksTable();
         userTaskEntity = (UserTaskEntity) table.selectById(idRequest.getId());
         table.fillEntity(userTaskEntity);
-
-        /*TaskActionsTable taskActionsTable = new TaskActionsTable();
-
-        ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.selectOrder("userTask=" + idRequest.getId(), "taskOrder");
-        ActionTypesTable actionTypesTable = new ActionTypesTable();
-        ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
-        for (BaseEntity taskActionEntity : taskActionEntityArrayList) {
-            TaskActionEntity currentTaskActonEntity = (TaskActionEntity) taskActionEntity;
-
-            ActionTypeEntity actionTypeEntity = (ActionTypeEntity) actionTypesTable.selectById(currentTaskActonEntity.getActionType());
-
-            ArrayList<BaseEntity> actionTypeParams = actionTypeParamsTable.select("actionType=" + actionTypeEntity.getId());
-            actionTypeEntity.setActionTypeParams(actionTypeParams);
-        }*/
 
         return ResponseEntity.ok(userTaskEntity);
 
@@ -99,12 +82,9 @@ public class MainController {
     @PostMapping("/saveUserTask")
     public ResponseEntity<?> saveUserTask(@RequestBody IdNameRequest idNameRequest) {
 
-        //if (saveUserTaskRequest.getId() == 0)
-        //    userTaskEntity = new UserTaskEntity();
-
         userTaskEntity.setName(idNameRequest.getName());
 
-        UserTaskTable table = new UserTaskTable();
+        UserTasksTable table = new UserTasksTable();
         table.fullInsertUpdate(userTaskEntity);
         table.deleteUnusedTaskActions(userTaskEntity);
 
@@ -124,7 +104,7 @@ public class MainController {
     @PostMapping("/deleteUserTask")
     public ResponseEntity<?> deleteUserTask(@RequestBody IdRequest idRequest) {
 
-        UserTaskTable table = new UserTaskTable();
+        UserTasksTable table = new UserTasksTable();
         table.fullDelete(userTaskEntity);
 
         userTaskEntity = null;
@@ -146,21 +126,10 @@ public class MainController {
 
     /* TASK ACTIONS */
 
-    @PostMapping("/getActionTypes")
-    public ResponseEntity<?> getActionTypes() {
-
-        ActionTypesTable table = new ActionTypesTable();
-        ArrayList<BaseEntity> entityArrayList = table.select();
-
-        return ResponseEntity.ok(entityArrayList);
-
-    }
-
     @PostMapping("/addTaskAction")
     public ResponseEntity<?> addTaskAction() {
 
         TaskActionEntity taskActionEntity = new TaskActionEntity();
-        taskActionEntity.setUserTask(userTaskEntity.getId());
 
         ArrayList<BaseEntity> taskActionArrayList = userTaskEntity.getTaskActions();
         taskActionArrayList.add(taskActionEntity);
@@ -173,21 +142,12 @@ public class MainController {
 
     }
 
-    @Deprecated
-    @PostMapping("/getTaskAction")
-    public ResponseEntity<?> getTaskAction(@RequestBody IdIndexRequest idIndexRequest) {
-
-        BaseEntity entity = userTaskEntity.getTaskActions().get(idIndexRequest.getIndex());
-        return ResponseEntity.ok(entity);
-
-    }
-
     @PostMapping("/saveTaskAction")
     public ResponseEntity<?> saveTaskAction(@RequestBody SaveTaskActionRequest saveTaskActionRequest) {
 
         TaskActionEntity entity = (TaskActionEntity) userTaskEntity.getTaskActions().get(saveTaskActionRequest.getIndexInUserTask());
         entity.setName(saveTaskActionRequest.getName());
-        entity.setTaskOrder(saveTaskActionRequest.getOrder());
+        entity.setTaskOrder(saveTaskActionRequest.getTaskOrder());
         entity.setActionType(saveTaskActionRequest.getActionType());
 
         return ResponseEntity.ok(entity);
@@ -226,14 +186,42 @@ public class MainController {
     @PostMapping("/changeActionType")
     public ResponseEntity<?> changeActionType(@RequestBody IdIndexActionTypeRequest idIndexActionTypeRequest) {
 
-        //ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
-        //ArrayList<BaseEntity> actionTypeParams = actionTypeParamsTable.select("actionType=" + idIndexActionTypeRequest.getActionType());
-
         TaskActionsTable taskActionsTable = new TaskActionsTable();
         TaskActionEntity taskActionEntity = (TaskActionEntity) userTaskEntity.getTaskActions().get(idIndexActionTypeRequest.getIndex());
+        taskActionEntity.setActionType(idIndexActionTypeRequest.getActionType());
         taskActionsTable.initWithBlankActionTypeParams(taskActionEntity);
 
         return ResponseEntity.ok(new String());
+
+    }
+
+
+
+    /* TASK ACTION PARAMS */
+
+    @PostMapping("/saveTaskActionParam")
+    public ResponseEntity<?> saveTaskActionParam(@RequestBody SaveTaskActionParamRequest saveTaskActionParamRequest) {
+
+        TaskActionEntity taskActionEntity = (TaskActionEntity) userTaskEntity.getTaskActions().get(saveTaskActionParamRequest.getTaskActionIndexInUserTask());
+
+        TaskActionParamEntity taskActionParamEntity = (TaskActionParamEntity) taskActionEntity.getTaskActionParams().get(saveTaskActionParamRequest.getIndexInTaskAction());
+        taskActionParamEntity.setParamValue(saveTaskActionParamRequest.getParamValue());
+
+        return ResponseEntity.ok(taskActionEntity);
+
+    }
+
+
+
+    /* ACTION TYPES */
+
+    @PostMapping("/getActionTypes")
+    public ResponseEntity<?> getActionTypes() {
+
+        ActionTypesTable table = new ActionTypesTable();
+        ArrayList<BaseEntity> entityArrayList = table.select();
+
+        return ResponseEntity.ok(entityArrayList);
 
     }
 
