@@ -48,20 +48,6 @@ $time-4: 200s;
   height: 100%;
 }
 
-.page-bg {
-  background: $color-bg;
-  background-blend-mode: screen;
-  background-size: cover;
-  filter: grayscale(100%);
-  z-index: -1;
-}
-
-.page-wrapper {
-  text-align: center;
-  color: #fff;
-  z-index: 2;
-}
-
 
 
 /* STYLE OF PARTICLES */
