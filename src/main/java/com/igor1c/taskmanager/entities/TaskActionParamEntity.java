@@ -81,7 +81,6 @@ public class TaskActionParamEntity extends BaseEntity {
 
     // GETTERS & SETTERS OF THE CLASS FIELDS
 
-
     public int getIndexInTaskAction() {
         return indexInTaskAction;
     }

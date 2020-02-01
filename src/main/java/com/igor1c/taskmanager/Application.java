@@ -1,9 +1,12 @@
 package com.igor1c.taskmanager;
 
+import com.igor1c.taskmanager.database.UserTaskSchedulesTable;
+import com.igor1c.taskmanager.entities.UserTaskScheduleEntity;
 import com.igor1c.taskmanager.helpers.DBHelper;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
+import java.time.LocalTime;
 import java.util.HashMap;
 
 @SpringBootApplication
@@ -22,6 +25,11 @@ public class Application {
                 .run(args);
 
         //DBHelper.createDatabase();
+        UserTaskSchedulesTable userTaskSchedulesTable = new UserTaskSchedulesTable();
+
+        LocalTime localTime = LocalTime.now();
+        UserTaskScheduleEntity userTaskScheduleEntity = new UserTaskScheduleEntity(1, localTime);
+        userTaskSchedulesTable.insertUpdate(userTaskScheduleEntity);
 
     }
 

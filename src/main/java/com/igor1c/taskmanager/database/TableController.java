@@ -12,6 +12,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public abstract class TableController<E extends BaseEntity> extends DBHelper implements TableOperations<E> {
@@ -251,7 +252,8 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
             Method method = clazz.getMethod(methodName);
             Object currentValue = method.invoke(baseEntity);
             if (currentValue != null)
-                if (currentValue.getClass() == String.class)
+                if (currentValue.getClass() == String.class
+                        || currentValue.getClass() == LocalTime.class)
                     resultString = resultString.concat("'" + currentValue + "'");
                 else
                     resultString = resultString.concat(currentValue.toString());

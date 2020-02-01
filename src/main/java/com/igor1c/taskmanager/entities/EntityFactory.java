@@ -17,6 +17,8 @@ public class EntityFactory {
                 return new TaskActionEntity();
             case "userTasks":
                 return new UserTaskEntity();
+            case "userTaskSchedules":
+                return new UserTaskScheduleEntity();
         }
 
         return null;

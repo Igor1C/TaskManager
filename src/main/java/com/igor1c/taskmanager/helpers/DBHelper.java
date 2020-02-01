@@ -83,6 +83,13 @@ public class DBHelper {
         tableOperationsArray.add(new TaskActionsTable());
         tableOperationsArray.add(new TaskActionParamsTable());
         tableOperationsArray.add(new ParamRelationsTable());
+        tableOperationsArray.add(new UserTaskSchedulesTable());
+
+        processTableOperations(tableOperationsArray);
+
+    }
+
+    private static void processTableOperations(ArrayList<TableOperations> tableOperationsArray) {
 
         for (TableOperations tableOperations : tableOperationsArray) {
             tableOperations.createTable();
@@ -92,5 +99,6 @@ public class DBHelper {
         }
 
     }
+
 
 }

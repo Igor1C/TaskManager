@@ -2,10 +2,13 @@
 /* MAIN ELEMENTS */
 
 .igor1c-main-page {
-    background-color: #666662;
+    /*background-color: #666662;*/
+    background-color: #333;
 }
 
 .igor1c-dialog {
+    /*background: linear-gradient(0deg, rgba(34, 193, 195, 0.9) 0%, rgba(196, 196, 196, 0.9) 100%);*/
+    background: radial-gradient(circle farthest-corner at 900px 250px, rgba(154, 198, 208, 1) 0%, rgba(196, 196, 196, 1) 100%);
     width: 1150px;
 }
 
@@ -40,8 +43,14 @@
 
 /* CARDS */
 
+.igor1c-card {
+    background-color: rgb(255, 255, 255);
+    min-height: 0px;
+
+}
+
 .igor1c-card-caption {
-    background-color: rgb(127, 91, 70);
+    background-color: rgb(96, 125, 139);
 }
 
 
@@ -66,33 +75,58 @@
 
 .igor1c-chip {
     width: 300px;
-    margin-left: 10px;
+    margin: 8px 0px 8px 10px;
 }
 
-.igor1c-chip-label {
-    width: 100px;
-}
-
-.igor1c-floating-label {
-    color: rgb(121, 85, 72);
-    font-size: 12px;
-    top: 4px;
-    visibility: visible;
-}
-
-.igor1c-input {
+.igor1c-chip-input {
     width: 175px;
     margin-left: 10px;
 }
 
 .igor1c-input-enabled {
-    border-bottom: 1px solid rgba(0, 0, 0, .12) !important;
+    border-bottom: 1px solid rgb(0, 0, 0) !important;
     color: inherit !important;
+}
+
+.igor1c-input {
+    width: 300px;
+    margin-left: 10px;
+    border-bottom-color: rgb(0, 0, 0) !important;
 }
 
 .igor1c-select {
     width: 175px;
     margin-left: 10px;
+}
+
+
+
+/* LABELS */
+
+.igor1c-userTask-label {
+    color: rgb(0, 0, 0) !important;
+    font-size: 12px;
+    top: 4px;
+    margin-left: 0px;
+    visibility: visible;
+}
+
+.igor1c-taskActionParam-label {
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+    top: 4px;
+    margin-left: 30px;
+    visibility: visible;
+}
+
+.igor1c-chip-label {
+    background-color: rgb(96, 125, 139) !important;
+    width: 100px;
+    margin: 0px 0px 0px -2px;
+}
+
+.igor1c-supporting-label {
+    color: rgb(0, 0, 0);
 }
 
 
