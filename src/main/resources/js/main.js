@@ -52,6 +52,12 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     }
 
+    $scope.userTaskProcessOnClick = function(id) {
+
+        processUserTask(id);
+
+    }
+
 
 
     /* TASK ACTION ELEMENTS */
@@ -90,9 +96,9 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     /* TASK ACTION PARAM ELEMENTS */
 
-    $scope.taskActionParamInputOnChange = function(taskAction, taskActionParam) {
+    $scope.taskActionParamInputOnChange = function(taskAction, taskActionParam, renewUserTaskFromSession) {
 
-        saveTaskActionParam(taskAction, taskActionParam);
+        saveTaskActionParam(taskAction, taskActionParam, renewUserTaskFromSession);
 
     }
 
@@ -136,7 +142,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             contentType: "application/json",
             url: "/addUserTask",
             success: function(data) {
-                processUserTask(data);
+                handleUserTask(data);
                 openDialog();
             }
         });
@@ -165,7 +171,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             url: "/getUserTask",
             data: JSON.stringify(id),
             success: function(data) {
-                processUserTask(data);
+                handleUserTask(data);
                 changeUserTaskDialogVisibility(true);
                 openDialog();
             }
@@ -180,7 +186,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             contentType: "application/json",
             url: "/getUserTaskFromSession",
             success: function(data) {
-                processUserTask(data);
+                handleUserTask(data);
             }
         });
 
@@ -242,10 +248,22 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     }
 
-    function processUserTask(data) {
+    function handleUserTask(data) {
 
         $scope.userTask = data;
         $scope.$apply();
+
+    }
+
+    function processUserTask(id) {
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/processUserTask",
+            data: JSON.stringify(id),
+            success: function () {}
+        })
 
     }
 
@@ -305,7 +323,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
     function deleteTaskAction(taskAction) {
 
         var jsonData = JSON.stringify({ id: taskAction.id,
-                                        index: taskAction.taskActionIndexInUserTask});
+                                        index: taskAction.indexInUserTask});
 
         $.ajax({
             type: "POST",
@@ -342,12 +360,15 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     /* FUNCTIONS OF THE TASK ACTION PARAMS */
 
-    function saveTaskActionParam(taskAction, taskActionParam) {
+    function saveTaskActionParam(taskAction, taskActionParam, renewUserTaskFromSession) {
 
         var jsonData = JSON.stringify({ id: taskAction.id,
                                         name: taskActionParam.name,
                                         taskAction: taskAction.id,
                                         paramValue: taskActionParam.paramValue,
+                                        useExtraParam: taskActionParam.useExtraParam,
+                                        extraParamTaskAction: taskActionParam.extraParamTaskAction,
+                                        extraParamType: taskActionParam.extraParamType,
                                         indexInTaskAction: taskActionParam.indexInTaskAction,
                                         taskActionIndexInUserTask: taskAction.indexInUserTask});
 
@@ -356,7 +377,11 @@ app.controller("TaskManagerController", function ($scope, $http) {
             contentType: "application/json; charset=utf-8",
             url: "/saveTaskActionParam",
             data: jsonData,
-            success: function (data) {}
+            success: function (data) {
+                if (renewUserTaskFromSession) {
+                    getUserTaskFromSession();
+                }
+            }
         });
 
     }

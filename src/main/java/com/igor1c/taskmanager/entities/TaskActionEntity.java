@@ -3,6 +3,7 @@ package com.igor1c.taskmanager.entities;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TaskActionEntity extends BaseEntity {
 
@@ -13,10 +14,11 @@ public class TaskActionEntity extends BaseEntity {
 
     private int indexInUserTask;
     private ArrayList<BaseEntity> taskActionParams = new ArrayList<>();
+    private HashMap<ActionTypeParamsEnum, TaskActionParamEntity> taskActionParamsMap;
 
 
 
-    // CONSTRUCTORS
+    /* CONSTRUCTORS */
 
     public TaskActionEntity() {}
 
@@ -38,7 +40,7 @@ public class TaskActionEntity extends BaseEntity {
 
 
 
-    // METHODS OF THE PROCESSING
+    /* METHODS OF THE PROCESSING */
 
     public void fillFromResultSet(ResultSet resultSet) {
 
@@ -56,7 +58,7 @@ public class TaskActionEntity extends BaseEntity {
 
 
 
-    // GETTERS & SETTERS OF THE DATABASE FIELDS
+    /* GETTERS & SETTERS OF THE DATABASE FIELDS */
 
     public String getName() {
         return name;
@@ -77,6 +79,13 @@ public class TaskActionEntity extends BaseEntity {
             return ActionTypeEntity.getActionTypeEntity(currentActionType).getName();
         else
             return "";
+
+    }
+
+    public ActionTypesEnum getActionTypeEnum() {
+
+        long currentActionType = getActionType();
+        return ActionTypeEntity.getActionTypesEnumMap().get(currentActionType);
 
     }
 
@@ -112,7 +121,7 @@ public class TaskActionEntity extends BaseEntity {
 
 
 
-    // GETTERS & SETTERS OF THE CLASS FIELDS
+    /* GETTERS & SETTERS OF THE CLASS FIELDS */
 
     public int getIndexInUserTask() {
         return indexInUserTask;
@@ -127,7 +136,24 @@ public class TaskActionEntity extends BaseEntity {
     }
 
     public void setTaskActionParams(ArrayList<BaseEntity> taskActionParams) {
+
         this.taskActionParams = taskActionParams;
+        fillTaskActionParamsMap();
+
+    }
+
+    public HashMap<ActionTypeParamsEnum, TaskActionParamEntity> getTaskActionParamsMap() {
+        return taskActionParamsMap;
+    }
+
+    private void fillTaskActionParamsMap() {
+
+        taskActionParamsMap = new HashMap<>();
+        for (BaseEntity taskActionParamBaseEntity : taskActionParams) {
+            TaskActionParamEntity taskActionParamEntity = (TaskActionParamEntity) taskActionParamBaseEntity;
+            taskActionParamsMap.put(taskActionParamEntity.getActionTypeParamEnum(), taskActionParamEntity);
+        }
+
     }
 
 }

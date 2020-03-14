@@ -16,7 +16,7 @@ public class UserTaskEntity extends BaseEntity {
 
 
 
-    // CONSTRUCTORS
+    /* CONSTRUCTORS */
 
     public UserTaskEntity() {}
 
@@ -33,7 +33,7 @@ public class UserTaskEntity extends BaseEntity {
 
 
 
-    // METHODS OF PROCESSING
+    /* METHODS OF PROCESSING */
 
     public void fillFromResultSet(ResultSet resultSet) {
 
@@ -58,7 +58,7 @@ public class UserTaskEntity extends BaseEntity {
 
 
 
-    // GETTERS & SETTERS OF DATABASE FIELDS
+    /* GETTERS & SETTERS OF DATABASE FIELDS */
 
     public String getName() {
         return name;
@@ -70,7 +70,7 @@ public class UserTaskEntity extends BaseEntity {
 
 
 
-    // GETTERS & SETTERS OF CLASS FIELDS
+    /* GETTERS & SETTERS OF CLASS FIELDS */
 
     public ArrayList<BaseEntity> getTaskActions() {
         return taskActions;
@@ -94,6 +94,24 @@ public class UserTaskEntity extends BaseEntity {
 
     public void setLastExecution(Date lastExecution) {
         this.lastExecution = lastExecution;
+    }
+
+
+
+    /* GETTERS WITH NO FIELDS */
+
+    public ArrayList<BaseEntity> getSavedTaskActions() {
+
+        ArrayList<BaseEntity> taskActions = getTaskActions();
+        ArrayList<BaseEntity> savedTaskActions = new ArrayList<>();
+
+        for (BaseEntity taskAction : taskActions) {
+            if (taskAction.getId() != 0)
+                savedTaskActions.add(taskAction);
+        }
+
+        return savedTaskActions;
+
     }
 
 }

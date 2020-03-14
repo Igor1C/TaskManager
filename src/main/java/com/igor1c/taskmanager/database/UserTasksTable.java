@@ -1,5 +1,6 @@
 package com.igor1c.taskmanager.database;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.TaskActionEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
@@ -78,11 +79,17 @@ public class UserTasksTable extends TableController<UserTaskEntity> {
         ArrayList<Long> currentTaskActionsIdArray = EntityHelper.generateIdArray(currentTaskActionsArrayList);
 
         ArrayList<BaseEntity> taskActionsArrayList = taskActionsTable.select("userTask=" + userTaskEntity.getId());
-        for (BaseEntity currentTaskAction : taskActionsArrayList) {
+        for (BaseEntity currentEntity : taskActionsArrayList) {
+            TaskActionEntity currentTaskAction = (TaskActionEntity) currentEntity;
             long currentTaskActionId = currentTaskAction.getId();
-            if (!currentTaskActionsIdArray.contains(currentTaskActionId)) {
-                taskActionsTable.fullDelete((TaskActionEntity) currentTaskAction);
-            }
+
+            if (!currentTaskActionsIdArray.contains(currentTaskActionId))
+                taskActionsTable.fullDelete(currentTaskAction);
+        }
+
+        for (BaseEntity currentEntity : currentTaskActionsArrayList) {
+            TaskActionEntity currentTaskAction = (TaskActionEntity) currentEntity;
+            taskActionsTable.deleteUnusedTaskActionParams(currentTaskAction);
         }
 
     }

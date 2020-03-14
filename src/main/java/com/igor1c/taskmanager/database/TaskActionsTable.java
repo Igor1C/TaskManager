@@ -101,45 +101,77 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
 
     public BaseEntity fillEntity(BaseEntity baseEntity) {
 
-        TaskActionEntity entity = (TaskActionEntity) baseEntity;
+        TaskActionEntity taskActionEntity = (TaskActionEntity) baseEntity;
 
         TaskActionParamsTable taskActionParamsTable = new TaskActionParamsTable();
-        ArrayList<BaseEntity> taskActionParamEntityArrayList = taskActionParamsTable.select("taskAction=" + entity.getId());
+        ArrayList<BaseEntity> taskActionParamEntityArrayList = taskActionParamsTable.select("taskAction=" + taskActionEntity.getId());
+
         int currentIndex = 0;
-        for (BaseEntity taskActionParamEntity : taskActionParamEntityArrayList) {
-            ((TaskActionParamEntity) taskActionParamEntity).setIndexInTaskAction(currentIndex);
+        for (BaseEntity taskActionParamBaseEntity : taskActionParamEntityArrayList) {
+            TaskActionParamEntity taskActionParamEntity = (TaskActionParamEntity) taskActionParamBaseEntity;
+            taskActionParamEntity.setIndexInTaskAction(currentIndex);
+            taskActionParamsTable.fillEntity(taskActionParamEntity);
+
+            fillAutoGeneration(taskActionEntity, taskActionParamEntity);
+
             currentIndex++;
         }
 
-        entity.setTaskActionParams(taskActionParamEntityArrayList);
+        taskActionEntity.setTaskActionParams(taskActionParamEntityArrayList);
 
-        return entity;
+        return taskActionEntity;
+
+    }
+
+    public void fillAutoGeneration(TaskActionEntity taskActionEntity, TaskActionParamEntity taskActionParamEntity) {
+
+        ParamRelationsTable paramRelationsTable = new ParamRelationsTable();
+
+        ArrayList<BaseEntity> paramRelationsArray = paramRelationsTable.selectByActionTypeAndActionTypeParam(
+                taskActionEntity.getActionType(),
+                taskActionParamEntity.getActionTypeParam());
+
+        if (paramRelationsArray.size() > 0) {
+            ParamRelationEntity paramRelationEntity = (ParamRelationEntity) paramRelationsArray.get(0);
+            taskActionParamEntity.setAutoGeneration(paramRelationEntity.isAutoGeneration());
+        } else {
+            taskActionParamEntity.setAutoGeneration(false);
+        }
 
     }
 
     public BaseEntity initWithBlankActionTypeParams(BaseEntity baseEntity) {
 
-        TaskActionEntity entity = (TaskActionEntity) baseEntity;
+        TaskActionEntity taskActionEntity = (TaskActionEntity) baseEntity;
 
         ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
-        ArrayList<BaseEntity> actionTypeParamEntityArrayList = actionTypeParamsTable.selectByActionTypeId(entity.getActionType());
+        ArrayList<BaseEntity> actionTypeParamEntityArrayList = actionTypeParamsTable.selectByActionTypeId(taskActionEntity.getActionType());
 
-        ArrayList<BaseEntity> taskActionParamEntityArrayList = entity.getTaskActionParams();
+        ArrayList<BaseEntity> taskActionParamEntityArrayList = taskActionEntity.getTaskActionParams();
         taskActionParamEntityArrayList.clear();
 
-        int currentIndex = 0;
-        for (BaseEntity actionTypeParamEntity : actionTypeParamEntityArrayList) {
-            ActionTypeParamEntity currentActionTypeParamEntity = (ActionTypeParamEntity) actionTypeParamEntity;
+        TaskActionParamsTable taskActionParamsTable = new TaskActionParamsTable();
 
-            TaskActionParamEntity taskActionParamEntity = new TaskActionParamEntity(currentActionTypeParamEntity.getName(),
-                    entity.getId(),
-                    "");
+        int currentIndex = 0;
+        for (BaseEntity actionTypeParamBaseEntity : actionTypeParamEntityArrayList) {
+            ActionTypeParamEntity actionTypeParamEntity = (ActionTypeParamEntity) actionTypeParamBaseEntity;
+
+            TaskActionParamEntity taskActionParamEntity = new TaskActionParamEntity(taskActionEntity.getId(),
+                                                                                    actionTypeParamEntity.getId(),
+                                                                                    "",
+                                                                                    false,
+                                                                                    null,
+                                                                                    null);
             taskActionParamEntityArrayList.add(taskActionParamEntity);
             taskActionParamEntity.setIndexInTaskAction(currentIndex);
+            taskActionParamsTable.fillEntity(taskActionParamEntity);
+
+            fillAutoGeneration(taskActionEntity, taskActionParamEntity);
+
             currentIndex++;
         }
 
-        return entity;
+        return taskActionEntity;
 
     }
 

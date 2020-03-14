@@ -1,7 +1,7 @@
 
 /* MAIN ELEMENTS */
 
-.igor1c-main-page {
+.igor1c-mainPage {
     /*background-color: #666662;*/
     background-color: #333;
 }
@@ -29,33 +29,19 @@
 
 /* SEPARATORS */
 
-.igor1c-div-vertical-separator-lg {
+.igor1c-separator-div-verticalLarge {
     height: 75px;
     width: 1px;
 }
 
-.igor1c-div-vertical-separator-sm {
+.igor1c-separator-div-verticalSmall {
     height: 25px;
     width: 1px;
 }
 
-.igor1c-div-horizontal-separator-small {
+.igor1c-separator-div-horizontalSmall {
     height: 1px;
     width: 10px;
-}
-
-
-
-/* CARDS */
-
-.igor1c-card {
-    background-color: rgb(255, 255, 255);
-    min-height: 0px;
-
-}
-
-.igor1c-card-caption {
-    background-color: rgb(96, 125, 139);
 }
 
 
@@ -76,38 +62,46 @@
 
 
 
-/* ELEMENTS */
+/* USER TASKS */
 
-.igor1c-chip {
+.igor1c-userTask-card {
+    background-color: rgb(255, 255, 255);
+    min-height: 0px;
+}
+
+.igor1c-userTask-cardCaption {
+    background-color: rgb(96, 125, 139);
+}
+
+.igor1c-userTask-cardCaption-label {
+    width: 250px;
+}
+
+.igor1c-userTask-cardInfo-label {
+    color: rgb(0, 0, 0);
+}
+
+.igor1c-userTask-chip {
     width: 300px;
     margin: 8px 0px 8px 10px;
 }
 
-.igor1c-chip-input {
+.igor1c-userTask-chip-label {
+    background-color: rgb(62, 130, 81) !important;
+    width: 100px;
+    margin: 0px 0px 0px -2px;
+}
+
+.igor1c-userTask-chip-input {
     width: 175px;
     margin-left: 10px;
 }
 
-.igor1c-input-enabled {
-    border-bottom: 1px solid rgb(0, 0, 0) !important;
-    color: inherit !important;
+.igor1c-userTask-div-execution {
+    margin-bottom: 10px;
 }
 
-.igor1c-input {
-    width: 300px;
-    margin-left: 10px;
-    border-bottom-color: rgb(0, 0, 0) !important;
-}
-
-.igor1c-select {
-    width: 175px;
-    margin-left: 10px;
-}
-
-
-
-/* LABELS */
-
+/* deprecated */
 .igor1c-userTask-label {
     color: rgb(0, 0, 0) !important;
     font-size: 12px;
@@ -116,32 +110,78 @@
     visibility: visible;
 }
 
-.igor1c-taskActionParam-label {
-    color: rgb(0, 0, 0);
-    font-size: 12px;
-    top: 4px;
-    margin-left: 30px;
-    visibility: visible;
-}
 
-.igor1c-chip-label {
+
+/* TASK ACTIONS */
+
+.igor1c-taskAction-chip-label {
     background-color: rgb(96, 125, 139) !important;
     width: 100px;
     margin: 0px 0px 0px -2px;
 }
 
-.igor1c-supporting-label {
+.igor1c-taskAction-chip-select {
+    width: 175px;
+    margin-left: 10px;
+}
+
+
+
+/* PARAMS OF THE TASK ACTION */
+
+.igor1c-param-card {
+    background-color: rgb(224, 225, 199);
+    border-radius: 10px;
+    height: 90px;
+    margin: 20px 10px 10px 10px;
+}
+
+.igor1c-param-cardCaption-div {
     color: rgb(0, 0, 0);
+    font-size: 14px;
+    margin: auto;
+}
+
+.igor1c-param-div-select {
+    float: left;
+}
+
+.igor1c-param-label-select {
+    display: inline-block;
+    width: 70px;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.igor1c-param-label-checkBox {
+    display: inline-block;
+    margin-left: 2px;
+    font-size: 12px;
+}
+
+.igor1c-param-input {
+    width: 275px;
+    margin-left: 10px;
+}
+
+.igor1c-param-select {
+    width: 200px;
+    margin-left: 10px;
+}
+
+.igor1c-param-checkBox {
+    margin-left: 10px;
 }
 
 
 
 /* DIFFERENT */
 
-.igor1c-element-align-center {
-    margin: auto !important;
+.igor1c-alignment-elementCenter {
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
-.igor1c-text-align-center {
+.igor1c-alignment-textCenter {
     text-align: center !important;
 }

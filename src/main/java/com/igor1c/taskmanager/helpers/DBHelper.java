@@ -1,5 +1,6 @@
 package com.igor1c.taskmanager.helpers;
 
+import java.io.File;
 import java.sql.*;
 
 import com.igor1c.taskmanager.database.*;
@@ -8,7 +9,9 @@ import java.util.ArrayList;
 
 public class DBHelper {
 
-    public static final String DB_URL = "jdbc:h2:/C:/Java/TaskManager/db/taskManager";
+    public static final String DB_FOLDER = "C:/Java/TaskManager/db/";
+    public static final String DB_FILE = DB_FOLDER + "taskManager.mv.db";
+    public static final String DB_URL = "jdbc:h2:/" + DB_FOLDER + "taskManager";
     public static final String DB_DRIVER = "org.h2.Driver";
 
     public Connection connection;
@@ -76,6 +79,9 @@ public class DBHelper {
 
     public static void createDatabase() {
 
+        if (new File(DB_FILE).exists())
+            return;
+
         ArrayList<TableOperations> tableOperationsArray = new ArrayList<TableOperations>();
         tableOperationsArray.add(new ActionTypesTable());
         tableOperationsArray.add(new ActionTypeParamsTable());
@@ -99,6 +105,5 @@ public class DBHelper {
         }
 
     }
-
 
 }

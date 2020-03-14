@@ -4,10 +4,15 @@ public class SaveTaskActionParamRequest extends IdNameRequest {
 
     long taskAction;
     String paramValue;
+    boolean useExtraParam;
+    Long extraParamTaskAction;
+    Long extraParamType;
     int indexInTaskAction;
     int taskActionIndexInUserTask;
 
 
+
+    /* FIELDS OF THE DATABASE */
 
     public long getTaskAction() {
         return taskAction;
@@ -24,6 +29,34 @@ public class SaveTaskActionParamRequest extends IdNameRequest {
     public void setParamValue(String paramValue) {
         this.paramValue = paramValue;
     }
+
+    public boolean isUseExtraParam() {
+        return useExtraParam;
+    }
+
+    public void setUseExtraParam(boolean useExtraParam) {
+        this.useExtraParam = useExtraParam;
+    }
+
+    public Long getExtraParamTaskAction() {
+        return extraParamTaskAction;
+    }
+
+    public void setExtraParamTaskAction(Long extraParamTaskAction) {
+        this.extraParamTaskAction = extraParamTaskAction;
+    }
+
+    public Long getExtraParamType() {
+        return extraParamType;
+    }
+
+    public void setExtraParamType(Long extraParamType) {
+        this.extraParamType = extraParamType;
+    }
+
+
+
+    /* FIELDS OF THE ENTITY */
 
     public int getIndexInTaskAction() {
         return indexInTaskAction;

@@ -1,14 +1,16 @@
 package com.igor1c.taskmanager.database;
 
-import com.igor1c.taskmanager.entities.BaseEntity;
-import com.igor1c.taskmanager.entities.TaskActionParamEntity;
+import com.igor1c.taskmanager.entities.*;
+
+import java.util.ArrayList;
 
 public class TaskActionParamsTable extends TableController<TaskActionParamEntity> {
 
     public TaskActionParamsTable() {
 
         super(  "taskActionParams",
-                new String[]{"name", "taskAction", "paramValue"});
+                new String[]{"taskAction", "actionTypeParam", "paramValue", "extraParamTaskAction", "extraParamType"},
+                new String[]{"useExtraParam"});
 
     }
 
@@ -16,9 +18,12 @@ public class TaskActionParamsTable extends TableController<TaskActionParamEntity
 
         String query =  "CREATE TABLE taskActionParams(\n" +
                         "   id BIGINT AUTO_INCREMENT PRIMARY KEY,\n" +
-                        "   name VARCHAR(255) NOT NULL,\n" +
                         "   taskAction BIGINT NOT NULL,\n" +
-                        "   paramValue VARCHAR(255)\n" +
+                        "   actionTypeParam BIGINT NOT NULL,\n" +
+                        "   paramValue VARCHAR(255),\n" +
+                        "   useExtraParam BOOLEAN,\n" +
+                        "   extraParamTaskAction BIGINT DEFAULT NULL,\n" +
+                        "   extraParamType BIGINT DEFAULT NULL\n" +
                         ");";
 
         executeDbQuery(query);
@@ -29,7 +34,16 @@ public class TaskActionParamsTable extends TableController<TaskActionParamEntity
 
         String query =  "ALTER TABLE taskActionParams\n" +
                         "   ADD FOREIGN KEY (taskAction)\n" +
-                        "   REFERENCES taskActions(id);";
+                        "   REFERENCES taskActions(id);\n" +
+                        "ALTER TABLE taskActionParams\n" +
+                        "   ADD FOREIGN KEY (actionTypeParam)\n" +
+                        "   REFERENCES actionTypeParams(id);\n" +
+                        "ALTER TABLE taskActionParams\n" +
+                        "   ADD FOREIGN KEY (extraParamTaskAction)\n" +
+                        "   REFERENCES taskActions(id);\n" +
+                        "ALTER TABLE taskActionParams\n" +
+                        "   ADD FOREIGN KEY (extraParamType)\n" +
+                        "   REFERENCES actionTypeParams(id);";
 
         executeDbQuery(query);
 
@@ -42,7 +56,15 @@ public class TaskActionParamsTable extends TableController<TaskActionParamEntity
 
 
     public BaseEntity fillEntity(BaseEntity baseEntity) {
+
+        TaskActionParamEntity entity = (TaskActionParamEntity) baseEntity;
+
+        ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
+        ActionTypeParamEntity actionTypeParam = (ActionTypeParamEntity) actionTypeParamsTable.selectById(entity.getActionTypeParam());
+        entity.setActionTypeParamDescription(actionTypeParam.getDescription());
+
         return baseEntity;
+
     }
 
 }

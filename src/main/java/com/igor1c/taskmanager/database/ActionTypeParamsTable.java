@@ -3,7 +3,6 @@ package com.igor1c.taskmanager.database;
 import com.igor1c.taskmanager.entities.ActionTypeParamEntity;
 import com.igor1c.taskmanager.entities.BaseEntity;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,7 +20,7 @@ public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity
         String query =  "CREATE TABLE actionTypeParams(\n" +
                         "   id BIGINT AUTO_INCREMENT PRIMARY KEY,\n" +
                         "   name VARCHAR(255) NOT NULL,\n" +
-                        "   description VARCHAR(255) NOT NULL" +
+                        "   description VARCHAR(255) NOT NULL\n" +
                         ");";
 
         executeDbQuery(query);
@@ -34,7 +33,7 @@ public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity
 
     public void fillTable() {
 
-        HashMap<Integer, ActionTypeParamEntity> predefinedMap = ActionTypeParamEntity.getPredefinedMap();
+        HashMap<Long, ActionTypeParamEntity> predefinedMap = ActionTypeParamEntity.getActionTypeParamEntitiesMap();
         for (ActionTypeParamEntity actionTypeParamEntity : predefinedMap.values())
             insert(actionTypeParamEntity);
 
@@ -45,7 +44,8 @@ public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity
         String query =  "SELECT\n" +
                         "   actionTypeParams.id,\n" +
                         "   actionTypeParams.name,\n" +
-                        "   actionTypeParams.description\n" +
+                        "   actionTypeParams.description,\n" +
+                        "   paramRelations.autoGeneration\n" +
                         "FROM\n" +
                         "   paramRelations\n" +
                         "JOIN\n" +

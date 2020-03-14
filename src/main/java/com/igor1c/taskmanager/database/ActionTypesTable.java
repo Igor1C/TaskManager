@@ -2,7 +2,6 @@ package com.igor1c.taskmanager.database;
 
 import com.igor1c.taskmanager.entities.ActionTypeEntity;
 import com.igor1c.taskmanager.entities.BaseEntity;
-import com.igor1c.taskmanager.entities.TaskActionEntity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +35,7 @@ public class ActionTypesTable extends TableController<ActionTypeEntity> {
 
     public void fillTable() {
 
-        HashMap<Long, ActionTypeEntity> predefinedMap = ActionTypeEntity.getPredefinedMap();
+        HashMap<Long, ActionTypeEntity> predefinedMap = ActionTypeEntity.getActionTypeEntitiesMap();
         for (ActionTypeEntity actionTypeEntity : predefinedMap.values())
             insert(actionTypeEntity);
 

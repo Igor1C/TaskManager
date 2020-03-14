@@ -8,7 +8,7 @@
 
 </head>
 
-<body class="igor1c-main-page" ng-app="TaskManager" ng-controller="TaskManagerController">
+<body class="igor1c-mainPage" ng-app="TaskManager" ng-controller="TaskManagerController">
 
     <div id="userTasksControlPanel" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
@@ -40,59 +40,52 @@
 
 
 
-            <div class="igor1c-div-vertical-separator-sm"></div>
+            <div class="igor1c-separator-div-verticalSmall"></div>
 
             <!-- CARDS OF THE USER TASKS -->
 
             <div class="mdl-grid igor1c-grid-main">
                 <div class="mdl-cell mdl-cell--4-col" ng-repeat="userTask in userTasks">
-                    <div class="mdl-card mdl-card mdl-shadow--2dp igor1c-card">
+                    <div class="mdl-card mdl-card mdl-shadow--2dp igor1c-userTask-card">
                         <div class="mdl-card__menu">
-                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" th:ng-click="'userTaskOpenOnClick(userTask.id)'">
+                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+                                    th:ng-click="'userTaskOpenOnClick(userTask.id)'">
                                 <i class="material-icons">open_in_new</i>
                             </button>
                         </div>
 
-                        <div class="mdl-card__title igor1c-card-caption">
-                            <h2 class="mdl-card__title-text">ID: {{userTask.id}}</h2>
+                        <div class="mdl-card__title igor1c-userTask-cardCaption">
+                            <h2 class="mdl-card__title-text igor1c-userTask-cardCaption-label">{{userTask.name}}</h2>
                         </div>
-                        <div class="mdl-card__supporting-text mdl-shadow--2dp igor1c-supporting-label">
-                            Name: {{userTask.name}}
+                        <div class="mdl-card__supporting-text mdl-shadow--2dp igor1c-userTask-cardInfo-label">
+                            ID: {{userTask.id}}
                         </div>
-                        <div class="mdl-card__supporting-text mdl-shadow--2dp igor1c-supporting-label">
+                        <div class="mdl-card__supporting-text mdl-shadow--2dp igor1c-userTask-cardInfo-label">
                             Actions quota: {{userTask.taskActionsSize}}
                         </div>
-                        <!--<div class="mdl-card__supporting-text mdl-shadow--2dp">
+                        <div class="mdl-card__supporting-text mdl-shadow--2dp igor1c-userTask-cardInfo-label">
                             Last exec.: {{userTask.lastExecutionString}}
-                        </div>-->
+                        </div>
+                        <div class="mdl-card__supporting-text mdl-shadow--2dp">
+                            <div class="igor1c-alignment-elementCenter igor1c-alignment-textCenter">
+                                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-save"
+                                        th:ng-click="'userTaskProcessOnClick(userTask.id)'">
+                                    <i class="material-icons">play_arrow</i>
+                                </button>
+                                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-cancel">
+                                    <i class="material-icons">stop</i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
 
 
-            <!-- TABLE OF THE USER TASKS -->
-
-            <table id="userTasks" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp igor1c-element-align-center" style="visibility: collapse">
-                <thead>
-                    <tr>
-                        <th class="igor1c-text-align-center">#</th>
-                        <th class="igor1c-text-align-center">Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="igor1c-text-align-center" ng-repeat="userTask in userTasks" th:ng-click="'userTaskOnClick(userTask.id)'">
-                        <td class="igor1c-text-align-center">{{userTask.id}}</td>
-                        <td>{{userTask.name}}</td>
-                    </tr>
-                </tbody>
-            </table>
-
-
-
             <!-- ADD BUTTON OF THE USER TASK -->
 
-            <div class="igor1c-text-align-center">
+            <div class="igor1c-alignment-textCenter">
                 <button id="userTaskAdd" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" th:ng-click="'userTaskAddOnClick()'">
                     <i class="material-icons">add</i>
                 </button>
@@ -111,17 +104,13 @@
                 <!-- MENU OF THE USER TASK -->
 
                 <div class="mdl-card__menu">
-                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-save"
-                            th:ng-click="'userTaskSaveOnClick()'">
+                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-save" th:ng-click="'userTaskSaveOnClick()'">
                         <i class="material-icons">save</i>
                     </button>
-                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-cancel"
-                            th:ng-click="'userTaskCancelOnClick()'">
+                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-cancel" th:ng-click="'userTaskCancelOnClick()'">
                         <i class="material-icons">block</i>
                     </button>
-                    <button id="userTaskButtonDelete"
-                            class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-delete"
-                            th:ng-click="'userTaskDeleteOnClick()'">
+                    <button id="userTaskButtonDelete" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-delete" th:ng-click="'userTaskDeleteOnClick()'">
                         <i class="material-icons">delete</i>
                     </button>
                 </div>
@@ -130,29 +119,42 @@
 
                 <!-- INPUT OF THE USER TASK -->
 
-                <div id="userTaskNameDiv" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input id="userTaskName" class="mdl-textfield__input igor1c-input-enabled" type="text"
-                           ng-model="userTask.name" ng-change="userTaskInputOnChange()">
-                    <label class="mdl-textfield__label igor1c-userTask-label" for="userTaskName">Name</label>
-                </div>
-                <br/>
-                <div id="userTaskIdDiv" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input id="userTaskId" class="mdl-textfield__input igor1c-input-enabled" type="text"
-                           ng-model="userTask.id" disabled>
-                    <label class="mdl-textfield__label igor1c-userTask-label" for="userTaskId">ID</label>
-                </div>
-                <br/>
-                <div id="userTaskActionsQuotaDiv" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input id="userTaskActionsQuota" class="mdl-textfield__input igor1c-input-enabled" type="text"
-                           ng-model="userTask.taskActionsSize" disabled>
-                    <label class="mdl-textfield__label igor1c-userTask-label" for="userTaskActionsQuota">Quota of
-                        actions</label>
-                </div>
-                <br/>
-                <div id="userTaskLastExecDiv" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input id="userTaskLastExec" class="mdl-textfield__input igor1c-input-enabled" type="text"
-                           ng-model="userTask.lastExecutionString" disabled>
-                    <label class="mdl-textfield__label igor1c-userTask-label" for="userTaskLastExec">Last exec.</label>
+                <div class="mdl-card mdl-card mdl-shadow--2dp igor1c-userTask-card igor1c-alignment-elementCenter">
+
+                    <span class="mdl-chip mdl-chip--contact igor1c-userTask-chip">
+                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-userTask-chip-label">Name</span>
+                        <span class="mdl-chip__text">
+                            <input type="text" class="igor1c-userTask-chip-input" ng-model="userTask.name" ng-change="userTaskInputOnChange()"/>
+                        </span>
+                    </span>
+                    <span class="mdl-chip mdl-chip--contact igor1c-userTask-chip">
+                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-userTask-chip-label">ID</span>
+                        <span class="mdl-chip__text">
+                            <input type="text" class="igor1c-userTask-chip-input" ng-model="userTask.id" disabled>
+                        </span>
+                    </span>
+                    <span class="mdl-chip mdl-chip--contact igor1c-userTask-chip">
+                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-userTask-chip-label">Actions</span>
+                        <span class="mdl-chip__text">
+                            <input type="text" class="igor1c-userTask-chip-input" ng-model="userTask.taskActionsSize" disabled>
+                        </span>
+                    </span>
+                    <span class="mdl-chip mdl-chip--contact igor1c-userTask-chip">
+                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-userTask-chip-label">Last exec.</span>
+                        <span class="mdl-chip__text">
+                            <input type="text" class="igor1c-userTask-chip-input" ng-model="userTask.lastExecutionString" disabled>
+                        </span>
+                    </span>
+
+                    <div class="igor1c-userTask-div-execution igor1c-alignment-elementCenter">
+                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-save"
+                                th:ng-click="'userTaskProcessOnClick(userTask.id)'">
+                            <i class="material-icons">play_arrow</i>
+                        </button>
+                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-cancel">
+                            <i class="material-icons">stop</i>
+                        </button>
+                    </div>
                 </div>
 
 
@@ -162,7 +164,7 @@
                 <div class="mdl-grid igor1c-grid-dialog">
 
                     <div class="mdl-cell mdl-cell--4-col" ng-repeat="taskAction in userTask.taskActions">
-                        <div class="mdl-card mdl-card mdl-shadow--2dp igor1c-card">
+                        <div class="mdl-card mdl-card mdl-shadow--2dp igor1c-userTask-card">
 
                             <div class="mdl-card__menu">
                                 <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-cancel"
@@ -180,58 +182,105 @@
                                 </button>
                             </div>
 
-                            <div class="mdl-card__title igor1c-card-caption">
+                            <div class="mdl-card__title igor1c-userTask-cardCaption">
                                 <h2 class="mdl-card__title-text">ID: {{taskAction.id}}</h2>
                             </div>
-                            <span class="mdl-chip mdl-chip--contact igor1c-chip">
-                                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-chip-label igor1c-chip-label">Name</span>
+                            <span class="mdl-chip mdl-chip--contact igor1c-userTask-chip">
+                                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-taskAction-chip-label">Name</span>
                                 <span class="mdl-chip__text">
-                                    <input type="text" class="igor1c-chip-input" ng-model="taskAction.name"
+                                    <input type="text" class="igor1c-userTask-chip-input" ng-model="taskAction.name"
                                            ng-change="taskActionInputOnChange(taskAction)"/>
                                 </span>
                             </span>
-                            <span class="mdl-chip mdl-chip--contact igor1c-chip">
-                                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-chip-label igor1c-chip-label">Action type</span>
+                            <span class="mdl-chip mdl-chip--contact igor1c-userTask-chip">
+                                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-taskAction-chip-label">Action type</span>
                                 <span class="mdl-chip__text">
-                                    <select class="igor1c-select" ng-model="taskAction.actionType"
+                                    <select class="igor1c-taskAction-chip-select" ng-model="taskAction.actionType"
                                             ng-change="taskActionTypeOnChange(taskAction)">
                                         <option ng-repeat="actionType in actionTypes" ng-value="actionType.id">{{actionType.description}}</option>
                                     </select>
                                 </span>
                             </span>
-                            <span class="mdl-chip mdl-chip--contact igor1c-chip">
-                                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-chip-label igor1c-chip-label">Order</span>
+                            <span class="mdl-chip mdl-chip--contact igor1c-userTask-chip">
+                                <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-taskAction-chip-label">Order</span>
                                 <span class="mdl-chip__text">
-                                    <input type="text" class="igor1c-chip-input" ng-model="taskAction.taskOrder"
+                                    <input type="text" class="igor1c-userTask-chip-input" ng-model="taskAction.taskOrder"
                                            disabled>
                                 </span>
                             </span>
                         </div>
 
+
+
                         <!-- PARAMS OF THE TASK ACTION -->
 
-                        <div class="mdl-card mdl-card mdl-shadow--2dp igor1c-card">
-                            <div ng-repeat="taskActionParam in taskAction.taskActionParams">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input id="taskActionParamName{{taskActionParam.indexInTaskAction}}"
-                                           class="mdl-textfield__input igor1c-input" type="text"
-                                           ng-model="taskActionParam.paramValue"
-                                           ng-change="taskActionParamInputOnChange(taskAction, taskActionParam)">
-                                    <label class="mdl-textfield__label igor1c-taskActionParam-label"
-                                           for="taskActionParamName{{taskActionParam.indexInTaskAction}}">{{taskActionParam.name}}</label>
+                        <div class="mdl-card mdl-card mdl-shadow--2dp igor1c-userTask-card">
+                            <div ng-repeat="taskActionParam in taskAction.taskActionParams" class="igor1c-param-card">
+
+                                <div class="igor1c-param-cardCaption-div igor1c-alignment-textCenter">
+                                    <label>
+                                        {{taskActionParam.actionTypeParamDescription}}
+                                    </label>
                                 </div>
+
+                                <div class="igor1c-param-div-select">
+                                    <input type="checkbox" id="checkbox{{taskActionParam.indexInTaskAction}}"
+                                           class="igor1c-param-checkBox"
+                                           ng-model="taskActionParam.useExtraParam"
+                                           ng-change="taskActionParamInputOnChange(taskAction, taskActionParam, false)"
+                                           ng-disabled="taskActionParam.autoGeneration">
+                                    <label class="igor1c-param-label-checkBox">
+                                        Use extra param
+                                    </label>
+                                </div>
+
+                                <input
+                                        type="text"
+                                        id="taskActionParamName{{taskActionParam.indexInTaskAction}}"
+                                        class="igor1c-param-input"
+                                        ng-if="taskActionParam.useExtraParam == false"
+                                        ng-model="taskActionParam.paramValue"
+                                        ng-change="taskActionParamInputOnChange(taskAction, taskActionParam, false)"
+                                        ng-disabled="taskActionParam.autoGeneration">
+
+                                <div class="igor1c-param-div-select" ng-if="taskActionParam.useExtraParam == true">
+                                    <label class="igor1c-param-label-select">Task action:</label>
+                                    <select
+                                            class="igor1c-param-select"
+                                            ng-model="taskActionParam.extraParamTaskAction"
+                                            ng-change="taskActionParamInputOnChange(taskAction, taskActionParam, true)"
+                                            ng-disabled="taskActionParam.autoGeneration">
+                                        <option ng-value="null"></option>
+                                        <option ng-repeat="savedTaskAction in userTask.savedTaskActions"
+                                                ng-value="savedTaskAction.id">{{savedTaskAction.name}}
+                                            (ID={{savedTaskAction.id}})
+                                        </option>
+                                    </select>
+                                    <label
+                                            class="igor1c-param-label-select">Param:</label>
+                                    <select
+                                            class="igor1c-param-select"
+                                            ng-model="taskActionParam.extraParamType"
+                                            ng-change="taskActionParamInputOnChange(taskAction, taskActionParam, false)"
+                                            ng-disabled="taskActionParam.autoGeneration">
+                                        <option ng-value="null"></option>
+                                        <option ng-repeat="actionType in taskActionParam.extraParamActionTypes"
+                                                ng-value="actionType.id">{{actionType.description}}
+                                        </option>
+                                    </select>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
 
 
+
                 <!-- ADD BUTTON OF THE TASK ACTION -->
 
-                <div class="igor1c-text-align-center">
-                    <button id="taskActionAdd"
-                            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"
-                            th:ng-click="'addTaskActionOnClick()'">
+                <div class="igor1c-alignment-textCenter">
+                    <button id="taskActionAdd" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" th:ng-click="'addTaskActionOnClick()'">
                         <i class="material-icons">add</i>
                     </button>
                 </div>
@@ -239,7 +288,6 @@
             </div>
 
         </dialog>
-
 
 
         <!-- FOOTER -->

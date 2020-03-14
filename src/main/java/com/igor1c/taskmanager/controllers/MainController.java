@@ -1,15 +1,19 @@
 package com.igor1c.taskmanager.controllers;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.igor1c.taskmanager.controllers.requests.*;
 import com.igor1c.taskmanager.controllers.responses.BaseEntityListResponse;
 import com.igor1c.taskmanager.database.ActionTypesTable;
 import com.igor1c.taskmanager.database.TaskActionsTable;
 import com.igor1c.taskmanager.database.UserTasksTable;
-import com.igor1c.taskmanager.entities.*;
+import com.igor1c.taskmanager.entities.BaseEntity;
+import com.igor1c.taskmanager.entities.TaskActionEntity;
+import com.igor1c.taskmanager.entities.TaskActionParamEntity;
+import com.igor1c.taskmanager.entities.UserTaskEntity;
+import com.igor1c.taskmanager.tasks.UserTaskController;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,13 +22,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 @Controller
-@Scope("session")
+@Scope(value = "session")
 public class MainController {
 
-    UserTaskEntity userTaskEntity;
+    private UserTaskEntity userTaskEntity;
 
     @GetMapping("")
-    public String main(Model model) {
+    public String main() {
 
         return "main.html";
 
@@ -122,6 +126,16 @@ public class MainController {
 
     }
 
+    @PostMapping("/processUserTask")
+    public ResponseEntity<?> processUserTask(@RequestBody IdRequest idRequest) {
+
+        UserTaskController userTaskController = new UserTaskController(idRequest.getId());
+        userTaskController.processUserTask();
+
+        return ResponseEntity.ok(new String());
+
+    }
+
 
 
     /* TASK ACTIONS */
@@ -195,6 +209,15 @@ public class MainController {
 
     }
 
+    @PostMapping("/getSavedTaskActions")
+    public ResponseEntity<?> getSavedTaskActions() {
+
+        ArrayList<BaseEntity> currentTaskActions = userTaskEntity.getTaskActions();
+
+        return ResponseEntity.ok(currentTaskActions);
+
+    }
+
 
 
     /* TASK ACTION PARAMS */
@@ -206,6 +229,9 @@ public class MainController {
 
         TaskActionParamEntity taskActionParamEntity = (TaskActionParamEntity) taskActionEntity.getTaskActionParams().get(saveTaskActionParamRequest.getIndexInTaskAction());
         taskActionParamEntity.setParamValue(saveTaskActionParamRequest.getParamValue());
+        taskActionParamEntity.setUseExtraParam(saveTaskActionParamRequest.isUseExtraParam());
+        taskActionParamEntity.setExtraParamTaskAction(saveTaskActionParamRequest.getExtraParamTaskAction());
+        taskActionParamEntity.setExtraParamType(saveTaskActionParamRequest.getExtraParamType());
 
         return ResponseEntity.ok(taskActionEntity);
 

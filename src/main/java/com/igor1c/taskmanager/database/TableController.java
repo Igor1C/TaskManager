@@ -18,14 +18,24 @@ import java.util.ArrayList;
 public abstract class TableController<E extends BaseEntity> extends DBHelper implements TableOperations<E> {
 
     private String tableName;
-    private ArrayList<String> tableFields;
+    private ArrayList<String> tableFields = new ArrayList<>();
+    private ArrayList<String> tableBooleanFields = new ArrayList<>();
 
 
+
+    /* CONSTRUCTORS */
 
     public TableController(String tableName, String[] fields) {
 
         setTableName(tableName);
         fillTableFields(fields);
+
+    }
+
+    public TableController(String tableName, String[] fields, String[] booleanFields) {
+
+        this(tableName, fields);
+        fillTableBooleanFields(booleanFields);
 
     }
 
@@ -38,13 +48,28 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
     }
 
+    private void fillTableBooleanFields(String[] booleanFields) {
 
+        ArrayList<String> fieldsArray = new ArrayList<>();
+        for (String currentField : booleanFields)
+            fieldsArray.add(currentField);
+        setTableBooleanFields(fieldsArray);
+
+    }
+
+
+
+    /* TABLE */
 
     public abstract void createTable();
 
     public abstract void createForeignKeys();
 
     public abstract void createExtraConstraints();
+
+
+
+    /* CRUD */
 
     public ArrayList<BaseEntity> select() {
         return selectOrder("", "");
@@ -128,6 +153,8 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
 
 
+    /* FUNCTIONAL */
+
     protected long executeDbQuery(String query) {
 
         openConnection();
@@ -202,6 +229,14 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
             resultString = resultString.concat(field);
         }
 
+        for (String field : getTableBooleanFields()) {
+            if (firstIteration)
+                firstIteration = false;
+            else
+                resultString = resultString.concat(", ");
+            resultString = resultString.concat(field);
+        }
+
         resultString = resultString.concat(")");
         return resultString;
 
@@ -224,7 +259,10 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
         Class clazz = baseEntity.getClass();
 
         for (String currentFieldName : getTableFields())
-            resultString = processValueStringField(baseEntity, resultString, firstIteration, clazz, currentFieldName);
+            resultString = processValueStringField(baseEntity, resultString, firstIteration, clazz, currentFieldName, "get");
+
+        for (String currentBooleanFieldName : getTableBooleanFields())
+            resultString = processValueStringField(baseEntity, resultString, firstIteration, clazz, currentBooleanFieldName, "is");
 
         resultString = resultString.concat(")");
 
@@ -239,7 +277,7 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
     }
 
-    private String processValueStringField(BaseEntity baseEntity, String resultString, BooleanHolder firstIteration, Class clazz, String currentFieldName) {
+    private String processValueStringField(BaseEntity baseEntity, String resultString, BooleanHolder firstIteration, Class clazz, String currentFieldName, String methodKeyword) {
 
         try {
 
@@ -248,15 +286,19 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
             else
                 resultString = resultString.concat(", ");
 
-            String methodName = "get" + currentFieldName.substring(0, 1).toUpperCase() + currentFieldName.substring(1);
+            String methodName = methodKeyword + currentFieldName.substring(0, 1).toUpperCase() + currentFieldName.substring(1);
             Method method = clazz.getMethod(methodName);
+
             Object currentValue = method.invoke(baseEntity);
-            if (currentValue != null)
+            if (currentValue == null)
+                resultString = resultString.concat("NULL");
+            else
                 if (currentValue.getClass() == String.class
                         || currentValue.getClass() == LocalTime.class)
                     resultString = resultString.concat("'" + currentValue + "'");
-                else
+                else {
                     resultString = resultString.concat(currentValue.toString());
+                }
 
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
@@ -267,6 +309,8 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
     }
 
 
+
+    /* GETTERS & SETTERS */
 
     protected String getTableName() {
         return tableName;
@@ -282,6 +326,14 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
     protected void setTableFields(ArrayList<String> tableFields) {
         this.tableFields = tableFields;
+    }
+
+    public ArrayList<String> getTableBooleanFields() {
+        return tableBooleanFields;
+    }
+
+    public void setTableBooleanFields(ArrayList<String> tableBooleanFields) {
+        this.tableBooleanFields = tableBooleanFields;
     }
 
 }
