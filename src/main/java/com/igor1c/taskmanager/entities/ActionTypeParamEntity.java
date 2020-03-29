@@ -22,11 +22,9 @@ public class ActionTypeParamEntity extends BaseEntity {
     public static final int ONE_C_DB_FILE_PATH = 10;
     public static final int ONE_C_DB_SERVER_SRV = 11;
     public static final int ONE_C_DB_SERVER_REF = 12;
-    public static final int ONE_C_UNLOAD_ONLY_CF = 13;
-    public static final int FTP_ADDRESS = 14;
-    public static final int PORT = 15;
-    public static final int TIMEOUT = 16;
-    public static final int FILE_NAME_PREFIX = 17;
+    public static final int FTP_ADDRESS = 13;
+    public static final int PORT = 14;
+    public static final int TIMEOUT = 15;
 
     private static HashMap<Long, ActionTypeParamEntity> ACTION_TYPE_PARAM_ENTITIES_MAP;
     private static HashMap<Long, ActionTypeParamsEnum> ACTION_TYPE_PARAMS_ENUM_MAP;
@@ -39,7 +37,6 @@ public class ActionTypeParamEntity extends BaseEntity {
 
     private String name;
     private String description;
-    private boolean booleanType;
 
 
 
@@ -62,11 +59,9 @@ public class ActionTypeParamEntity extends BaseEntity {
         actionTypeParamEntities.add(new ActionTypeParamEntity(ONE_C_DB_FILE_PATH, "ONE_C_DB_FILE_PATH", "1C file database - Path"));
         actionTypeParamEntities.add(new ActionTypeParamEntity(ONE_C_DB_SERVER_SRV, "ONE_C_DB_SERVER_SRV", "1C server database - Server name"));
         actionTypeParamEntities.add(new ActionTypeParamEntity(ONE_C_DB_SERVER_REF, "ONE_C_DB_SERVER_REF", "1C server database - Database name"));
-        actionTypeParamEntities.add(new ActionTypeParamEntity(ONE_C_UNLOAD_ONLY_CF, "ONE_C_UNLOAD_ONLY_CF", "Unload only CF", true));
         actionTypeParamEntities.add(new ActionTypeParamEntity(FTP_ADDRESS, "FTP_ADDRESS", "FTP address"));
         actionTypeParamEntities.add(new ActionTypeParamEntity(PORT, "PORT", "Port"));
         actionTypeParamEntities.add(new ActionTypeParamEntity(TIMEOUT, "TIMEOUT", "Timeout"));
-        actionTypeParamEntities.add(new ActionTypeParamEntity(FILE_NAME_PREFIX, "FILE_NAME_PREFIX", "File name prefix"));
 
         for (ActionTypeParamEntity actionTypeParamEntity : actionTypeParamEntities)
             ACTION_TYPE_PARAM_ENTITIES_MAP.put(actionTypeParamEntity.getId(), actionTypeParamEntity);
@@ -89,11 +84,9 @@ public class ActionTypeParamEntity extends BaseEntity {
                         ONE_C_DB_FILE_PATH,
                         ONE_C_DB_SERVER_SRV,
                         ONE_C_DB_SERVER_REF,
-                        ONE_C_UNLOAD_ONLY_CF,
                         FTP_ADDRESS,
                         PORT,
-                        TIMEOUT,
-                        FILE_NAME_PREFIX));
+                        TIMEOUT));
 
         ArrayList<ActionTypeParamsEnum> actionTypeParamsEnum = new ArrayList<>(
                 Arrays.asList(
@@ -109,11 +102,9 @@ public class ActionTypeParamEntity extends BaseEntity {
                         ActionTypeParamsEnum.ONE_C_DB_FILE_PATH,
                         ActionTypeParamsEnum.ONE_C_DB_SERVER_SRV,
                         ActionTypeParamsEnum.ONE_C_DB_SERVER_REF,
-                        ActionTypeParamsEnum.ONE_C_UNLOAD_ONLY_CF,
                         ActionTypeParamsEnum.FTP_ADDRESS,
                         ActionTypeParamsEnum.PORT,
-                        ActionTypeParamsEnum.TIMEOUT,
-                        ActionTypeParamsEnum.FILE_NAME_PREFIX
+                        ActionTypeParamsEnum.TIMEOUT
                 )
         );
 
@@ -155,13 +146,6 @@ public class ActionTypeParamEntity extends BaseEntity {
 
     }
 
-    public ActionTypeParamEntity(long id, String name, String description, boolean booleanType) {
-
-        this(id, name, description);
-        setBooleanType(booleanType);
-
-    }
-
 
 
     /* FUNCTIONAL */
@@ -172,7 +156,6 @@ public class ActionTypeParamEntity extends BaseEntity {
             setId(resultSet.getLong(resultSet.findColumn("id")));
             setName(resultSet.getString(resultSet.findColumn("name")));
             setDescription(resultSet.getString(resultSet.findColumn("description")));
-            setBooleanType(resultSet.getBoolean(resultSet.findColumn("booleanType")));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -197,14 +180,6 @@ public class ActionTypeParamEntity extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public boolean isBooleanType() {
-        return booleanType;
-    }
-
-    public void setBooleanType(boolean booleanType) {
-        this.booleanType = booleanType;
     }
 
 }

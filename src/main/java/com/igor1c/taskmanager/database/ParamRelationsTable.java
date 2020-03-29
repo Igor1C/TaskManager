@@ -53,7 +53,6 @@ public class ParamRelationsTable extends TableController<ParamRelationEntity> {
 
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.EXECUTABLE_PATH, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_FILE_PATH, false));
-        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.ONE_C_UNLOAD_ONLY_CF, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.USER, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.PASSWORD, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_FILE_UNLOAD_DT, ActionTypeParamEntity.DESTINATION_FOLDER, false));
@@ -62,7 +61,6 @@ public class ParamRelationsTable extends TableController<ParamRelationEntity> {
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.EXECUTABLE_PATH, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_SERVER_SRV, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_DB_SERVER_REF, false));
-        insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.ONE_C_UNLOAD_ONLY_CF, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.USER, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.PASSWORD, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.DESTINATION_FOLDER, false));
@@ -70,7 +68,6 @@ public class ParamRelationsTable extends TableController<ParamRelationEntity> {
 
         insert(new ParamRelationEntity(ActionTypeEntity.ZIP_PACK_ARCHIVE, ActionTypeParamEntity.SOURCE_FOLDER, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ZIP_PACK_ARCHIVE, ActionTypeParamEntity.DESTINATION_FOLDER, false));
-        insert(new ParamRelationEntity(ActionTypeEntity.ZIP_PACK_ARCHIVE, ActionTypeParamEntity.FILE_NAME_PREFIX, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ZIP_PACK_ARCHIVE, ActionTypeParamEntity.DESTINATION_FILE, true));
 
         insert(new ParamRelationEntity(ActionTypeEntity.FTP_UPLOAD_FILE, ActionTypeParamEntity.SOURCE_FOLDER, false));

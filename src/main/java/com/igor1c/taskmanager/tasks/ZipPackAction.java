@@ -29,16 +29,11 @@ public class ZipPackAction extends TaskActionController {
         destinationFolder = appendBackslash(destinationFolder);
         String destinationFile = generateFileNameFromCurrentDate() + ".zip";
 
-        String fileNamePrefix = getParamValue(ActionTypeParamsEnum.FILE_NAME_PREFIX);
-        if (!fileNamePrefix.equals("")) {
-            destinationFile = fileNamePrefix + " - " + destinationFile;
-        }
-
         setParamValue(ActionTypeParamsEnum.DESTINATION_FILE, destinationFile);
 
         String zipPath = destinationFolder + destinationFile;
         try (FileOutputStream fos = new FileOutputStream(zipPath);
-             ZipOutputStream zos = new ZipOutputStream(fos)){
+                ZipOutputStream zos = new ZipOutputStream(fos)) {
 
             zipFile(fileToZip, fileToZip.getName(), zos);
         } catch (FileNotFoundException e) {
@@ -63,16 +58,14 @@ public class ZipPackAction extends TaskActionController {
 
         } else {
 
-            try (FileInputStream fis = new FileInputStream(fileToZip)) {
-                ZipEntry zipEntry = new ZipEntry(fileName);
-                zos.putNextEntry(zipEntry);
+            FileInputStream fis = new FileInputStream(fileToZip);
+            ZipEntry zipEntry = new ZipEntry(fileName);
+            zos.putNextEntry(zipEntry);
 
-                byte[] bytes = new byte[1024];
-                int length;
-                while ((length = fis.read(bytes)) >= 0) {
-                    zos.write(bytes, 0, length);
-                }
-                zos.closeEntry();
+            byte[] bytes = new byte[1024];
+            int length;
+            while ((length = fis.read(bytes)) >= 0) {
+                zos.write(bytes, 0, length);
             }
         }
 

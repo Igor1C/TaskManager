@@ -1,13 +1,14 @@
 package com.igor1c.taskmanager.entities;
 
-import com.igor1c.taskmanager.database.UserTaskSchedulesTable;
-import org.json.JSONObject;
+import com.igor1c.taskmanager.entities.BaseEntity;
+import com.igor1c.taskmanager.helpers.DateHelper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class UserTaskScheduleEntity extends BaseEntity {
 
@@ -50,37 +51,6 @@ public class UserTaskScheduleEntity extends BaseEntity {
 
 
 
-    /* JSON */
-
-    @Override
-    public void insertUpdateFromJsonObject(JSONObject jsonObject) {
-
-        if (jsonObject.has("scheduleType")) {
-            setScheduleType(ScheduleTypeEntity
-                            .getScheduleTypesEnumReverseMap()
-                            .get(ScheduleTypesEnum
-                                .getValueFromString(jsonObject.getString("scheduleType"))));
-            setScheduleTimeString(jsonObject.getString("scheduleTime"));
-            setIntervalTime(jsonObject.getLong("intervalTime"));
-        }
-
-    }
-
-    @Override
-    public JSONObject toJsonObject() {
-
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", getId());
-        jsonObject.put("scheduleType", getScheduleTypeEnum());
-        jsonObject.put("scheduleTime", getScheduleTime());
-        jsonObject.put("intervalTime", getIntervalTime());
-
-        return jsonObject;
-
-    }
-
-
-
     /* GETTERS & SETTERS OF THE DATABASE FIELDS */
 
     public long getUserTask() {
@@ -93,13 +63,6 @@ public class UserTaskScheduleEntity extends BaseEntity {
 
     public long getScheduleType() {
         return scheduleType;
-    }
-
-    public ScheduleTypesEnum getScheduleTypeEnum() {
-
-        long currentScheduleType = getScheduleType();
-        return ScheduleTypeEntity.getScheduleTypesEnumMap().get(currentScheduleType);
-
     }
 
     public void setScheduleType(long scheduleType) {
@@ -137,13 +100,11 @@ public class UserTaskScheduleEntity extends BaseEntity {
 
     public void setScheduleTimeString(String time) {
 
-        if (time == null) {
+        if (time != null) {
+            setScheduleTimeFromTime(Time.valueOf(time));
+        } else {
             LocalTime localTime = null;
             setScheduleTime(localTime);
-        } else if (time.length() == 8) {
-            setScheduleTimeFromTime(Time.valueOf(time));
-        } else if (time.length() == 5) {
-            setScheduleTimeFromTime(Time.valueOf(time + ":00"));
         }
 
     }

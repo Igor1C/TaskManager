@@ -53,14 +53,8 @@ public class UserTasksTable extends TableController<UserTaskEntity> {
         UserTaskSchedulesTable userTaskSchedulesTable = new UserTaskSchedulesTable();
         for (BaseEntity userTaskScheduleBaseEntity : entity.getUserTaskSchedules()) {
             UserTaskScheduleEntity userTaskScheduleEntity = (UserTaskScheduleEntity) userTaskScheduleBaseEntity;
-
-            if (userTaskScheduleEntity.getScheduleType() == 0
-                    && userTaskScheduleEntity.getId() != 0) {
-                userTaskSchedulesTable.deleteById(userTaskScheduleBaseEntity.getId());
-            } else {
-                userTaskScheduleEntity.setUserTask(id);
-                userTaskSchedulesTable.insertUpdate(userTaskScheduleEntity);
-            }
+            userTaskScheduleEntity.setUserTask(id);
+            userTaskSchedulesTable.insertUpdate(userTaskScheduleEntity);
         }
 
         return id;
@@ -69,29 +63,10 @@ public class UserTasksTable extends TableController<UserTaskEntity> {
 
     public void fullDelete(UserTaskEntity entity) {
 
-        // First of all method deletes all params of all task actions.
-        deleteTaskActionParams(entity);
-
-        // Then method deletes all task actions (and task actions are already empty).
         entity.getTaskActions().clear();
         deleteUnusedTaskActions(entity);
-
         deleteUserTaskSchedules(entity);
         deleteById(entity.getId());
-
-    }
-
-    public void deleteTaskActionParams(BaseEntity baseEntity) {
-
-        UserTaskEntity userTaskEntity = (UserTaskEntity) baseEntity;
-
-        TaskActionsTable taskActionsTable = new TaskActionsTable();
-        ArrayList<BaseEntity> taskActionsArrayList = taskActionsTable.select("userTask=" + userTaskEntity.getId());
-
-        for (BaseEntity currentEntity : taskActionsArrayList) {
-            TaskActionEntity currentTaskAction = (TaskActionEntity) currentEntity;
-            taskActionsTable.deleteTaskActionParams(currentTaskAction);
-        }
 
     }
 
@@ -101,17 +76,22 @@ public class UserTasksTable extends TableController<UserTaskEntity> {
         UserTaskEntity userTaskEntity = (UserTaskEntity) baseEntity;
         ArrayList<BaseEntity> currentTaskActionsArrayList = userTaskEntity.getTaskActions();
 
+        TaskActionsTable taskActionsTable = new TaskActionsTable();
+
         ArrayList<Long> currentTaskActionsIdArray = EntityHelper.generateIdArray(currentTaskActionsArrayList);
 
-        TaskActionsTable taskActionsTable = new TaskActionsTable();
         ArrayList<BaseEntity> taskActionsArrayList = taskActionsTable.select("userTask=" + userTaskEntity.getId());
-
         for (BaseEntity currentEntity : taskActionsArrayList) {
             TaskActionEntity currentTaskAction = (TaskActionEntity) currentEntity;
             long currentTaskActionId = currentTaskAction.getId();
 
             if (!currentTaskActionsIdArray.contains(currentTaskActionId))
                 taskActionsTable.fullDelete(currentTaskAction);
+        }
+
+        for (BaseEntity currentEntity : currentTaskActionsArrayList) {
+            TaskActionEntity currentTaskAction = (TaskActionEntity) currentEntity;
+            taskActionsTable.deleteUnusedTaskActionParams(currentTaskAction);
         }
 
     }

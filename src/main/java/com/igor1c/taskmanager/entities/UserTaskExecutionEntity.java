@@ -4,6 +4,9 @@ import com.igor1c.taskmanager.helpers.DateHelper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class UserTaskExecutionEntity extends BaseEntity {

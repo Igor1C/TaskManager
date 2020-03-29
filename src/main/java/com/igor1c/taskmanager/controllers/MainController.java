@@ -2,22 +2,16 @@ package com.igor1c.taskmanager.controllers;
 
 import com.igor1c.taskmanager.controllers.requests.*;
 import com.igor1c.taskmanager.controllers.responses.BaseEntityListResponse;
-import com.igor1c.taskmanager.database.ActionTypesTable;
-import com.igor1c.taskmanager.database.TaskActionsTable;
-import com.igor1c.taskmanager.database.UserTasksTable;
+import com.igor1c.taskmanager.database.*;
 import com.igor1c.taskmanager.entities.*;
 import com.igor1c.taskmanager.tasks.UserTaskController;
-import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -43,26 +37,6 @@ public class MainController {
 
         userTaskEntity = new UserTaskEntity();
         return ResponseEntity.ok(userTaskEntity);
-
-    }
-
-    @PostMapping(value = "/uploadUserTask",
-            consumes = "multipart/form-data; charset=UTF-8")
-    public ResponseEntity<?> uploadUserTask(MultipartFile file) {
-
-        try {
-            String jsonString = new String(file.getBytes());
-            System.out.println("jsonString: " + jsonString);
-            JSONObject jsonObject = new JSONObject(jsonString);
-
-            System.out.println("Name: " + jsonObject.getString("name"));
-            UserTaskEntity userTaskEntity = new UserTaskEntity();
-            userTaskEntity.insertUpdateFromJsonObject(jsonObject);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return ResponseEntity.ok(null);
 
     }
 
@@ -93,16 +67,6 @@ public class MainController {
         table.fillEntity(userTaskEntity);
 
         return ResponseEntity.ok(userTaskEntity);
-
-    }
-
-    @PostMapping(value = "/getUserTaskJson",
-            produces = "application/text; charset=utf-8")
-    public ResponseEntity<?> getUserTaskJson() {
-
-        userTaskEntity.processTaskActionsMap();
-        JSONObject jsonObject = userTaskEntity.toJsonObject();
-        return ResponseEntity.ok(BaseEntity.beautifyJson(jsonObject));
 
     }
 
@@ -159,12 +123,8 @@ public class MainController {
     @PostMapping("/processUserTask")
     public ResponseEntity<?> processUserTask(@RequestBody IdRequest idRequest) {
 
-        //DBHelper.openStaticConnection();
-
-        UserTaskController userTaskController = new UserTaskController(idRequest.getId(), false);
+        UserTaskController userTaskController = new UserTaskController(idRequest.getId());
         userTaskController.processUserTask();
-
-        //DBHelper.closeStaticConnection();
 
         return ResponseEntity.ok(new String());
 
@@ -286,7 +246,6 @@ public class MainController {
 
         TaskActionParamEntity taskActionParamEntity = (TaskActionParamEntity) taskActionEntity.getTaskActionParams().get(saveTaskActionParamRequest.getIndexInTaskAction());
         taskActionParamEntity.setParamValue(saveTaskActionParamRequest.getParamValue());
-        taskActionParamEntity.setBooleanParamValue(saveTaskActionParamRequest.isBooleanParamValue());
         taskActionParamEntity.setUseExtraParam(saveTaskActionParamRequest.isUseExtraParam());
         taskActionParamEntity.setExtraParamTaskAction(saveTaskActionParamRequest.getExtraParamTaskAction());
         taskActionParamEntity.setExtraParamType(saveTaskActionParamRequest.getExtraParamType());
@@ -302,12 +261,8 @@ public class MainController {
     @PostMapping("/getActionTypes")
     public ResponseEntity<?> getActionTypes() {
 
-        //DBHelper.openStaticConnection();
-
         ActionTypesTable actionTypesTable = new ActionTypesTable();
         ArrayList<BaseEntity> entityArrayList = actionTypesTable.select();
-
-        //DBHelper.closeStaticConnection();
 
         return ResponseEntity.ok(entityArrayList);
 

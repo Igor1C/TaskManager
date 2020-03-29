@@ -2,35 +2,24 @@ package com.igor1c.taskmanager.entities;
 
 public class EntityFactory {
 
-    public final static String ACTION_TYPES = "actionTypes";
-    public final static String ACTION_TYPE_PARAMS = "actionTypeParams";
-    public final static String PARAM_RELATIONS = "paramRelations";
-    public final static String TASK_ACTION_PARAMS = "taskActionParams";
-    public final static String TASK_ACTIONS = "taskActions";
-    public final static String USER_TASKS = "userTasks";
-    public final static String USER_TASK_EXECUTIONS = "userTaskExecutions";
-    public final static String USER_TASK_SCHEDULES = "userTaskSchedules";
-
-
-
     public static BaseEntity createEntity(String tableName) {
 
         switch (tableName) {
-            case ACTION_TYPES:
+            case "actionTypes":
                 return new ActionTypeEntity();
-            case ACTION_TYPE_PARAMS:
+            case "actionTypeParams":
                 return new ActionTypeParamEntity();
-            case PARAM_RELATIONS:
+            case "paramRelations":
                 return new ParamRelationEntity();
-            case TASK_ACTION_PARAMS:
+            case "taskActionParams":
                 return new TaskActionParamEntity();
-            case TASK_ACTIONS:
+            case "taskActions":
                 return new TaskActionEntity();
-            case USER_TASKS:
+            case "userTasks":
                 return new UserTaskEntity();
-            case USER_TASK_EXECUTIONS:
+            case "userTaskExecutions":
                 return new UserTaskExecutionEntity();
-            case USER_TASK_SCHEDULES:
+            case "userTaskSchedules":
                 return new UserTaskScheduleEntity();
         }
 

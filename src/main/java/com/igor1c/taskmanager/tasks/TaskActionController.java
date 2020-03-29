@@ -112,13 +112,6 @@ public abstract class TaskActionController implements TaskActionProcessing {
 
     }
 
-    protected boolean getBooleanParamValue(ActionTypeParamsEnum actionTypeParamsEnum) {
-
-        TaskActionParamEntity taskActionParamEntity = paramEntities.get(actionTypeParamsEnum);
-        return taskActionParamEntity.isBooleanParamValue();
-
-    }
-
     private String getExtraParamValue(TaskActionParamEntity taskActionParamEntity) {
 
         long taskActionId = taskActionParamEntity.getExtraParamTaskAction();

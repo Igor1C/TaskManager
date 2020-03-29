@@ -13,28 +13,23 @@ import java.util.Date;
 public class UserTaskController {
 
     private UserTaskEntity userTaskEntity;
-    private boolean autoExecution;
 
 
 
     /* CONSTRUCTORS */
 
-    public UserTaskController(long id, boolean autoExecution) {
+    public UserTaskController(long id) {
 
         UserTasksTable userTasksTable = new UserTasksTable();
         UserTaskEntity userTaskEntity = (UserTaskEntity) userTasksTable.selectById(id);
         userTasksTable.fillEntity(userTaskEntity);
 
         setUserTaskEntity(userTaskEntity);
-        setAutoExecution(autoExecution);
 
     }
 
-    public UserTaskController(UserTaskEntity userTaskEntity, boolean autoExecution) {
-
+    public UserTaskController(UserTaskEntity userTaskEntity) {
         setUserTaskEntity(userTaskEntity);
-        setAutoExecution(autoExecution);
-
     }
 
 
@@ -60,7 +55,7 @@ public class UserTaskController {
         UserTaskExecutionEntity userTaskExecutionEntity = new UserTaskExecutionEntity(  userTaskEntity.getId(),
                                                                                         new Date(),
                                                                                         successfulExecution,
-                                                                                        isAutoExecution());
+                                                                                        true);
         userTaskExecutionsTable.insert(userTaskExecutionEntity);
 
     }
@@ -75,14 +70,6 @@ public class UserTaskController {
 
     public void setUserTaskEntity(UserTaskEntity userTaskEntity) {
         this.userTaskEntity = userTaskEntity;
-    }
-
-    public boolean isAutoExecution() {
-        return autoExecution;
-    }
-
-    public void setAutoExecution(boolean autoExecution) {
-        this.autoExecution = autoExecution;
     }
 
 }

@@ -2,7 +2,6 @@ package com.igor1c.taskmanager;
 
 import com.igor1c.taskmanager.database.UserTaskExecutionsTable;
 import com.igor1c.taskmanager.helpers.DBHelper;
-import com.igor1c.taskmanager.helpers.PropertiesHelper;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -11,6 +10,9 @@ import java.util.TimeZone;
 
 @SpringBootApplication
 public class Application {
+
+    final static String DEFAULT_PORT = "32380";
+    static int TICK_SECONDS_INTERVAL = 60;
 
     public static void main(String ... args) {
 
@@ -24,7 +26,6 @@ public class Application {
 
         TimeZone.setDefault(TimeZone.getDefault());
         DBHelper.createDatabase();
-        DBHelper.openStaticConnection();
 
         try {
             scheduleCheck();
@@ -36,22 +37,38 @@ public class Application {
 
     private static void processParameters(String[] args, HashMap<String, Object> props) {
 
-        props.put("server.port", PropertiesHelper.getPORT());
-        props.put("spring.datasource.url", PropertiesHelper.getDbPath());
-        props.put("spring.datasource.username", PropertiesHelper.getDbUser());
-        props.put("spring.datasource.password", PropertiesHelper.getDbPassword());
+        setPort(args, props);
+        setTickInterval(args);
+
+    }
+
+    private static void setPort(String args[], HashMap<String, Object> props) {
+
+        String port;
+
+        if (args.length > 0)
+            port = args[0];
+        else
+            port = DEFAULT_PORT;
+
+        props.put("server.port", port);
+
+    }
+
+    private static void setTickInterval(String args[]) {
+
+        if (args.length > 1)
+            TICK_SECONDS_INTERVAL = Integer.parseInt(args[1]);
 
     }
 
     private static void scheduleCheck() throws InterruptedException {
 
-        int tickInterval = PropertiesHelper.getTickInterval();
-
         while (true) {
             UserTaskExecutionsTable userTaskExecutionsTable = new UserTaskExecutionsTable();
             userTaskExecutionsTable.executeAllSchedules();
 
-            Thread.sleep(tickInterval * 1000);
+            Thread.sleep(TICK_SECONDS_INTERVAL * 1000);
         }
 
     }

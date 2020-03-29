@@ -27,26 +27,10 @@ app.controller("TaskManagerController", function ($scope, $http) {
     }
 
     $scope.userTaskSaveOnClick = function() {
-        saveUserTask(true);
-    }
 
-    $scope.userTaskSaveCloseOnClick = function() {
-
-        saveUserTask(false);
+        saveUserTask();
         closeDialog();
 
-    }
-
-    $scope.userTaskUploadOnClick = function() {
-        uploadUserTask();
-    }
-
-    $scope.userTaskUploadOnChange = function() {
-        uploadUserTaskOnChange();
-    }
-
-    $scope.userTaskDownloadOnClick = function() {
-        downloadUserTask();
     }
 
     $scope.userTaskCancelOnClick = function() {
@@ -137,7 +121,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
         if (!dialog.showModal()) {
             dialogPolyfill.registerDialog(dialog);
-        }
+        };
         dialog.showModal();
 
     }
@@ -173,35 +157,6 @@ app.controller("TaskManagerController", function ($scope, $http) {
                 openDialog();
             }
         });
-
-    }
-
-    function uploadUserTask() {
-
-        let file = document.getElementById("uploadFile");
-        file.click();
-
-    }
-
-    function uploadUserTaskOnChange() {
-
-        let file = document.getElementById("uploadFile");
-
-        let formData = new FormData();
-        formData.append("file", file.files[0]);
-
-        $.ajax({
-            type: "POST",
-            url: "/uploadUserTask",
-            contentType: false,
-            processData: false,
-            data: formData,
-            success: function() {
-                getUserTasks();
-            }
-        });
-
-        file.value = "";
 
     }
 
@@ -248,9 +203,9 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     }
 
-    function saveUserTask(refreshAfterSave) {
+    function saveUserTask() {
 
-        let jsonData = JSON.stringify({id: $scope.userTask.id, name: $scope.userTask.name});
+        var jsonData = JSON.stringify({id: $scope.userTask.id, name: $scope.userTask.name});
 
         $.ajax({
             type: "POST",
@@ -259,30 +214,6 @@ app.controller("TaskManagerController", function ($scope, $http) {
             data: jsonData,
             success: function() {
                 getUserTasks();
-
-                if (refreshAfterSave) {
-                    getUserTaskFromSession();
-                }
-            }
-        });
-
-    }
-
-    function downloadUserTask() {
-
-        $.ajax({
-            type: "POST",
-            contentType: "application/text; charset=utf-8",
-            url: "/getUserTaskJson",
-            success: function(data) {
-                let blob = new Blob([data], { "type": "application/text" } );
-
-                let downloadLink = document.createElement("a");
-                downloadLink.href = window.URL.createObjectURL(blob);
-                downloadLink.download = $scope.userTask.name + ".txt";
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
             }
         });
 
@@ -323,7 +254,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             contentType: "application/json; charset=utf-8",
             url: "/modifyUserTaskEntity",
             data: jsonData,
-            success: function () {}
+            success: function (data) {}
         });
 
     }
@@ -384,7 +315,8 @@ app.controller("TaskManagerController", function ($scope, $http) {
             contentType: "application/json; charset=utf-8",
             url: "/saveUserTaskSchedule",
             data: jsonData,
-            success: function () {}
+            success: function (data) {
+            }
         });
 
     }
@@ -437,7 +369,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             contentType: "application/json; charset=utf-8",
             url: "/saveTaskAction",
             data: jsonData,
-            success: function () {}
+            success: function (data) {}
         });
 
     }
@@ -470,7 +402,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
             contentType: "application/json; charset=utf-8",
             url: "/changeActionType",
             data: jsonData,
-            success: function () {
+            success: function (data) {
                 saveTaskAction(taskAction);
                 getUserTaskFromSession();
             }
@@ -484,25 +416,22 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     function saveTaskActionParam(taskAction, taskActionParam, renewUserTaskFromSession) {
 
-        let jsonData = JSON.stringify({ id: taskAction.id,
+        var jsonData = JSON.stringify({ id: taskAction.id,
                                         name: taskActionParam.name,
                                         taskAction: taskAction.id,
                                         paramValue: taskActionParam.paramValue,
-                                        booleanParamValue: taskActionParam.booleanParamValue,
                                         useExtraParam: taskActionParam.useExtraParam,
                                         extraParamTaskAction: taskActionParam.extraParamTaskAction,
                                         extraParamType: taskActionParam.extraParamType,
                                         indexInTaskAction: taskActionParam.indexInTaskAction,
                                         taskActionIndexInUserTask: taskAction.indexInUserTask});
 
-        console.log("taskActionParam.paramValue: " + taskActionParam.paramValue);
-        console.log("taskActionParam.booleanParamValue: " + taskActionParam.booleanParamValue);
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "/saveTaskActionParam",
             data: jsonData,
-            success: function () {
+            success: function (data) {
                 if (renewUserTaskFromSession) {
                     getUserTaskFromSession();
                 }
