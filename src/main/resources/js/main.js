@@ -6,6 +6,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
 
     getUserTasks();
     getActionTypes();
+    getScheduleTypes();
 
     var dialog = document.querySelector('dialog');
 
@@ -55,6 +56,16 @@ app.controller("TaskManagerController", function ($scope, $http) {
     $scope.userTaskProcessOnClick = function(id) {
 
         processUserTask(id);
+
+    }
+
+
+
+    /* USER TASK SCHEDULE ELEMENTS */
+
+    $scope.userTaskScheduleOnChange = function() {
+
+        saveUserTaskSchedule();
 
     }
 
@@ -251,6 +262,7 @@ app.controller("TaskManagerController", function ($scope, $http) {
     function handleUserTask(data) {
 
         $scope.userTask = data;
+        $scope.userTask.firstUserTaskSchedule.scheduleTimeJS = new Date($scope.userTask.firstUserTaskSchedule.scheduleTimeString);
         $scope.$apply();
 
     }
@@ -264,6 +276,48 @@ app.controller("TaskManagerController", function ($scope, $http) {
             data: JSON.stringify(id),
             success: function () {}
         })
+
+    }
+
+
+
+    /* FUNCTIONS OF THE SCHEDULE TYPES*/
+
+    function getScheduleTypes() {
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/getScheduleTypes",
+            success: function (data) {
+                $scope.scheduleTypes = data;
+                $scope.$apply();
+            }
+        });
+
+    }
+
+    function saveUserTaskSchedule() {
+
+        var firstUserTaskSchedule = $scope.userTask.firstUserTaskSchedule;
+        var scheduleTimeJS = firstUserTaskSchedule.scheduleTimeJS;
+
+        if (scheduleTimeJS == undefined
+                || isNaN(scheduleTimeJS.getTime())) {
+            firstUserTaskSchedule.scheduleTimeJS = new Date (1, 1, 1, 0, 0, 0, 0);
+        }
+        firstUserTaskSchedule.scheduleTimeString = firstUserTaskSchedule.scheduleTimeJS.toLocaleTimeString();
+
+        var jsonData = JSON.stringify(firstUserTaskSchedule);
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/saveUserTaskSchedule",
+            data: jsonData,
+            success: function (data) {
+            }
+        });
 
     }
 

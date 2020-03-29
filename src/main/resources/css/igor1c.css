@@ -92,6 +92,12 @@
     margin: 0px 0px 0px -2px;
 }
 
+.igor1c-userTask-chip-label-schedule {
+    background-color: rgb(119, 74, 130) !important;
+    width: 100px;
+    margin: 0px 0px 0px -2px;
+}
+
 .igor1c-userTask-chip-input {
     width: 175px;
     margin-left: 10px;

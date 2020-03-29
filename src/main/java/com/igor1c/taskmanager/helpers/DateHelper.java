@@ -10,40 +10,51 @@ public class DateHelper {
 
     public static DateHelper DATE_HELPER = new DateHelper();
 
-    private static final String timeZoneString = "GMT";
+    private static final String timeZoneString = "GMT+7";
 
+    // "A" is for apostrophe ("'")
     // "C" is for colon (":")
     // "_" is for space
     // "P" is for point / dot
     // "H" is for hyphen ("-")
-    public static SimpleDateFormat sdf_yyyycMMcdd;
-    public static SimpleDateFormat sdf_yyyyhMMhddThhcmmcss;
-    public static SimpleDateFormat sdf_yyyyhMMhdd_hhcmmcss;
-    public static SimpleDateFormat sdf_yyyycMMcdd_hhhmmhsscS;
-    private static final String SDF_STRING_YYYYСMMСDD = "yyyy.MM.dd";
-    private static final String SDF_STRING_YYYYHMMHDDTHHCMMCSS = "yyyy-MM-dd'T'HH:mm:ss";
+    public static final SimpleDateFormat SDF_YYYYPMMPDD;
+    public static final SimpleDateFormat SDF_YYYYHMMHDDATAHHCMMCSS;
+    public static final SimpleDateFormat SDF_YYYYHMMHDDTHHCMMCSSPSZ;
+    public static final SimpleDateFormat SDF_YYYYHMMHDD_HHCMMCSS;
+    public static final SimpleDateFormat SDF_YYYYHMMHDD_HHCMMCSSPS;
+    public static final SimpleDateFormat SDF_YYYYPMMPDD_HHHMMHSSPS;
+    private static final String SDF_STRING_YYYYPMMPDD = "yyyy.MM.dd";
+    private static final String SDF_STRING_YYYYHMMHDDATAHHCMMCSS = "yyyy-MM-dd'T'HH:mm:ss";
+    private static final String SDF_STRING_YYYYHMMHDDTHHCMMCSSPSZ = "yyyy-MM-dd'T'HH:mm:ss.S'Z'";
     private static final String SDF_STRING_YYYYHMMHDD_HHCMMCSS = "yyyy-MM-dd HH:mm:ss";
-    private static final String SDF_STRING_YYYYСMMСDD_HHHMMHSSCS = "yyyy.MM.dd HH-mm-ss.S";
+    private static final String SDF_STRING_YYYYHMMHDD_HHCMMCSSPS = "yyyy-MM-dd HH:mm:ss.S";
+    private static final String SDF_STRING_YYYYPMMPDD_HHHMMHSSPS = "yyyy.MM.dd HH-mm-ss.S";
 
-
-
-    static void init() {}
-
-    public DateHelper() {
-
+    static {
         TimeZone timeZone = TimeZone.getTimeZone(timeZoneString);
 
-        sdf_yyyycMMcdd = new SimpleDateFormat(SDF_STRING_YYYYСMMСDD);
-        sdf_yyyycMMcdd.setTimeZone(timeZone);
+        SDF_YYYYPMMPDD = new SimpleDateFormat(SDF_STRING_YYYYPMMPDD);
+        SDF_YYYYPMMPDD.setTimeZone(timeZone);
 
-        sdf_yyyyhMMhddThhcmmcss = new SimpleDateFormat(SDF_STRING_YYYYHMMHDDTHHCMMCSS);
-        sdf_yyyyhMMhddThhcmmcss.setTimeZone(timeZone);
+        SDF_YYYYHMMHDDATAHHCMMCSS = new SimpleDateFormat(SDF_STRING_YYYYHMMHDDATAHHCMMCSS);
+        SDF_YYYYHMMHDDATAHHCMMCSS.setTimeZone(timeZone);
 
-        sdf_yyyyhMMhdd_hhcmmcss = new SimpleDateFormat(SDF_STRING_YYYYHMMHDD_HHCMMCSS);
-        sdf_yyyyhMMhdd_hhcmmcss.setTimeZone(timeZone);
+        SDF_YYYYHMMHDDTHHCMMCSSPSZ = new SimpleDateFormat(SDF_STRING_YYYYHMMHDDTHHCMMCSSPSZ);
+        SDF_YYYYHMMHDDTHHCMMCSSPSZ.setTimeZone(timeZone);
 
-        sdf_yyyycMMcdd_hhhmmhsscS = new SimpleDateFormat(SDF_STRING_YYYYСMMСDD_HHHMMHSSCS);
-        sdf_yyyycMMcdd_hhhmmhsscS.setTimeZone(timeZone);
+        SDF_YYYYHMMHDD_HHCMMCSS = new SimpleDateFormat(SDF_STRING_YYYYHMMHDD_HHCMMCSS);
+        SDF_YYYYHMMHDD_HHCMMCSS.setTimeZone(timeZone);
+
+        SDF_YYYYHMMHDD_HHCMMCSSPS = new SimpleDateFormat(SDF_STRING_YYYYHMMHDD_HHCMMCSSPS);
+        SDF_YYYYHMMHDD_HHCMMCSSPS.setTimeZone(timeZone);
+
+        SDF_YYYYPMMPDD_HHHMMHSSPS = new SimpleDateFormat(SDF_STRING_YYYYPMMPDD_HHHMMHSSPS);
+        SDF_YYYYPMMPDD_HHHMMHSSPS.setTimeZone(timeZone);
+    }
+
+
+
+    public DateHelper() {
 
     }
 
@@ -51,10 +62,10 @@ public class DateHelper {
 
     public static Date dateStartOfDay(Date date) throws ParseException {
 
-        String stringDate = sdf_yyyycMMcdd.format(date);
+        String stringDate = SDF_YYYYPMMPDD.format(date);
 
         Calendar instance = Calendar.getInstance();
-        instance.setTime(sdf_yyyycMMcdd.parse(stringDate));
+        instance.setTime(SDF_YYYYPMMPDD.parse(stringDate));
 
         return instance.getTime();
 
@@ -80,7 +91,7 @@ public class DateHelper {
     }
 
     public static String getCurrentDateString() {
-        return DateHelper.dateToString(DateHelper.sdf_yyyycMMcdd_hhhmmhsscS, new Date());
+        return DateHelper.dateToString(DateHelper.SDF_YYYYPMMPDD_HHHMMHSSPS, new Date());
     }
 
     public static Date stringToDate(SimpleDateFormat sdf, String dateString) {

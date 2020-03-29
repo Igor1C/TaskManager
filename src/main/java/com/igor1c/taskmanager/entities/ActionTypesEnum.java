@@ -4,7 +4,7 @@ public enum ActionTypesEnum {
 
     ONE_C_FILE_UNLOAD_DT,
     ONE_C_SERVER_UNLOAD_DT,
-    SEVEN_Z_PACK_ARCHIVE,
+    ZIP_PACK_ARCHIVE,
     FTP_UPLOAD_FILE,
     WAIT_FOR_FILE,
     WAIT_TIME,

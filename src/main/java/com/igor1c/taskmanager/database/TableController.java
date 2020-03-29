@@ -1,17 +1,16 @@
 package com.igor1c.taskmanager.database;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.EntityFactory;
 import com.igor1c.taskmanager.helpers.DBHelper;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.igor1c.taskmanager.helpers.DateHelper;
 import org.omg.CORBA.BooleanHolder;
-import org.omg.CORBA.StringHolder;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.sql.*;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -292,11 +291,12 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
             Object currentValue = method.invoke(baseEntity);
             if (currentValue == null)
                 resultString = resultString.concat("NULL");
-            else
-                if (currentValue.getClass() == String.class
-                        || currentValue.getClass() == LocalTime.class)
-                    resultString = resultString.concat("'" + currentValue + "'");
-                else {
+            else if (currentValue.getClass() == String.class
+                    || currentValue.getClass() == LocalTime.class) {
+                resultString = resultString.concat("'" + currentValue + "'");
+            } else if (currentValue.getClass() == java.util.Date.class) {
+                resultString = resultString.concat("'" + DateHelper.dateToString(DateHelper.SDF_YYYYHMMHDD_HHCMMCSSPS, (java.util.Date) currentValue) + "'");
+            } else {
                     resultString = resultString.concat(currentValue.toString());
                 }
 

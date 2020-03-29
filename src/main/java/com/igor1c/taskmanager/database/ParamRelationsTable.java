@@ -66,12 +66,12 @@ public class ParamRelationsTable extends TableController<ParamRelationEntity> {
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.DESTINATION_FOLDER, false));
         insert(new ParamRelationEntity(ActionTypeEntity.ONE_C_SERVER_UNLOAD_DT, ActionTypeParamEntity.DESTINATION_FILE, true));
 
-        insert(new ParamRelationEntity(ActionTypeEntity.SEVEN_Z_PACK_ARCHIVE, ActionTypeParamEntity.EXECUTABLE_PATH, false));
-        insert(new ParamRelationEntity(ActionTypeEntity.SEVEN_Z_PACK_ARCHIVE, ActionTypeParamEntity.SOURCE_FOLDER, false));
-        insert(new ParamRelationEntity(ActionTypeEntity.SEVEN_Z_PACK_ARCHIVE, ActionTypeParamEntity.DESTINATION_FOLDER, false));
-        insert(new ParamRelationEntity(ActionTypeEntity.SEVEN_Z_PACK_ARCHIVE, ActionTypeParamEntity.DESTINATION_FILE, false));
+        insert(new ParamRelationEntity(ActionTypeEntity.ZIP_PACK_ARCHIVE, ActionTypeParamEntity.SOURCE_FOLDER, false));
+        insert(new ParamRelationEntity(ActionTypeEntity.ZIP_PACK_ARCHIVE, ActionTypeParamEntity.DESTINATION_FOLDER, false));
+        insert(new ParamRelationEntity(ActionTypeEntity.ZIP_PACK_ARCHIVE, ActionTypeParamEntity.DESTINATION_FILE, true));
 
         insert(new ParamRelationEntity(ActionTypeEntity.FTP_UPLOAD_FILE, ActionTypeParamEntity.SOURCE_FOLDER, false));
+        insert(new ParamRelationEntity(ActionTypeEntity.FTP_UPLOAD_FILE, ActionTypeParamEntity.SOURCE_FILE, false));
         insert(new ParamRelationEntity(ActionTypeEntity.FTP_UPLOAD_FILE, ActionTypeParamEntity.FTP_ADDRESS, false));
         insert(new ParamRelationEntity(ActionTypeEntity.FTP_UPLOAD_FILE, ActionTypeParamEntity.PORT, false));
         insert(new ParamRelationEntity(ActionTypeEntity.FTP_UPLOAD_FILE, ActionTypeParamEntity.DESTINATION_FOLDER, false));

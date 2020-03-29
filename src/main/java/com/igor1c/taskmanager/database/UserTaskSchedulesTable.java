@@ -8,20 +8,22 @@ public class UserTaskSchedulesTable extends TableController<UserTaskScheduleEnti
     public UserTaskSchedulesTable() {
 
         super(  "userTaskSchedules",
-                new String[]{"userTask", "scheduleTime"});
+                new String[]{"userTask", "scheduleType", "scheduleTime", "intervalTime"});
 
     }
 
 
 
-    // TABLE CREATION
+    /* TABLE CREATION */
 
     public void createTable() {
 
         String query =  "CREATE TABLE userTaskSchedules(\n" +
                         "   id BIGINT AUTO_INCREMENT PRIMARY KEY,\n" +
                         "   userTask BIGINT NOT NULL,\n" +
-                        "   scheduleTime TIME\n" +
+                        "   scheduleType BIGINT NOT NULL,\n" +
+                        "   scheduleTime TIME,\n" +
+                        "   intervalTime BIGINT\n" +
                         ");";
 
         executeDbQuery(query);
@@ -44,7 +46,7 @@ public class UserTaskSchedulesTable extends TableController<UserTaskScheduleEnti
 
 
 
-    // PROCESSING OF ENTITY
+    /* PROCESSING OF ENTITY */
 
     public BaseEntity fillEntity(BaseEntity baseEntity) {
 

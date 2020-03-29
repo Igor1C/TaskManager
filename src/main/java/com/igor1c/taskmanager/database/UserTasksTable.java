@@ -1,15 +1,9 @@
 package com.igor1c.taskmanager.database;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
-import com.igor1c.taskmanager.entities.BaseEntity;
-import com.igor1c.taskmanager.entities.TaskActionEntity;
-import com.igor1c.taskmanager.entities.UserTaskEntity;
+import com.igor1c.taskmanager.entities.*;
 import com.igor1c.taskmanager.helpers.EntityHelper;
 
-import javax.swing.text.html.parser.Entity;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class UserTasksTable extends TableController<UserTaskEntity> {
 
@@ -56,6 +50,13 @@ public class UserTasksTable extends TableController<UserTaskEntity> {
             taskActionsTable.fullInsertUpdate(currentTaskActionEntity);
         }
 
+        UserTaskSchedulesTable userTaskSchedulesTable = new UserTaskSchedulesTable();
+        for (BaseEntity userTaskScheduleBaseEntity : entity.getUserTaskSchedules()) {
+            UserTaskScheduleEntity userTaskScheduleEntity = (UserTaskScheduleEntity) userTaskScheduleBaseEntity;
+            userTaskScheduleEntity.setUserTask(id);
+            userTaskSchedulesTable.insertUpdate(userTaskScheduleEntity);
+        }
+
         return id;
 
     }
@@ -64,6 +65,7 @@ public class UserTasksTable extends TableController<UserTaskEntity> {
 
         entity.getTaskActions().clear();
         deleteUnusedTaskActions(entity);
+        deleteUserTaskSchedules(entity);
         deleteById(entity.getId());
 
     }
@@ -94,6 +96,20 @@ public class UserTasksTable extends TableController<UserTaskEntity> {
 
     }
 
+    public void deleteUserTaskSchedules(BaseEntity baseEntity) {
+
+        UserTaskEntity userTaskEntity = (UserTaskEntity) baseEntity;
+
+        UserTaskSchedulesTable userTaskSchedulesTable = new UserTaskSchedulesTable();
+        for (BaseEntity userTaskSchedule : userTaskEntity.getUserTaskSchedules()) {
+            long userTaskScheduleId = userTaskSchedule.getId();
+            if (userTaskScheduleId != 0) {
+                userTaskSchedulesTable.deleteById(userTaskScheduleId);
+            }
+        }
+
+    }
+
 
 
     // PROCESSING OF ENTITY
@@ -102,16 +118,40 @@ public class UserTasksTable extends TableController<UserTaskEntity> {
 
         UserTaskEntity entity = (UserTaskEntity) baseEntity;
 
+        fillEntityWithTaskActions(entity);
+        fillEntityWithUserTaskSchedules(entity);
+        fillEntityWithUserTaskExecutions(entity);
+
+        return entity;
+    }
+
+    private void fillEntityWithTaskActions(UserTaskEntity userTaskEntity) {
+
         TaskActionsTable taskActionsTable = new TaskActionsTable();
-        ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.selectOrder("userTask=" + entity.getId(), "taskOrder");
+        ArrayList<BaseEntity> taskActionEntityArrayList = taskActionsTable.selectOrder("userTask=" + userTaskEntity.getId(), "taskOrder");
 
         for (BaseEntity taskActionEntity : taskActionEntityArrayList)
             taskActionsTable.fillEntity(taskActionEntity);
 
-        entity.setTaskActions(taskActionEntityArrayList);
-        entity.renewTaskActionIndexes();
+        userTaskEntity.setTaskActions(taskActionEntityArrayList);
+        userTaskEntity.renewTaskActionIndexes();
 
-        return entity;
+    }
+
+    private void fillEntityWithUserTaskSchedules(UserTaskEntity userTaskEntity) {
+
+        UserTaskSchedulesTable userTaskSchedulesTable = new UserTaskSchedulesTable();
+        ArrayList<BaseEntity> userTaskSchedulesEntityArrayList = userTaskSchedulesTable.selectOrder("userTask=" + userTaskEntity.getId(), "id");
+        userTaskEntity.setUserTaskSchedules(userTaskSchedulesEntityArrayList);
+
+    }
+
+    public static void fillEntityWithUserTaskExecutions(UserTaskEntity userTaskEntity) {
+
+        UserTaskExecutionsTable userTaskExecutionTable = new UserTaskExecutionsTable();
+        ArrayList<BaseEntity> userTaskExecutionsEntityArrayList = userTaskExecutionTable.selectOrder("userTask=" + userTaskEntity.getId(), "id desc");
+        userTaskEntity.setUserTaskExecutions(userTaskExecutionsEntityArrayList);
+
     }
 
 }

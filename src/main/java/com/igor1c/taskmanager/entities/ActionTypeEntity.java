@@ -10,7 +10,7 @@ public class ActionTypeEntity extends BaseEntity {
 
     public static final int ONE_C_FILE_UNLOAD_DT = 1;
     public static final int ONE_C_SERVER_UNLOAD_DT = 2;
-    public static final int SEVEN_Z_PACK_ARCHIVE = 3;
+    public static final int ZIP_PACK_ARCHIVE = 3;
     public static final int FTP_UPLOAD_FILE = 4;
     public static final int WAIT_FOR_FILE = 5;
     public static final int WAIT_TIME = 6;
@@ -42,7 +42,7 @@ public class ActionTypeEntity extends BaseEntity {
         ArrayList<ActionTypeEntity> actionTypeEntities = new ArrayList<ActionTypeEntity>();
         actionTypeEntities.add(new ActionTypeEntity(ONE_C_FILE_UNLOAD_DT, "ONE_C_FILE_UNLOAD_DT", "1C file database - Unload DT"));
         actionTypeEntities.add(new ActionTypeEntity(ONE_C_SERVER_UNLOAD_DT, "ONE_C_SERVER_UNLOAD_DT", "1C server database - Unload DT"));
-        actionTypeEntities.add(new ActionTypeEntity(SEVEN_Z_PACK_ARCHIVE, "SEVEN_Z_PACK_ARCHIVE", "7Z - Make archive"));
+        actionTypeEntities.add(new ActionTypeEntity(ZIP_PACK_ARCHIVE, "ZIP_PACK_ARCHIVE", "ZIP - Make archive"));
         actionTypeEntities.add(new ActionTypeEntity(FTP_UPLOAD_FILE, "FTP_UPLOAD_FILE", "FTP - Upload file"));
         actionTypeEntities.add(new ActionTypeEntity(WAIT_FOR_FILE, "WAIT_FOR_FILE", "Wait for file"));
         actionTypeEntities.add(new ActionTypeEntity(WAIT_TIME, "WAIT_TIME", "Wait time"));
@@ -60,7 +60,7 @@ public class ActionTypeEntity extends BaseEntity {
                 Arrays.asList(
                         ONE_C_FILE_UNLOAD_DT,
                         ONE_C_SERVER_UNLOAD_DT,
-                        SEVEN_Z_PACK_ARCHIVE,
+                        ZIP_PACK_ARCHIVE,
                         FTP_UPLOAD_FILE,
                         WAIT_FOR_FILE,
                         WAIT_TIME,
@@ -73,7 +73,7 @@ public class ActionTypeEntity extends BaseEntity {
                 Arrays.asList(
                         ActionTypesEnum.ONE_C_FILE_UNLOAD_DT,
                         ActionTypesEnum.ONE_C_SERVER_UNLOAD_DT,
-                        ActionTypesEnum.SEVEN_Z_PACK_ARCHIVE,
+                        ActionTypesEnum.ZIP_PACK_ARCHIVE,
                         ActionTypesEnum.FTP_UPLOAD_FILE,
                         ActionTypesEnum.WAIT_FOR_FILE,
                         ActionTypesEnum.WAIT_TIME,

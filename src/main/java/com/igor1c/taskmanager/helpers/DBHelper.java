@@ -6,6 +6,7 @@ import java.sql.*;
 import com.igor1c.taskmanager.database.*;
 
 import java.util.ArrayList;
+import java.util.TimeZone;
 
 public class DBHelper {
 
@@ -90,6 +91,7 @@ public class DBHelper {
         tableOperationsArray.add(new TaskActionParamsTable());
         tableOperationsArray.add(new ParamRelationsTable());
         tableOperationsArray.add(new UserTaskSchedulesTable());
+        tableOperationsArray.add(new UserTaskExecutionsTable());
 
         processTableOperations(tableOperationsArray);
 

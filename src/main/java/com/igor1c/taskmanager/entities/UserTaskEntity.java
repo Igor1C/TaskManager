@@ -1,5 +1,7 @@
 package com.igor1c.taskmanager.entities;
 
+import com.igor1c.taskmanager.database.UserTaskSchedulesTable;
+import com.igor1c.taskmanager.database.UserTasksTable;
 import com.igor1c.taskmanager.helpers.DateHelper;
 
 import java.sql.ResultSet;
@@ -12,7 +14,8 @@ public class UserTaskEntity extends BaseEntity {
     private String name;
 
     private ArrayList<BaseEntity> taskActions = new ArrayList<>();
-    private Date lastExecution = new Date();
+    private ArrayList<BaseEntity> userTaskSchedules = new ArrayList<>();
+    private ArrayList<BaseEntity> userTaskExecutions = new ArrayList<>();
 
 
 
@@ -58,7 +61,7 @@ public class UserTaskEntity extends BaseEntity {
 
 
 
-    /* GETTERS & SETTERS OF DATABASE FIELDS */
+    /* GETTERS & SETTERS OF THE DATABASE FIELDS */
 
     public String getName() {
         return name;
@@ -70,7 +73,7 @@ public class UserTaskEntity extends BaseEntity {
 
 
 
-    /* GETTERS & SETTERS OF CLASS FIELDS */
+    /* GETTERS & SETTERS OF THE CLASS FIELDS */
 
     public ArrayList<BaseEntity> getTaskActions() {
         return taskActions;
@@ -84,16 +87,48 @@ public class UserTaskEntity extends BaseEntity {
         this.taskActions = taskActions;
     }
 
-    public Date getLastExecution() {
-        return lastExecution;
+    public ArrayList<BaseEntity> getUserTaskSchedules() {
+        return userTaskSchedules;
+    }
+
+    public void setUserTaskSchedules(ArrayList<BaseEntity> userTaskSchedules) {
+        this.userTaskSchedules = userTaskSchedules;
+    }
+
+    public ArrayList<BaseEntity> getUserTaskExecutions() {
+        return userTaskExecutions;
+    }
+
+    public void setUserTaskExecutions(ArrayList<BaseEntity> userTaskExecutions) {
+        this.userTaskExecutions = userTaskExecutions;
+    }
+
+    public UserTaskExecutionEntity getLastExecution() {
+
+        if (userTaskExecutions.size() > 0) {
+            return (UserTaskExecutionEntity) userTaskExecutions.get(0);
+        } else {
+            return null;
+        }
+
     }
 
     public String getLastExecutionString() {
-        return DateHelper.dateToString(DateHelper.sdf_yyyyhMMhdd_hhcmmcss, getLastExecution());
+
+        UserTaskExecutionEntity userTaskExecutionEntity = getLastExecution();
+        if (userTaskExecutionEntity == null) {
+            return "";
+        } else {
+            return userTaskExecutionEntity.getExecutionDateString();
+        }
+
     }
 
-    public void setLastExecution(Date lastExecution) {
-        this.lastExecution = lastExecution;
+    public String getLastExecutionStringWithoutFillingEntity() {
+
+        UserTasksTable.fillEntityWithUserTaskExecutions(this);
+        return getLastExecutionString();
+
     }
 
 
@@ -111,6 +146,24 @@ public class UserTaskEntity extends BaseEntity {
         }
 
         return savedTaskActions;
+
+    }
+
+    public UserTaskScheduleEntity getFirstUserTaskSchedule() {
+
+        if (userTaskSchedules.size() == 0) {
+            userTaskSchedules.add(new UserTaskScheduleEntity());
+        }
+
+        return (UserTaskScheduleEntity) userTaskSchedules.get(0);
+
+    }
+
+    public void setFirstUserTaskSchedule(UserTaskScheduleEntity userTaskScheduleEntity) {
+
+        if (userTaskSchedules.size() > 0) {
+            userTaskSchedules.set(0, userTaskScheduleEntity);
+        }
 
     }
 

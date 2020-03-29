@@ -1,8 +1,10 @@
 package com.igor1c.taskmanager.tasks;
 
 import com.igor1c.taskmanager.entities.*;
+import com.igor1c.taskmanager.helpers.DateHelper;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public abstract class TaskActionController implements TaskActionProcessing {
@@ -11,6 +13,7 @@ public abstract class TaskActionController implements TaskActionProcessing {
     private TaskActionEntity taskActionEntity;
     private HashMap<ActionTypeParamsEnum, TaskActionParamEntity> paramEntities;
     private HashMap<Long, TaskActionEntity> taskActionsMap;
+    private boolean successfulExecution = true;
 
 
 
@@ -34,6 +37,10 @@ public abstract class TaskActionController implements TaskActionProcessing {
 
 
     /* AUXILIARY FUNCTIONAL */
+
+    protected String generateFileNameFromCurrentDate() {
+        return DateHelper.dateToString(DateHelper.SDF_YYYYPMMPDD_HHHMMHSSPS, new Date());
+    }
 
     protected String appendBackslash(String inputString) {
 
@@ -98,14 +105,25 @@ public abstract class TaskActionController implements TaskActionProcessing {
 
         TaskActionParamEntity taskActionParamEntity = paramEntities.get(actionTypeParamsEnum);
         if (taskActionParamEntity.isUseExtraParam()) {
-            long taskActionId = taskActionParamEntity.getExtraParamTaskAction();
-            TaskActionEntity taskActionEntity = taskActionsMap.get(taskActionId);
-
-            ActionTypeParamsEnum extraParamType = taskActionParamEntity.getExtraParamTypeEnum();
-            TaskActionParamEntity extraTaskActionParamEntity = taskActionEntity.getTaskActionParamsMap().get(extraParamType);
-            return extraTaskActionParamEntity.getParamValue();
+            return getExtraParamValue(taskActionParamEntity);
         } else {
             return taskActionParamEntity.getParamValue();
+        }
+
+    }
+
+    private String getExtraParamValue(TaskActionParamEntity taskActionParamEntity) {
+
+        long taskActionId = taskActionParamEntity.getExtraParamTaskAction();
+        TaskActionEntity extraTaskActionEntity = taskActionsMap.get(taskActionId);
+
+        ActionTypeParamsEnum extraParamType = taskActionParamEntity.getExtraParamTypeEnum();
+        TaskActionParamEntity extraTaskActionParamEntity = extraTaskActionEntity.getTaskActionParamsMap().get(extraParamType);
+
+        if (extraTaskActionParamEntity.isUseExtraParam()) {
+            return getExtraParamValue(extraTaskActionParamEntity);
+        } else {
+            return extraTaskActionParamEntity.getParamValue();
         }
 
     }
@@ -115,6 +133,14 @@ public abstract class TaskActionController implements TaskActionProcessing {
         TaskActionParamEntity taskActionParamEntity = paramEntities.get(actionTypeParamsEnum);
         taskActionParamEntity.setParamValue(paramValue);
 
+    }
+
+    public boolean isSuccessfulExecution() {
+        return successfulExecution;
+    }
+
+    public void setSuccessfulExecution(boolean successfulExecution) {
+        this.successfulExecution = successfulExecution;
     }
 
 }

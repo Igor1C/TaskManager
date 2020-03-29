@@ -6,6 +6,7 @@ public enum ActionTypeParamsEnum {
     USER,
     PASSWORD,
     SOURCE_FOLDER,
+    SOURCE_FILE,
     DESTINATION_FOLDER,
     DESTINATION_FILE,
     NEW_FOLDER,

@@ -3,16 +3,12 @@ package com.igor1c.taskmanager.tasks;
 import com.igor1c.taskmanager.entities.ActionTypeParamsEnum;
 import com.igor1c.taskmanager.entities.TaskActionEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 
-import java.io.File;
-import java.io.IOException;
-
-public class DeleteFolderAction extends TaskActionController {
+public class WaitTimeAction extends TaskActionController {
 
     /* CONSTRUCTORS */
 
-    public DeleteFolderAction(UserTaskEntity userTaskEntity, TaskActionEntity taskActionEntity) {
+    public WaitTimeAction(UserTaskEntity userTaskEntity, TaskActionEntity taskActionEntity) {
         super(userTaskEntity, taskActionEntity);
     }
 
@@ -22,10 +18,12 @@ public class DeleteFolderAction extends TaskActionController {
 
     public void process() {
 
-        String destinationFolder = getParamValue(ActionTypeParamsEnum.DESTINATION_FOLDER);
+        String timeoutString = getParamValue(ActionTypeParamsEnum.TIMEOUT);
+        Long timeout = Long.parseLong(timeoutString) * 1000;
+
         try {
-            FileUtils.deleteDirectory(new File(destinationFolder));
-        } catch (IOException e) {
+            Thread.sleep(timeout);
+        } catch (InterruptedException e) {
             setSuccessfulExecution(false);
             e.printStackTrace();
         }

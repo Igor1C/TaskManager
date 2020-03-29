@@ -14,16 +14,17 @@ public class ActionTypeParamEntity extends BaseEntity {
     public static final int USER = 2;
     public static final int PASSWORD = 3;
     public static final int SOURCE_FOLDER = 4;
-    public static final int DESTINATION_FOLDER = 5;
-    public static final int DESTINATION_FILE = 6;
-    public static final int NEW_FOLDER = 7;
-    public static final int FINAL_FOLDER = 8;
-    public static final int ONE_C_DB_FILE_PATH = 9;
-    public static final int ONE_C_DB_SERVER_SRV = 10;
-    public static final int ONE_C_DB_SERVER_REF = 11;
-    public static final int FTP_ADDRESS = 12;
-    public static final int PORT = 13;
-    public static final int TIMEOUT = 14;
+    public static final int SOURCE_FILE = 5;
+    public static final int DESTINATION_FOLDER = 6;
+    public static final int DESTINATION_FILE = 7;
+    public static final int NEW_FOLDER = 8;
+    public static final int FINAL_FOLDER = 9;
+    public static final int ONE_C_DB_FILE_PATH = 10;
+    public static final int ONE_C_DB_SERVER_SRV = 11;
+    public static final int ONE_C_DB_SERVER_REF = 12;
+    public static final int FTP_ADDRESS = 13;
+    public static final int PORT = 14;
+    public static final int TIMEOUT = 15;
 
     private static HashMap<Long, ActionTypeParamEntity> ACTION_TYPE_PARAM_ENTITIES_MAP;
     private static HashMap<Long, ActionTypeParamsEnum> ACTION_TYPE_PARAMS_ENUM_MAP;
@@ -50,6 +51,7 @@ public class ActionTypeParamEntity extends BaseEntity {
         actionTypeParamEntities.add(new ActionTypeParamEntity(USER, "USER", "Username"));
         actionTypeParamEntities.add(new ActionTypeParamEntity(PASSWORD, "PASSWORD", "Password"));
         actionTypeParamEntities.add(new ActionTypeParamEntity(SOURCE_FOLDER, "SOURCE_FOLDER", "Source folder"));
+        actionTypeParamEntities.add(new ActionTypeParamEntity(SOURCE_FILE, "SOURCE_FILE", "Source file"));
         actionTypeParamEntities.add(new ActionTypeParamEntity(DESTINATION_FOLDER, "DESTINATION_FOLDER", "Destination folder"));
         actionTypeParamEntities.add(new ActionTypeParamEntity(DESTINATION_FILE, "DESTINATION_FILE", "Destination file"));
         actionTypeParamEntities.add(new ActionTypeParamEntity(NEW_FOLDER, "NEW_FOLDER", "New folder"));
@@ -74,6 +76,7 @@ public class ActionTypeParamEntity extends BaseEntity {
                         USER,
                         PASSWORD,
                         SOURCE_FOLDER,
+                        SOURCE_FILE,
                         DESTINATION_FOLDER,
                         DESTINATION_FILE,
                         NEW_FOLDER,
@@ -91,6 +94,7 @@ public class ActionTypeParamEntity extends BaseEntity {
                         ActionTypeParamsEnum.USER,
                         ActionTypeParamsEnum.PASSWORD,
                         ActionTypeParamsEnum.SOURCE_FOLDER,
+                        ActionTypeParamsEnum.SOURCE_FILE,
                         ActionTypeParamsEnum.DESTINATION_FOLDER,
                         ActionTypeParamsEnum.DESTINATION_FILE,
                         ActionTypeParamsEnum.NEW_FOLDER,

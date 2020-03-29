@@ -1,11 +1,8 @@
 package com.igor1c.taskmanager.tasks;
 
 import com.igor1c.taskmanager.entities.*;
-import com.igor1c.taskmanager.helpers.DateHelper;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
 
 public class OneCFileUnloadDtAction extends TaskActionController {
 
@@ -21,8 +18,6 @@ public class OneCFileUnloadDtAction extends TaskActionController {
 
     public void process() {
 
-        HashMap<ActionTypeParamsEnum, TaskActionParamEntity> paramEntities = getParamEntities();
-
         Runtime rt = Runtime.getRuntime();
         StringBuilder executableString = new StringBuilder();
 
@@ -34,7 +29,7 @@ public class OneCFileUnloadDtAction extends TaskActionController {
         String destinationFolder = getParamValue(ActionTypeParamsEnum.DESTINATION_FOLDER);
         destinationFolder = appendBackslash(destinationFolder);
 
-        String dtFileName = DateHelper.dateToString(DateHelper.sdf_yyyycMMcdd_hhhmmhsscS, new Date()) + ".dt";
+        String dtFileName = generateFileNameFromCurrentDate() + ".dt";
 
 
 
@@ -62,6 +57,7 @@ public class OneCFileUnloadDtAction extends TaskActionController {
         try {
             rt.exec(executableString.toString());
         } catch (IOException e) {
+            setSuccessfulExecution(false);
             e.printStackTrace();
         }
 

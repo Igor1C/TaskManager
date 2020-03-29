@@ -17,7 +17,7 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
 
 
 
-    // TABLE CREATION
+    /* TABLE CREATION */
 
     public void createTable() {
 
@@ -52,7 +52,7 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
 
 
 
-    // CRUD
+    /* CRUD */
 
     public long fullInsertUpdate(TaskActionEntity entity) {
 
@@ -77,7 +77,7 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
 
     }
 
-    public void deleteUnusedTaskActionParams(BaseEntity baseEntity) {
+    private void deleteUnusedTaskActionParams(BaseEntity baseEntity) {
 
         TaskActionEntity taskActionEntity = (TaskActionEntity) baseEntity;
         ArrayList<BaseEntity> currentTaskActionParamsArrayList = taskActionEntity.getTaskActionParams();
@@ -97,7 +97,7 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
 
 
 
-    // PROCESSING OF ENTITY
+    /* PROCESSING OF ENTITY */
 
     public BaseEntity fillEntity(BaseEntity baseEntity) {
 

@@ -1,15 +1,9 @@
 package com.igor1c.taskmanager.controllers;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.igor1c.taskmanager.controllers.requests.*;
 import com.igor1c.taskmanager.controllers.responses.BaseEntityListResponse;
-import com.igor1c.taskmanager.database.ActionTypesTable;
-import com.igor1c.taskmanager.database.TaskActionsTable;
-import com.igor1c.taskmanager.database.UserTasksTable;
-import com.igor1c.taskmanager.entities.BaseEntity;
-import com.igor1c.taskmanager.entities.TaskActionEntity;
-import com.igor1c.taskmanager.entities.TaskActionParamEntity;
-import com.igor1c.taskmanager.entities.UserTaskEntity;
+import com.igor1c.taskmanager.database.*;
+import com.igor1c.taskmanager.entities.*;
 import com.igor1c.taskmanager.tasks.UserTaskController;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
@@ -92,7 +86,7 @@ public class MainController {
         table.fullInsertUpdate(userTaskEntity);
         table.deleteUnusedTaskActions(userTaskEntity);
 
-        return ResponseEntity.ok(new String());
+        return ResponseEntity.ok(userTaskEntity);
 
     }
 
@@ -131,6 +125,29 @@ public class MainController {
 
         UserTaskController userTaskController = new UserTaskController(idRequest.getId());
         userTaskController.processUserTask();
+
+        return ResponseEntity.ok(new String());
+
+    }
+
+
+
+    /* USER TASK SCHEDULES */
+
+    @PostMapping("/getScheduleTypes")
+    public ResponseEntity<?> getScheduleTypes() {
+
+        ArrayList<BaseEntity> scheduleTypesArray = ScheduleTypeEntity.getScheduleTypesEntitiesArray();
+        return ResponseEntity.ok(scheduleTypesArray);
+
+    }
+
+    @PostMapping("/saveUserTaskSchedule")
+    public ResponseEntity<?> saveUserTaskSchedule(@RequestBody UserTaskScheduleEntity userTaskScheduleEntity) {
+
+        if (userTaskEntity != null) {
+            userTaskEntity.setFirstUserTaskSchedule(userTaskScheduleEntity);
+        }
 
         return ResponseEntity.ok(new String());
 
@@ -244,8 +261,8 @@ public class MainController {
     @PostMapping("/getActionTypes")
     public ResponseEntity<?> getActionTypes() {
 
-        ActionTypesTable table = new ActionTypesTable();
-        ArrayList<BaseEntity> entityArrayList = table.select();
+        ActionTypesTable actionTypesTable = new ActionTypesTable();
+        ArrayList<BaseEntity> entityArrayList = actionTypesTable.select();
 
         return ResponseEntity.ok(entityArrayList);
 

@@ -64,7 +64,7 @@
                             Actions quota: {{userTask.taskActionsSize}}
                         </div>
                         <div class="mdl-card__supporting-text mdl-shadow--2dp igor1c-userTask-cardInfo-label">
-                            Last exec.: {{userTask.lastExecutionString}}
+                            Last exec.: {{userTask.lastExecutionStringWithoutFillingEntity}}
                         </div>
                         <div class="mdl-card__supporting-text mdl-shadow--2dp">
                             <div class="igor1c-alignment-elementCenter igor1c-alignment-textCenter">
@@ -145,6 +145,33 @@
                             <input type="text" class="igor1c-userTask-chip-input" ng-model="userTask.lastExecutionString" disabled>
                         </span>
                     </span>
+                    <span class="mdl-chip mdl-chip--contact igor1c-userTask-chip">
+                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-userTask-chip-label-schedule">Sch. type</span>
+                        <span class="mdl-chip__text">
+                            <select class="igor1c-taskAction-chip-select"
+                                    ng-model="userTask.firstUserTaskSchedule.scheduleType"
+                                    ng-change="userTaskScheduleOnChange()">
+                                <option ng-value="0">No schedule</option>
+                                <option ng-repeat="scheduleType in scheduleTypes" ng-value="scheduleType.id">{{scheduleType.description}}</option>
+                            </select>
+                        </span>
+                    </span>
+                    <span class="mdl-chip mdl-chip--contact igor1c-userTask-chip" ng-if="userTask.firstUserTaskSchedule.scheduleType == 1">
+                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-userTask-chip-label-schedule">Time</span>
+                        <span class="mdl-chip__text">
+                            <input type="time" class="igor1c-userTask-chip-input"
+                                   ng-model="userTask.firstUserTaskSchedule.scheduleTimeJS"
+                                   ng-change="userTaskScheduleOnChange()">
+                        </span>
+                    </span>
+                    <span class="mdl-chip mdl-chip--contact igor1c-userTask-chip" ng-if="userTask.firstUserTaskSchedule.scheduleType == 2">
+                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white igor1c-userTask-chip-label-schedule">Interval</span>
+                        <span class="mdl-chip__text">
+                            <input type="text" class="igor1c-userTask-chip-input"
+                                   ng-model="userTask.firstUserTaskSchedule.intervalTime"
+                                   ng-change="userTaskScheduleOnChange()">
+                        </span>
+                    </span>
 
                     <div class="igor1c-userTask-div-execution igor1c-alignment-elementCenter">
                         <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect igor1c-button-save"
@@ -155,7 +182,38 @@
                             <i class="material-icons">stop</i>
                         </button>
                     </div>
+
+                    <div class="igor1c-userTask-div-execution igor1c-alignment-elementCenter">
+                        <input type="checkbox"
+                               class="igor1c-param-checkBox"
+                               ng-model="showExecutions">
+                        <label class="igor1c-param-label-checkBox">
+                            Show executions
+                        </label>
+                    </div>
                 </div>
+
+
+
+                <!-- EXECUTIONS OF THE USER TASK -->
+
+                <div class="igor1c-separator-div-verticalSmall" ng-if="showExecutions == true"></div>
+
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp igor1c-alignment-elementCenter"
+                       ng-if="showExecutions == true">
+                    <thead>
+                        <tr>
+                            <th>Execution time</th>
+                            <th>Successful</th>
+                            <th>Auto execution</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="userTaskExecution in userTask.userTaskExecutions | limitTo: 5">
+                        <td>{{userTaskExecution.executionDateString}}</td>
+                        <td>{{userTaskExecution.autoExecution}}</td>
+                        <td>{{userTaskExecution.successfulExecution}}</td>
+                    </tr>
+                </table>
 
 
 
