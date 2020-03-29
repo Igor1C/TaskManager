@@ -6,43 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e052661d-a88d-4784-b3f8-e162c7db3f11" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTaskExecutionsTable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ScheduleTypeEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ScheduleTypesEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskExecutionEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/FtpUploadFileAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/WaitForFileAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/WaitTimeAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/ZipPackAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ParamRelationsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ParamRelationsTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTaskSchedulesTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTaskSchedulesTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTasksTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTasksTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeParamEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeParamEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeParamsEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeParamsEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypesEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypesEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/EntityFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskScheduleEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskScheduleEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DBHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DateHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/CreateFolderAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/CreateFolderAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/DeleteFolderAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/DeleteFolderAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/OneCFileUnloadDtAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/OneCFileUnloadDtAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/TaskActionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/TaskActionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/TaskActionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/TaskActionFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/UserTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/UserTaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/igor1c.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/igor1c.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/igor1c/taskmanager/controllers/MainControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/igor1c/taskmanager/controllers/MainControllerIntegrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/igor1c/taskmanager/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/igor1c/taskmanager/Application.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -226,7 +190,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
+                <state relative-caret-position="-374">
                   <caret line="99" column="30" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
                 </state>
               </provider>
@@ -543,7 +507,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585477246472" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585477456261" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="database.console.LAST_STATE" value="false" />
@@ -797,7 +761,7 @@
       <workItem from="1585239373509" duration="7937000" />
       <workItem from="1585332345943" duration="6344000" />
       <workItem from="1585376210964" duration="12813000" />
-      <workItem from="1585475729474" duration="1486000" />
+      <workItem from="1585475729474" duration="1773000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <created>1576515056454</created>
@@ -1093,7 +1057,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584175871970</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Work">
+      <created>1585477486175</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1585477486175</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1129,7 +1100,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="656665000" />
+    <option name="totallyTimeSpent" value="656952000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1142,7 +1113,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49871793" visible="true" weight="0.20945945" />
       <window_info id="Structure" order="1" sideWeight="0.50128204" side_tool="true" weight="0.20468998" />
@@ -1965,7 +1935,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
+        <state relative-caret-position="-374">
           <caret line="99" column="30" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
         </state>
       </provider>
