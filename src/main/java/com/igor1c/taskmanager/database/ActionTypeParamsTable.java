@@ -11,7 +11,8 @@ public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity
     public ActionTypeParamsTable() {
 
         super(  "actionTypeParams",
-                new String[]{"name", "description"});
+                new String[]{"name", "description"},
+                new String[]{"booleanType"});
 
     }
 
@@ -20,7 +21,8 @@ public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity
         String query =  "CREATE TABLE actionTypeParams(\n" +
                         "   id BIGINT AUTO_INCREMENT PRIMARY KEY,\n" +
                         "   name VARCHAR(255) NOT NULL,\n" +
-                        "   description VARCHAR(255) NOT NULL\n" +
+                        "   description VARCHAR(255) NOT NULL,\n" +
+                        "   booleanType BOOLEAN NOT NULL\n" +
                         ");";
 
         executeDbQuery(query);
@@ -45,6 +47,7 @@ public class ActionTypeParamsTable extends TableController<ActionTypeParamEntity
                         "   actionTypeParams.id,\n" +
                         "   actionTypeParams.name,\n" +
                         "   actionTypeParams.description,\n" +
+                        "   actionTypeParams.booleanType,\n" +
                         "   paramRelations.autoGeneration\n" +
                         "FROM\n" +
                         "   paramRelations\n" +

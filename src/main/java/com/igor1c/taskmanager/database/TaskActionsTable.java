@@ -71,9 +71,15 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
 
     public void fullDelete(TaskActionEntity entity) {
 
+        deleteTaskActionParams(entity);
+        deleteById(entity.getId());
+
+    }
+
+    public void deleteTaskActionParams(TaskActionEntity entity) {
+
         entity.getTaskActionParams().clear();
         deleteUnusedTaskActionParams(entity);
-        deleteById(entity.getId());
 
     }
 
@@ -160,10 +166,12 @@ public class TaskActionsTable extends TableController<TaskActionEntity> {
                                                                                     actionTypeParamEntity.getId(),
                                                                                     "",
                                                                                     false,
+                                                                                    false,
                                                                                     null,
                                                                                     null);
             taskActionParamEntityArrayList.add(taskActionParamEntity);
             taskActionParamEntity.setIndexInTaskAction(currentIndex);
+            taskActionParamEntity.setBooleanType(actionTypeParamEntity.isBooleanType());
             taskActionParamsTable.fillEntity(taskActionParamEntity);
 
             fillAutoGeneration(taskActionEntity, taskActionParamEntity);

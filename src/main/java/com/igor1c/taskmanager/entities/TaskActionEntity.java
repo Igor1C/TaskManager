@@ -1,5 +1,10 @@
 package com.igor1c.taskmanager.entities;
 
+import com.igor1c.taskmanager.database.TaskActionsTable;
+import com.igor1c.taskmanager.database.UserTasksTable;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,6 +20,8 @@ public class TaskActionEntity extends BaseEntity {
     private int indexInUserTask;
     private ArrayList<BaseEntity> taskActionParams = new ArrayList<>();
     private HashMap<ActionTypeParamsEnum, TaskActionParamEntity> taskActionParamsMap;
+    private HashMap<Long, Long> taskActionsMap; // Key: taskActionId, value: taskActionIndex
+    private HashMap<Long, Long> taskActionsReverseMap; // Key: taskActionIndex, value: taskActionId
 
 
 
@@ -53,6 +60,65 @@ public class TaskActionEntity extends BaseEntity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void processTaskActionsMap() {
+
+        fillTaskActionParamsMap();
+
+        for (BaseEntity baseEntity : taskActionParams) {
+            TaskActionParamEntity taskActionParamEntity = (TaskActionParamEntity) baseEntity;
+            taskActionParamEntity.setTaskActionsMap(getTaskActionsMap());
+            taskActionParamEntity.setTaskActionsReverseMap(getTaskActionsReverseMap());
+        }
+
+    }
+
+
+
+    /* JSON */
+
+    @Override
+    public void insertUpdateFromJsonObject(JSONObject jsonObject) {
+
+        setName(jsonObject.getString("name"));
+        setActionType(ActionTypeEntity
+                        .getActionTypesEnumReverseMap()
+                        .get(ActionTypesEnum
+                                .getValueFromString(jsonObject.getString("actionType"))));
+        setTaskOrder(jsonObject.getLong("taskOrder"));
+
+        TaskActionsTable taskActionsTable = new TaskActionsTable();
+        setId(taskActionsTable.insertUpdate(this));
+
+        JSONArray taskActionParamJsonArray = jsonObject.getJSONArray("taskActionParams");
+        for (int i = 0; i < taskActionParamJsonArray.length(); i++) {
+            JSONObject taskActionParamJsonObject = taskActionParamJsonArray.getJSONObject(i);
+
+            TaskActionParamEntity taskActionParamEntity = new TaskActionParamEntity();
+            taskActionParamEntity.setTaskAction(getId());
+            taskActionParamEntity.setTaskActionsMap(getTaskActionsMap());
+            taskActionParamEntity.setTaskActionsReverseMap(getTaskActionsReverseMap());
+            taskActionParamEntity.insertUpdateFromJsonObject(taskActionParamJsonObject);
+
+            getTaskActionParams().add(taskActionParamEntity);
+        }
+
+    }
+
+    @Override
+    public JSONObject toJsonObject() {
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", getId());
+        jsonObject.put("name", getName());
+        jsonObject.put("actionType", getActionTypeEnum());
+        jsonObject.put("taskOrder", getTaskOrder());
+        jsonObject.put("indexInUserTask", getIndexInUserTask());
+        jsonObject.put("taskActionParams", arrayToJsonArray(getTaskActionParams()));
+
+        return jsonObject;
 
     }
 
@@ -138,7 +204,7 @@ public class TaskActionEntity extends BaseEntity {
     public void setTaskActionParams(ArrayList<BaseEntity> taskActionParams) {
 
         this.taskActionParams = taskActionParams;
-        fillTaskActionParamsMap();
+        processTaskActionsMap();
 
     }
 
@@ -154,6 +220,26 @@ public class TaskActionEntity extends BaseEntity {
             taskActionParamsMap.put(taskActionParamEntity.getActionTypeParamEnum(), taskActionParamEntity);
         }
 
+    }
+
+    public HashMap<Long, Long> getTaskActionsMap() {
+        return taskActionsMap;
+    }
+
+    public void setTaskActionsMap(HashMap<Long, Long> taskActionsMap) {
+        this.taskActionsMap = taskActionsMap;
+    }
+
+    public void setTaskActionParamsMap(HashMap<ActionTypeParamsEnum, TaskActionParamEntity> taskActionParamsMap) {
+        this.taskActionParamsMap = taskActionParamsMap;
+    }
+
+    public HashMap<Long, Long> getTaskActionsReverseMap() {
+        return taskActionsReverseMap;
+    }
+
+    public void setTaskActionsReverseMap(HashMap<Long, Long> taskActionsReverseMap) {
+        this.taskActionsReverseMap = taskActionsReverseMap;
     }
 
 }

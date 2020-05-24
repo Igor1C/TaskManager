@@ -4,6 +4,7 @@ public class SaveTaskActionParamRequest extends IdNameRequest {
 
     long taskAction;
     String paramValue;
+    boolean booleanParamValue;
     boolean useExtraParam;
     Long extraParamTaskAction;
     Long extraParamType;
@@ -28,6 +29,14 @@ public class SaveTaskActionParamRequest extends IdNameRequest {
 
     public void setParamValue(String paramValue) {
         this.paramValue = paramValue;
+    }
+
+    public boolean isBooleanParamValue() {
+        return booleanParamValue;
+    }
+
+    public void setBooleanParamValue(boolean booleanParamValue) {
+        this.booleanParamValue = booleanParamValue;
     }
 
     public boolean isUseExtraParam() {

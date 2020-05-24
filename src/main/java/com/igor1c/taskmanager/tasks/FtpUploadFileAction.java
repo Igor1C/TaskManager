@@ -3,6 +3,7 @@ package com.igor1c.taskmanager.tasks;
 import com.igor1c.taskmanager.entities.ActionTypeParamsEnum;
 import com.igor1c.taskmanager.entities.TaskActionEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPClientConfig;
 
@@ -35,14 +36,15 @@ public class FtpUploadFileAction extends TaskActionController {
         String ftpPath = ftpFolder + "/" + sourceFile;
 
         FTPClientConfig ftpClientConfig = new FTPClientConfig();
-
         FTPClient ftpClient = new FTPClient();
         ftpClient.setUseEPSVwithIPv4(true);
         ftpClient.configure(ftpClientConfig);
+
         try (FileInputStream fis = new FileInputStream(filePath)) {
 
             ftpClient.connect(ftpAddress, ftpPort);
             ftpClient.login(ftpUser, ftpPassword);
+            ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
             ftpClient.storeFile(ftpPath, fis);
 
         } catch (FileNotFoundException e) {

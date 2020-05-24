@@ -3,6 +3,7 @@ package com.igor1c.taskmanager.database;
 import com.igor1c.taskmanager.entities.BaseEntity;
 import com.igor1c.taskmanager.entities.UserTaskEntity;
 import com.igor1c.taskmanager.entities.UserTaskExecutionEntity;
+import com.igor1c.taskmanager.helpers.DBHelper;
 import com.igor1c.taskmanager.tasks.UserTaskController;
 
 import java.sql.ResultSet;
@@ -66,7 +67,7 @@ public class UserTaskExecutionsTable extends TableController<UserTaskExecutionEn
 
     public void executeAllSchedules() {
 
-        openConnection();
+        //DBHelper.openStaticConnection();
 
         String query = getScheduleCheckQuery();
         executeQuery(query);
@@ -82,7 +83,7 @@ public class UserTaskExecutionsTable extends TableController<UserTaskExecutionEn
                 UserTaskEntity userTaskEntity = (UserTaskEntity) userTasksTable.selectById(userTaskId);
                 userTasksTable.fillEntity(userTaskEntity);
 
-                UserTaskController userTaskController = new UserTaskController(userTaskEntity);
+                UserTaskController userTaskController = new UserTaskController(userTaskEntity, true);
                 userTaskController.processUserTask();
             }
 
@@ -90,7 +91,7 @@ public class UserTaskExecutionsTable extends TableController<UserTaskExecutionEn
             e.printStackTrace();
         }
 
-        closeConnection();
+        //DBHelper.closeStaticConnection();
 
     }
 

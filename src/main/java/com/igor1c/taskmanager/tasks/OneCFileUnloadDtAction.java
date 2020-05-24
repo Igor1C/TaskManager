@@ -29,7 +29,12 @@ public class OneCFileUnloadDtAction extends TaskActionController {
         String destinationFolder = getParamValue(ActionTypeParamsEnum.DESTINATION_FOLDER);
         destinationFolder = appendBackslash(destinationFolder);
 
-        String dtFileName = generateFileNameFromCurrentDate() + ".dt";
+        String fileName;
+        if (getBooleanParamValue(ActionTypeParamsEnum.ONE_C_UNLOAD_ONLY_CF)) {
+            fileName = generateFileNameFromCurrentDate() + ".cf";
+        } else {
+            fileName = generateFileNameFromCurrentDate() + ".dt";
+        }
 
 
 
@@ -49,9 +54,14 @@ public class OneCFileUnloadDtAction extends TaskActionController {
                         .append(password)
                         .append("\" ");
 
-        executableString.append("/DumpIB \"")
-                        .append(destinationFolder)
-                        .append(dtFileName)
+        if (getBooleanParamValue(ActionTypeParamsEnum.ONE_C_UNLOAD_ONLY_CF)) {
+            executableString.append("/DumpCfg \"");
+        } else {
+            executableString.append("/DumpIB \"");
+        }
+
+        executableString.append(destinationFolder)
+                        .append(fileName)
                         .append("\"");
 
         try {

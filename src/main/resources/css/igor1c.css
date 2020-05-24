@@ -6,11 +6,8 @@
     background-color: #333;
 }
 
-.igor1c-dialog {
-    /*background: linear-gradient(0deg, rgba(34, 193, 195, 0.9) 0%, rgba(196, 196, 196, 0.9) 100%);*/
-    background: radial-gradient(circle farthest-corner at 900px 250px, rgba(154, 198, 208, 1) 0%, rgba(196, 196, 196, 1) 100%);
-    width: 1150px;
-    padding: 0px 35px 0px 0px;
+.igor1c-grid-main-wrapper {
+    width: 100%;
 }
 
 .igor1c-grid-main {
@@ -23,6 +20,50 @@
 
 .igor1c-footer {
     z-index: 2;
+}
+
+
+
+/* DIALOG */
+
+.igor1c-dialog {
+    position: absolute;
+    top: 0px;
+
+    overflow-y: scroll;
+
+    background-color: rgba(0, 0, 0, 0);
+
+    border: none;
+    padding: 0px;
+    height: 100%;
+}
+
+.igor1c-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.igor1c-dialog::-webkit-scrollbar {
+    display: none;
+}
+
+.igor1c-dialog-inner {
+    top: 2px;
+    overscroll-behavior-y: none;
+
+    background: radial-gradient(circle farthest-corner at 900px 250px, rgba(154, 198, 208, 1) 0%, rgba(196, 196, 196, 1) 100%);
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 20px 35px 20px 0px;
+    width: 1150px;
+}
+
+.igor1c-cardMenu {
+    position: absolute;
+    right: 16px;
+    top: 36px;
 }
 
 
@@ -49,7 +90,11 @@
 /* BUTTONS */
 
 .igor1c-button-save {
-    background-color: #00c853;
+    background-color: #00c853 !important;
+}
+
+.igor1c-button-upload {
+    background-color: #e0731f !important;
 }
 
 .igor1c-button-cancel {
@@ -66,6 +111,8 @@
 
 .igor1c-userTask-card {
     background-color: rgb(255, 255, 255);
+
+    margin: auto;
     min-height: 0px;
 }
 
@@ -142,7 +189,24 @@
     margin: 20px 10px 10px 10px;
 }
 
+.igor1c-param-card-small {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(224, 225, 199);
+    border-radius: 10px;
+    height: 30px;
+    margin: 20px 10px 10px 10px;
+}
+
 .igor1c-param-cardCaption-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
     color: rgb(0, 0, 0);
     font-size: 14px;
     margin: auto;
@@ -177,6 +241,11 @@
 
 .igor1c-param-checkBox {
     margin-left: 10px;
+}
+
+.igor1c-param-checkBox-booleanValue {
+    height: 15px;
+    width: 15px;
 }
 
 

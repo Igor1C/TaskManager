@@ -10,7 +10,7 @@ public class TaskActionParamsTable extends TableController<TaskActionParamEntity
 
         super(  "taskActionParams",
                 new String[]{"taskAction", "actionTypeParam", "paramValue", "extraParamTaskAction", "extraParamType"},
-                new String[]{"useExtraParam"});
+                new String[]{"booleanParamValue", "useExtraParam"});
 
     }
 
@@ -21,6 +21,7 @@ public class TaskActionParamsTable extends TableController<TaskActionParamEntity
                         "   taskAction BIGINT NOT NULL,\n" +
                         "   actionTypeParam BIGINT NOT NULL,\n" +
                         "   paramValue VARCHAR(255),\n" +
+                        "   booleanParamValue BOOLEAN,\n" +
                         "   useExtraParam BOOLEAN,\n" +
                         "   extraParamTaskAction BIGINT DEFAULT NULL,\n" +
                         "   extraParamType BIGINT DEFAULT NULL\n" +
@@ -62,6 +63,7 @@ public class TaskActionParamsTable extends TableController<TaskActionParamEntity
         ActionTypeParamsTable actionTypeParamsTable = new ActionTypeParamsTable();
         ActionTypeParamEntity actionTypeParam = (ActionTypeParamEntity) actionTypeParamsTable.selectById(entity.getActionTypeParam());
         entity.setActionTypeParamDescription(actionTypeParam.getDescription());
+        entity.setBooleanType(actionTypeParam.isBooleanType());
 
         return baseEntity;
 
