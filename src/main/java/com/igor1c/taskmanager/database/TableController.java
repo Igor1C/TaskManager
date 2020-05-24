@@ -8,7 +8,6 @@ import org.omg.CORBA.BooleanHolder;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
@@ -80,7 +79,7 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
     public ArrayList<BaseEntity> selectOrder(String whereConditions, String orderBy) {
 
-        openConnection();
+        openCurrentConnection();
 
         String query =  "SELECT\n" +
                 "   *\n" +
@@ -99,7 +98,7 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
         ResultSet resultSet = executePreparedStatement(query);
         ArrayList<BaseEntity> baseEntityArrayList = processResultSet(resultSet);
-        closeConnection();
+        closeCurrentConnection();
 
         return baseEntityArrayList;
 
@@ -156,9 +155,9 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
     protected long executeDbQuery(String query) {
 
-        openConnection();
+        openCurrentConnection();
         long id = executeQuery(query);
-        closeConnection();
+        closeCurrentConnection();
 
         return id;
 
@@ -166,9 +165,9 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
     protected ResultSet executeDbPreparedStatement(String query) {
 
-        openConnection();
+        openCurrentConnection();
         ResultSet resultSet = executePreparedStatement(query);
-        closeConnection();
+        closeCurrentConnection();
 
         return resultSet;
 
@@ -176,10 +175,10 @@ public abstract class TableController<E extends BaseEntity> extends DBHelper imp
 
     protected ArrayList<BaseEntity> executeDbPreparedStatementProcess(String query) {
 
-        openConnection();
+        openCurrentConnection();
         ResultSet resultSet = executePreparedStatement(query);
         ArrayList<BaseEntity> baseEntityArrayList = processResultSet(resultSet);
-        closeConnection();
+        closeCurrentConnection();
 
         return baseEntityArrayList;
 

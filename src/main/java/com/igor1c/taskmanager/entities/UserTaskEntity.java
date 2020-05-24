@@ -1,13 +1,18 @@
 package com.igor1c.taskmanager.entities;
 
-import com.igor1c.taskmanager.database.UserTaskSchedulesTable;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.igor1c.taskmanager.database.UserTasksTable;
-import com.igor1c.taskmanager.helpers.DateHelper;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import javax.swing.text.html.parser.Entity;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 
 public class UserTaskEntity extends BaseEntity {
 
@@ -16,6 +21,9 @@ public class UserTaskEntity extends BaseEntity {
     private ArrayList<BaseEntity> taskActions = new ArrayList<>();
     private ArrayList<BaseEntity> userTaskSchedules = new ArrayList<>();
     private ArrayList<BaseEntity> userTaskExecutions = new ArrayList<>();
+
+    private HashMap<Long, Long> taskActionsMap; // Key: taskActionId, value: taskActionIndex
+    private HashMap<Long, Long> taskActionsReverseMap; // Key: taskActionIndex, value: taskActionId
 
 
 
@@ -59,6 +67,67 @@ public class UserTaskEntity extends BaseEntity {
 
     }
 
+    public void processTaskActionsMap() {
+
+        fillTaskActionsMap();
+
+        for (BaseEntity baseEntity : taskActions) {
+            TaskActionEntity taskActionEntity = (TaskActionEntity) baseEntity;
+            taskActionEntity.setTaskActionsMap(getTaskActionsMap());
+            taskActionEntity.setTaskActionsReverseMap(getTaskActionsReverseMap());
+            taskActionEntity.processTaskActionsMap();
+        }
+
+    }
+
+
+
+    /* JSON */
+
+    @Override
+    public void insertUpdateFromJsonObject(JSONObject jsonObject) {
+
+        UserTasksTable userTasksTable = new UserTasksTable();
+
+        setName(jsonObject.getString("name"));
+        setId(userTasksTable.fullInsertUpdate(this));
+
+        JSONArray taskActionJsonArray = jsonObject.getJSONArray("taskActions");
+        for (int i = 0; i < taskActionJsonArray.length(); i++) {
+            JSONObject taskActionJsonObject = taskActionJsonArray.getJSONObject(i);
+
+            TaskActionEntity taskActionEntity = new TaskActionEntity();
+            taskActionEntity.setUserTask(getId());
+            taskActionEntity.setTaskActionsMap(getTaskActionsMap());
+            taskActionEntity.setTaskActionsReverseMap(getTaskActionsReverseMap());
+            taskActionEntity.insertUpdateFromJsonObject(taskActionJsonObject);
+
+            getTaskActions().add(taskActionEntity);
+            fillTaskActionsMap();
+        }
+
+        setUserTaskSchedules(BaseEntity.jsonArrayToArray(   jsonObject.getJSONArray("userTaskSchedules"),
+                                                            EntityFactory.USER_TASK_SCHEDULES));
+        for (BaseEntity baseEntity : getUserTaskSchedules()) {
+            ((UserTaskScheduleEntity) baseEntity).setUserTask(getId());
+        }
+        userTasksTable.fullInsertUpdate(this);
+
+    }
+
+    @Override
+    public JSONObject toJsonObject() {
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", getId());
+        jsonObject.put("name", getName());
+        jsonObject.put("taskActions", arrayToJsonArray(getTaskActions()));
+        jsonObject.put("userTaskSchedules", arrayToJsonArray(getUserTaskSchedules()));
+
+        return jsonObject;
+
+    }
+
 
 
     /* GETTERS & SETTERS OF THE DATABASE FIELDS */
@@ -84,7 +153,10 @@ public class UserTaskEntity extends BaseEntity {
     }
 
     public void setTaskActions(ArrayList<BaseEntity> taskActions) {
+
         this.taskActions = taskActions;
+        processTaskActionsMap();
+
     }
 
     public ArrayList<BaseEntity> getUserTaskSchedules() {
@@ -128,6 +200,28 @@ public class UserTaskEntity extends BaseEntity {
 
         UserTasksTable.fillEntityWithUserTaskExecutions(this);
         return getLastExecutionString();
+
+    }
+
+    public HashMap<Long, Long> getTaskActionsMap() {
+        return taskActionsMap;
+    }
+
+    public HashMap<Long, Long> getTaskActionsReverseMap() {
+        return taskActionsReverseMap;
+    }
+
+    private void fillTaskActionsMap() {
+
+        taskActionsMap = new HashMap<>();
+        taskActionsReverseMap = new HashMap<>();
+
+        long l = 0;
+        for (BaseEntity baseEntity : taskActions) {
+            taskActionsMap.put(baseEntity.getId(), l);
+            taskActionsReverseMap.put(l, baseEntity.getId());
+            l++;
+        }
 
     }
 
