@@ -9,6 +9,7 @@ import com.igor1c.taskmanager.entities.*;
 import com.igor1c.taskmanager.tasks.UserTaskController;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,13 +46,16 @@ public class MainController {
 
     }
 
-    @PostMapping("/uploadUserTask")
+    @PostMapping(value = "/uploadUserTask",
+            consumes = "multipart/form-data; charset=UTF-8")
     public ResponseEntity<?> uploadUserTask(MultipartFile file) {
 
         try {
             String jsonString = new String(file.getBytes());
+            System.out.println("jsonString: " + jsonString);
             JSONObject jsonObject = new JSONObject(jsonString);
 
+            System.out.println("Name: " + jsonObject.getString("name"));
             UserTaskEntity userTaskEntity = new UserTaskEntity();
             userTaskEntity.insertUpdateFromJsonObject(jsonObject);
         } catch (IOException e) {
