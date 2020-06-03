@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e052661d-a88d-4784-b3f8-e162c7db3f11" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/target/classes/com/igor1c/taskmanager/Application.class" beforeDir="false" />
-    </list>
+    <list default="true" id="e052661d-a88d-4784-b3f8-e162c7db3f11" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -358,7 +356,7 @@
       <workItem from="1590383530841" duration="207000" />
       <workItem from="1590388080116" duration="396000" />
       <workItem from="1590424368119" duration="98000" />
-      <workItem from="1591207604978" duration="2901000" />
+      <workItem from="1591207604978" duration="3220000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <created>1576515056454</created>
@@ -696,7 +694,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591210089410</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Work">
+      <created>1591211043238</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1591211043238</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -746,11 +751,11 @@
     </state>
     <state x="595" y="271" width="1908" height="594" key="#xdebugger.evaluate/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590333353683" />
     <state x="1035" y="403" key="#xdebugger.evaluate/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589480980092" />
-    <state x="3239" y="533" key="CommitChangelistDialog2" timestamp="1591210088956">
+    <state x="3239" y="533" key="CommitChangelistDialog2" timestamp="1591211042792">
       <screen x="2560" y="356" width="1920" height="1040" />
     </state>
     <state x="905" y="268" key="CommitChangelistDialog2/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590327002608" />
-    <state x="3239" y="533" key="CommitChangelistDialog2/2560.356.1920.1040/0.0.2560.1400@2560.356.1920.1040" timestamp="1591210088956" />
+    <state x="3239" y="533" key="CommitChangelistDialog2/2560.356.1920.1040/0.0.2560.1400@2560.356.1920.1040" timestamp="1591211042792" />
     <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1589629488626">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -803,10 +808,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="810" y="355" key="Maven.ArtifactSearchDialog/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590337005445" />
-    <state x="3408" y="744" width="779" height="264" key="MultipleFileMergeDialog" timestamp="1591208249474">
+    <state x="2728" y="386" width="1459" height="622" key="MultipleFileMergeDialog" timestamp="1591211138532">
       <screen x="2560" y="356" width="1920" height="1040" />
     </state>
-    <state x="3408" y="744" width="779" height="264" key="MultipleFileMergeDialog/2560.356.1920.1040/0.0.2560.1400@2560.356.1920.1040" timestamp="1591208249474" />
+    <state x="2728" y="386" width="1459" height="622" key="MultipleFileMergeDialog/2560.356.1920.1040/0.0.2560.1400@2560.356.1920.1040" timestamp="1591211138532" />
     <state x="3146" y="612" key="SettingsEditor" timestamp="1591207811332">
       <screen x="2560" y="356" width="1920" height="1040" />
     </state>
@@ -817,10 +822,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1001" y="441" width="540" height="524" key="StructurePopup/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590325385159" />
-    <state x="3112" y="609" key="Vcs.Push.Dialog.v2" timestamp="1591210096455">
+    <state x="3112" y="609" key="Vcs.Push.Dialog.v2" timestamp="1591211147733">
       <screen x="2560" y="356" width="1920" height="1040" />
     </state>
-    <state x="3112" y="609" key="Vcs.Push.Dialog.v2/2560.356.1920.1040/0.0.2560.1400@2560.356.1920.1040" timestamp="1591210096455" />
+    <state x="3112" y="609" key="Vcs.Push.Dialog.v2/2560.356.1920.1040/0.0.2560.1400@2560.356.1920.1040" timestamp="1591211147733" />
     <state width="1288" height="708" key="XDebugger.FullValuePopup" timestamp="1589907005968">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
