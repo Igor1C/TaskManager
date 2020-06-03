@@ -2,47 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e052661d-a88d-4784-b3f8-e162c7db3f11" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/PropertiesHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__Arquillian_JUnit_Release.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__Arquillian_JUnit_Release.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManager.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/SaveTaskActionParamRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/controllers/requests/SaveTaskActionParamRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ActionTypeParamsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ActionTypeParamsTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ParamRelationsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/ParamRelationsTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionParamsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionParamsTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/TaskActionsTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTaskExecutionsTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTaskExecutionsTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTasksTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/database/UserTasksTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeParamEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeParamEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeParamsEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypeParamsEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypesEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ActionTypesEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/EntityFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ScheduleTypesEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/ScheduleTypesEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionParamEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/TaskActionParamEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskExecutionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskExecutionEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskScheduleEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/entities/UserTaskScheduleEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/helpers/DBHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/FtpUploadFileAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/FtpUploadFileAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/OneCFileUnloadDtAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/OneCFileUnloadDtAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/TaskActionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/TaskActionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/UserTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/UserTaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/ZipPackAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/igor1c/taskmanager/tasks/ZipPackAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/background-particles-space.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/background-particles-space.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/igor1c.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/igor1c.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/igor1c/taskmanager/controllers/MainControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/igor1c/taskmanager/controllers/MainControllerIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/igor1c/taskmanager/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/igor1c/taskmanager/Application.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +75,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.CommitDialog" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -247,7 +213,7 @@
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\Igor\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -392,7 +358,12 @@
       <workItem from="1590176604018" duration="5000" />
       <workItem from="1590223668255" duration="6789000" />
       <workItem from="1590246494944" duration="7811000" />
-      <workItem from="1590309163166" duration="9640000" />
+      <workItem from="1590309163166" duration="17795000" />
+      <workItem from="1590337466097" duration="5402000" />
+      <workItem from="1590383530841" duration="207000" />
+      <workItem from="1590388080116" duration="396000" />
+      <workItem from="1590424368119" duration="98000" />
+      <workItem from="1591207604978" duration="430000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <created>1576515056454</created>
@@ -702,7 +673,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585477748781</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Work">
+      <created>1590327003470</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1590327003471</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TodoView">
@@ -731,10 +709,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="891" y="275" key="#Unnamed/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590325293626" />
-    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590325322493">
+    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590326823080">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590325322493" />
+    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590326823080" />
     <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589475194711" />
     <state x="445" y="401" key="#com.intellij.ide.util.MemberChooser" timestamp="1590249233346">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -756,67 +734,72 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="891" y="275" key="#taskmanager_[package]/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590324905232" />
-    <state x="595" y="271" width="1908" height="594" key="#xdebugger.evaluate" timestamp="1590309713372">
+    <state x="595" y="271" width="1908" height="594" key="#xdebugger.evaluate" timestamp="1590333353683">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="595" y="271" width="1908" height="594" key="#xdebugger.evaluate/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590309713372" />
+    <state x="595" y="271" width="1908" height="594" key="#xdebugger.evaluate/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590333353683" />
     <state x="1035" y="403" key="#xdebugger.evaluate/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589480980092" />
+    <state x="905" y="268" key="CommitChangelistDialog2" timestamp="1590327002608">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="905" y="268" key="CommitChangelistDialog2/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590327002608" />
     <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1589629488626">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1060" y="455" key="FileChooserDialogImpl/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589629488626" />
-    <state width="1234" height="403" key="GridCell.Tab.0.bottom" timestamp="1590326532474">
+    <state width="2517" height="492" key="GridCell.Tab.0.bottom" timestamp="1590383736962">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1234" height="403" key="GridCell.Tab.0.bottom/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590326532474" />
+    <state width="2517" height="492" key="GridCell.Tab.0.bottom/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590383736962" />
     <state width="2517" height="415" key="GridCell.Tab.0.bottom/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589488472741" />
-    <state width="1234" height="403" key="GridCell.Tab.0.center" timestamp="1590326532473">
+    <state width="2517" height="492" key="GridCell.Tab.0.center" timestamp="1590383736962">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1234" height="403" key="GridCell.Tab.0.center/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590326532473" />
+    <state width="2517" height="492" key="GridCell.Tab.0.center/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590383736962" />
     <state width="2517" height="415" key="GridCell.Tab.0.center/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589488472741" />
-    <state width="1234" height="403" key="GridCell.Tab.0.left" timestamp="1590326532473">
+    <state width="2517" height="492" key="GridCell.Tab.0.left" timestamp="1590383736962">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1234" height="403" key="GridCell.Tab.0.left/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590326532473" />
+    <state width="2517" height="492" key="GridCell.Tab.0.left/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590383736962" />
     <state width="2517" height="415" key="GridCell.Tab.0.left/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589488472741" />
-    <state width="1234" height="403" key="GridCell.Tab.0.right" timestamp="1590326532473">
+    <state width="2517" height="492" key="GridCell.Tab.0.right" timestamp="1590383736962">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1234" height="403" key="GridCell.Tab.0.right/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590326532473" />
+    <state width="2517" height="492" key="GridCell.Tab.0.right/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590383736962" />
     <state width="2517" height="415" key="GridCell.Tab.0.right/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589488472741" />
-    <state width="2517" height="329" key="GridCell.Tab.1.bottom" timestamp="1590324447837">
+    <state width="2517" height="492" key="GridCell.Tab.1.bottom" timestamp="1590383736962">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="329" key="GridCell.Tab.1.bottom/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590324447837" />
+    <state width="2517" height="492" key="GridCell.Tab.1.bottom/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590383736962" />
     <state width="2517" height="415" key="GridCell.Tab.1.bottom/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589488472741" />
-    <state width="2517" height="329" key="GridCell.Tab.1.center" timestamp="1590324447837">
+    <state width="2517" height="492" key="GridCell.Tab.1.center" timestamp="1590383736962">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="329" key="GridCell.Tab.1.center/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590324447837" />
+    <state width="2517" height="492" key="GridCell.Tab.1.center/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590383736962" />
     <state width="2517" height="415" key="GridCell.Tab.1.center/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589488472741" />
-    <state width="2517" height="329" key="GridCell.Tab.1.left" timestamp="1590324447836">
+    <state width="2517" height="492" key="GridCell.Tab.1.left" timestamp="1590383736962">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="329" key="GridCell.Tab.1.left/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590324447836" />
+    <state width="2517" height="492" key="GridCell.Tab.1.left/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590383736962" />
     <state width="2517" height="415" key="GridCell.Tab.1.left/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589488472741" />
-    <state width="2517" height="329" key="GridCell.Tab.1.right" timestamp="1590324447837">
+    <state width="2517" height="492" key="GridCell.Tab.1.right" timestamp="1590383736962">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="329" key="GridCell.Tab.1.right/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590324447837" />
+    <state width="2517" height="492" key="GridCell.Tab.1.right/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590383736962" />
     <state width="2517" height="415" key="GridCell.Tab.1.right/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589488472741" />
     <state x="860" y="443" key="IDE.errors.dialog" timestamp="1589741458496">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="860" y="443" key="IDE.errors.dialog/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589741458496" />
-    <state x="810" y="355" key="Maven.ArtifactSearchDialog" timestamp="1589741419811">
+    <state x="810" y="355" key="Maven.ArtifactSearchDialog" timestamp="1590337005445">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="810" y="355" key="Maven.ArtifactSearchDialog/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589741419811" />
-    <state x="781" y="345" key="SettingsEditor" timestamp="1590325216816">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="810" y="355" key="Maven.ArtifactSearchDialog/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590337005445" />
+    <state x="3146" y="612" key="SettingsEditor" timestamp="1591207811332">
+      <screen x="2560" y="356" width="1920" height="1040" />
     </state>
     <state x="781" y="345" key="SettingsEditor/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590325216816" />
+    <state x="3146" y="612" key="SettingsEditor/2560.356.1920.1040/0.0.2560.1400@2560.356.1920.1040" timestamp="1591207811332" />
     <state x="781" y="345" key="SettingsEditor/2560.358.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589474509411" />
     <state x="1001" y="441" width="540" height="524" key="StructurePopup" timestamp="1590325385159">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -834,10 +817,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1010" y="464" key="extract.method.dialog/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1589904254622" />
-    <state x="987" y="433" width="585" height="534" key="find.popup" timestamp="1590173090618">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="3300" y="678" width="1097" height="534" key="find.popup" timestamp="1591207986396">
+      <screen x="2560" y="356" width="1920" height="1040" />
     </state>
     <state x="987" y="433" width="585" height="534" key="find.popup/2560.356.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1590173090618" />
+    <state x="3300" y="678" width="1097" height="534" key="find.popup/2560.356.1920.1040/0.0.2560.1400@2560.356.1920.1040" timestamp="1591207986396" />
     <state x="662" y="383" key="new project wizard" timestamp="1589619888699">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -860,11 +844,6 @@
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="entity.getName()" language="JAVA" />
-      </configuration>
-      <configuration name="SpringBootApplicationConfigurationType">
-        <watch expression="((TaskActionEntity) userTaskEntity.getTaskActions().get(0)).getTaskActionParams().get(2)" language="JAVA" />
-        <watch expression="actionTypeParam.getName()" language="JAVA" />
-        <watch expression="((ActionTypeParamEntity) baseEntity).getName()" language="JAVA" custom="com.igor1c.taskmanager.entities.ActionTypeParamEntity" />
       </configuration>
     </watches-manager>
   </component>

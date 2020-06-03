@@ -188,7 +188,6 @@ app.controller("TaskManagerController", function ($scope, $http) {
         let file = document.getElementById("uploadFile");
 
         let formData = new FormData();
-        console.log("file.files.length: " + file.files.length);
         formData.append("file", file.files[0]);
 
         $.ajax({

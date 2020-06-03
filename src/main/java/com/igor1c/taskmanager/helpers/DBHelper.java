@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class DBHelper {
 
     private static String DB_URL;
-
     private static Connection staticConnection;
+    private final static String TABLE_FOR_EXISTENCE_CHECK = "ACTIONTYPES";
 
     private Connection currentConnection;
 
@@ -31,8 +31,9 @@ public class DBHelper {
     /* DATABASE CREATION */
 
     public static void createDatabase() {
-        if (new File(DB_URL).exists())
+        if (checkDatabaseExistence()) {
             return;
+        }
 
         ArrayList<TableOperations> tableOperationsArray = new ArrayList<TableOperations>();
         tableOperationsArray.add(new ActionTypesTable());
@@ -45,6 +46,18 @@ public class DBHelper {
         tableOperationsArray.add(new UserTaskExecutionsTable());
 
         processTableOperations(tableOperationsArray);
+    }
+
+    private static boolean checkDatabaseExistence() {
+        openStaticConnection();
+
+        try {
+            return staticConnection.getMetaData().getTables(null, null, TABLE_FOR_EXISTENCE_CHECK, null).next();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return false;
     }
 
     private static void processTableOperations(ArrayList<TableOperations> tableOperationsArray) {
